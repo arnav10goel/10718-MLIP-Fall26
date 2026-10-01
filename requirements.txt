@@ -1,0 +1,12 @@
+# Python 3.11; tested with these versions (Slurm jobs use the activated environment's `python`)
+numpy>=2.4
+scipy>=1.17
+matplotlib>=3.11
+opencv-python-headless>=5.0
+scikit-image>=0.26
+dtw-python>=1.7.5
+torch>=2.14
+open_clip_torch>=3.3
+pillow>=12.3
+imageio-ffmpeg>=0.6
+huggingface_hub>=1.33
