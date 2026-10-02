@@ -1,13 +1,4 @@
-# Downloaded or generated data (videos, annotations, features, step groups); recreate with the scripts (see README)
-data/*/*
-!data/COIN/download_from_hf.py
-!data/COIN/make_step_groups.py
-
-# Outputs
-baselines/results/
-logs/*
-!logs/.gitkeep
+.venv/
 __pycache__/
-*.part
-*.ytdl
-cookies*.txt
+*.pyc
+data/
