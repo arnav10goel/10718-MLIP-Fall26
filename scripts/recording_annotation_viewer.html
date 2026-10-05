@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReplaceSIMCard annotation viewer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111315;
+      --panel: #1a1d21;
+      --panel-2: #22262b;
+      --line: #343a42;
+      --text: #f4f5f7;
+      --muted: #a7afb9;
+      --accent: #69a7ff;
+      --good: #4fc58b;
+      --warn: #f5b94c;
+      --bad: #f07178;
+      --step-1: #5da9ff;
+      --step-2: #b18cff;
+      --step-3: #51c99a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, select, input {
+      color: inherit;
+      font: inherit;
+    }
+
+    button, select, input[type="number"] {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+    }
+
+    button {
+      cursor: pointer;
+      padding: 8px 12px;
+    }
+
+    button:hover { border-color: #68727e; }
+    button:focus-visible, select:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #15181b;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 650;
+    }
+
+    .subtitle {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    #progressText {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    #saveStatus {
+      min-width: 74px;
+      text-align: right;
+      color: var(--good);
+      font-size: 13px;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(420px, 1.25fr) minmax(420px, .9fr);
+      gap: 18px;
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .panel {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-head select {
+      min-width: 0;
+      flex: 1;
+      padding: 8px 10px;
+    }
+
+    .nav-button {
+      width: 38px;
+      padding-inline: 0;
+    }
+
+    .video-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+      padding: 14px;
+      background: #090a0b;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      max-height: 62vh;
+      background: black;
+    }
+
+    .transport {
+      padding: 12px 14px 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline {
+      position: relative;
+      height: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #0f1113;
+      cursor: pointer;
+    }
+
+    .segment {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      min-width: 2px;
+      border-radius: 4px;
+      opacity: .8;
+    }
+
+    .segment.step-1 { background: var(--step-1); }
+    .segment.step-2 { background: var(--step-2); }
+    .segment.step-3 { background: var(--step-3); }
+
+    .playhead {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: white;
+      box-shadow: 0 0 0 1px #0008;
+      pointer-events: none;
+    }
+
+    .transport-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .time {
+      min-width: 125px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .nudge-buttons {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nudge-buttons button {
+      padding: 5px 9px;
+      font-size: 13px;
+    }
+
+    .editor {
+      padding: 16px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    label.field {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+
+    label.field select {
+      width: 100%;
+      padding: 8px 10px;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: normal;
+    }
+
+    .instructions {
+      margin: 0 0 14px;
+      padding: 10px 12px;
+      border-left: 3px solid var(--accent);
+      background: #202833;
+      color: #d9e7fa;
+      font-size: 13px;
+    }
+
+    #steps {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel-2);
+      overflow: hidden;
+    }
+
+    .step-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .step-card.invalid { border-color: var(--bad); }
+
+    .step-title {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      color: #081019;
+      font-weight: 750;
+    }
+
+    .step-1 .step-number { background: var(--step-1); }
+    .step-2 .step-number { background: var(--step-2); }
+    .step-3 .step-number { background: var(--step-3); }
+
+    .step-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .step-duration {
+      color: var(--muted);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .marks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 0 12px 12px 56px;
+    }
+
+    .mark {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px;
+    }
+
+    .mark-label {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      text-transform: uppercase;
+    }
+
+    .mark input {
+      width: 100%;
+      min-width: 0;
+      padding: 7px 8px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mark button {
+      padding: 7px 9px;
+      background: #303741;
+      font-size: 12px;
+    }
+
+    .validation {
+      min-height: 20px;
+      margin-top: 10px;
+      color: var(--bad);
+      font-size: 12px;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .output-path {
+      min-width: 0;
+      overflow: hidden;
+      color: var(--muted);
+      font-size: 11px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #saveButton {
+      border-color: #3678cf;
+      background: #2365bd;
+      font-weight: 650;
+    }
+
+    kbd {
+      display: inline-block;
+      min-width: 21px;
+      padding: 1px 5px;
+      border: 1px solid #52606e;
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      background: #171b20;
+      color: #e5eaf0;
+      font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-align: center;
+    }
+
+    .error-screen {
+      max-width: 700px;
+      margin: 80px auto;
+      padding: 20px;
+      border: 1px solid var(--bad);
+      border-radius: 10px;
+      background: var(--panel);
+      color: #ffd6d8;
+    }
+
+    @media (max-width: 940px) {
+      main { grid-template-columns: 1fr; }
+      .video-wrap { min-height: 300px; }
+      video { max-height: 55vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>ReplaceSIMCard step annotations</h1>
+      <div class="subtitle">Mark the visible start and end of each action.</div>
+    </div>
+    <div class="header-status">
+      <span id="progressText">Loading…</span>
+      <span id="saveStatus"></span>
+    </div>
+  </header>
+
+  <main id="app" hidden>
+    <section class="panel">
+      <div class="panel-head">
+        <button id="previousButton" class="nav-button" title="Previous video">←</button>
+        <select id="videoSelect" aria-label="Recording"></select>
+        <button id="nextButton" class="nav-button" title="Next video">→</button>
+      </div>
+      <div class="video-wrap">
+        <video id="video" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="transport">
+        <div id="timeline" class="timeline" title="Click to seek">
+          <div id="playhead" class="playhead"></div>
+        </div>
+        <div class="transport-row">
+          <span id="timeText" class="time">0:00.00 / 0:00.00</span>
+          <div class="nudge-buttons">
+            <button data-nudge="-1">−1s</button>
+            <button data-nudge="-.1">−0.1s</button>
+            <button data-nudge=".1">+0.1s</button>
+            <button data-nudge="1">+1s</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel editor">
+      <div class="meta-grid">
+        <label class="field">
+          VIDEO OUTCOME
+          <select id="outcome">
+            <option value="correct">Correct</option>
+            <option value="incorrect">Incorrect</option>
+          </select>
+        </label>
+        <label class="field">
+          DEVIATION STEP
+          <select id="deviationStep">
+            <option value="">None</option>
+            <option value="1">Step 1 — open slot</option>
+            <option value="2">Step 2 — insert SIM</option>
+            <option value="3">Step 3 — close tray</option>
+          </select>
+        </label>
+      </div>
+
+      <p class="instructions">
+        Pause at the first frame of an action and mark its start, then mark its
+        last frame as the end. Gaps between steps are allowed.
+        Select steps with <kbd>1</kbd>–<kbd>3</kbd>, mark with
+        <kbd>[</kbd>/<kbd>]</kbd>, and fine-seek with the arrow keys.
+      </p>
+
+      <div id="steps"></div>
+      <div id="validation" class="validation"></div>
+
+      <div class="footer-row">
+        <div id="outputPath" class="output-path"></div>
+        <button id="saveButton">Save annotations</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="errorScreen" class="error-screen" hidden></div>
+
+  <script>
+    "use strict";
+
+    const app = document.querySelector("#app");
+    const errorScreen = document.querySelector("#errorScreen");
+    const video = document.querySelector("#video");
+    const videoSelect = document.querySelector("#videoSelect");
+    const previousButton = document.querySelector("#previousButton");
+    const nextButton = document.querySelector("#nextButton");
+    const outcome = document.querySelector("#outcome");
+    const deviationStep = document.querySelector("#deviationStep");
+    const stepsContainer = document.querySelector("#steps");
+    const validation = document.querySelector("#validation");
+    const timeline = document.querySelector("#timeline");
+    const playhead = document.querySelector("#playhead");
+    const timeText = document.querySelector("#timeText");
+    const progressText = document.querySelector("#progressText");
+    const saveStatus = document.querySelector("#saveStatus");
+    const saveButton = document.querySelector("#saveButton");
+    const outputPath = document.querySelector("#outputPath");
+
+    let state;
+    let currentIndex = 0;
+    let activeStep = 0;
+    let saveTimer;
+    let saving = false;
+    let saveAgain = false;
+
+    function currentAnnotation() {
+      return state.videos[currentIndex];
+    }
+
+    function finiteNumber(value) {
+      return typeof value === "number" && Number.isFinite(value);
+    }
+
+    function formatTime(seconds) {
+      if (!finiteNumber(seconds)) return "—";
+      const minutes = Math.floor(seconds / 60);
+      const rest = (seconds - minutes * 60).toFixed(2).padStart(5, "0");
+      return `${minutes}:${rest}`;
+    }
+
+    function complete(entry) {
+      return entry.steps.every(
+        step => finiteNumber(step.start) &&
+          finiteNumber(step.end) &&
+          step.end > step.start
+      );
+    }
+
+    function stepProblem(entry, index) {
+      const step = entry.steps[index];
+      if (
+        finiteNumber(step.start) &&
+        finiteNumber(step.end) &&
+        step.end <= step.start
+      ) {
+        return "The end must be later than the start.";
+      }
+      if (
+        index > 0 &&
+        finiteNumber(entry.steps[index - 1].end) &&
+        finiteNumber(step.start) &&
+        step.start < entry.steps[index - 1].end
+      ) {
+        return `Step ${index + 1} overlaps step ${index}.`;
+      }
+      return "";
+    }
+
+    function allProblems(entry) {
+      return entry.steps.map((_, index) => stepProblem(entry, index)).filter(Boolean);
+    }
+
+    function updateProgress() {
+      const done = state.videos.filter(complete).length;
+      progressText.textContent = `${done} of ${state.videos.length} complete`;
+      for (const option of videoSelect.options) {
+        const entry = state.videos[Number(option.value)];
+        option.textContent = `${complete(entry) ? "✓ " : ""}${entry.file}`;
+      }
+    }
+
+    function updateTimeline() {
+      timeline.querySelectorAll(".segment").forEach(node => node.remove());
+      const entry = currentAnnotation();
+      const duration = video.duration || entry.duration;
+      if (!finiteNumber(duration) || duration <= 0) return;
+      entry.steps.forEach((step, index) => {
+        if (!finiteNumber(step.start) || !finiteNumber(step.end)) return;
+        const segment = document.createElement("div");
+        segment.className = `segment step-${index + 1}`;
+        segment.style.left = `${100 * step.start / duration}%`;
+        segment.style.width = `${100 * (step.end - step.start) / duration}%`;
+        segment.title = `Step ${index + 1}: ${formatTime(step.start)}–${formatTime(step.end)}`;
+        timeline.insertBefore(segment, playhead);
+      });
+      updateTime();
+    }
+
+    function updateTime() {
+      const duration = video.duration || currentAnnotation().duration || 0;
+      timeText.textContent = `${formatTime(video.currentTime || 0)} / ${formatTime(duration)}`;
+      const percent = duration > 0 ? 100 * video.currentTime / duration : 0;
+      playhead.style.left = `${Math.max(0, Math.min(100, percent))}%`;
+    }
+
+    function setActiveStep(index) {
+      activeStep = index;
+      renderSteps();
+    }
+
+    function parseInput(input) {
+      if (input.value.trim() === "") return null;
+      const value = Number(input.value);
+      return Number.isFinite(value) && value >= 0 ? Math.round(value * 1000) / 1000 : null;
+    }
+
+    function renderSteps() {
+      const entry = currentAnnotation();
+      stepsContainer.replaceChildren();
+      entry.steps.forEach((step, index) => {
+        const problem = stepProblem(entry, index);
+        const card = document.createElement("div");
+        card.className = [
+          "step-card",
+          `step-${index + 1}`,
+          index === activeStep ? "active" : "",
+          problem ? "invalid" : ""
+        ].filter(Boolean).join(" ");
+
+        const title = document.createElement("div");
+        title.className = "step-title";
+        title.innerHTML = `
+          <button class="step-number" title="Select step ${index + 1}">${index + 1}</button>
+          <div class="step-label">${step.label}</div>
+          <div class="step-duration">${
+            finiteNumber(step.start) && finiteNumber(step.end)
+              ? `${(step.end - step.start).toFixed(2)} s`
+              : "not marked"
+          }</div>
+        `;
+        title.addEventListener("click", () => setActiveStep(index));
+        card.appendChild(title);
+
+        const marks = document.createElement("div");
+        marks.className = "marks";
+        for (const field of ["start", "end"]) {
+          const wrapper = document.createElement("div");
+          wrapper.className = "mark";
+          const label = document.createElement("div");
+          label.className = "mark-label";
+          label.textContent = `${field} (seconds)`;
+          const input = document.createElement("input");
+          input.type = "number";
+          input.min = "0";
+          input.step = "0.01";
+          input.placeholder = "Not set";
+          input.value = finiteNumber(step[field]) ? step[field].toFixed(2) : "";
+          input.addEventListener("change", () => {
+            step[field] = parseInput(input);
+            changed();
+            renderSteps();
+          });
+          const markButton = document.createElement("button");
+          markButton.textContent = `Use ${formatTime(video.currentTime || 0)}`;
+          markButton.title = `Set ${field} to the current video time`;
+          markButton.addEventListener("click", event => {
+            event.stopPropagation();
+            mark(index, field);
+          });
+          wrapper.append(label, input, markButton);
+          marks.appendChild(wrapper);
+        }
+        card.appendChild(marks);
+        stepsContainer.appendChild(card);
+      });
+
+      const problems = allProblems(entry);
+      validation.textContent = problems[0] || "";
+      updateTimeline();
+      updateProgress();
+    }
+
+    function mark(index, field) {
+      const entry = currentAnnotation();
+      const step = entry.steps[index];
+      const value = Math.round(video.currentTime * 1000) / 1000;
+      if (field === "end" && finiteNumber(step.start) && value <= step.start) {
+        validation.textContent = "Move later in the video before marking this end.";
+        return;
+      }
+      step[field] = value;
+      if (field === "start" && finiteNumber(step.end) && step.end <= value) {
+        step.end = null;
+      }
+      activeStep = index;
+      changed();
+      renderSteps();
+    }
+
+    function renderCurrent() {
+      const entry = currentAnnotation();
+      videoSelect.value = String(currentIndex);
+      outcome.value = entry.outcome;
+      deviationStep.value = entry.deviation_step == null
+        ? ""
+        : String(entry.deviation_step);
+      deviationStep.disabled = entry.outcome === "correct";
+      previousButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === state.videos.length - 1;
+      activeStep = 0;
+      video.src = `/videos/${encodeURIComponent(entry.file)}`;
+      video.load();
+      renderSteps();
+    }
+
+    function changed() {
+      saveStatus.textContent = "Unsaved";
+      saveStatus.style.color = "var(--warn)";
+      updateProgress();
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveAll, 700);
+    }
+
+    async function saveAll() {
+      clearTimeout(saveTimer);
+      if (saving) {
+        saveAgain = true;
+        return;
+      }
+      const problems = state.videos.flatMap(allProblems);
+      if (problems.length) {
+        saveStatus.textContent = "Fix times";
+        saveStatus.style.color = "var(--bad)";
+        return;
+      }
+
+      saving = true;
+      saveStatus.textContent = "Saving…";
+      saveStatus.style.color = "var(--muted)";
+      try {
+        const response = await fetch("/api/annotations", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({videos: state.videos})
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || "Save failed");
+        saveStatus.textContent = "Saved";
+        saveStatus.style.color = "var(--good)";
+      } catch (error) {
+        saveStatus.textContent = "Save failed";
+        saveStatus.style.color = "var(--bad)";
+        validation.textContent = error.message;
+      } finally {
+        saving = false;
+        if (saveAgain) {
+          saveAgain = false;
+          saveAll();
+        }
+      }
+    }
+
+    function switchVideo(index) {
+      if (index < 0 || index >= state.videos.length) return;
+      currentIndex = index;
+      renderCurrent();
+    }
+
+    async function initialize() {
+      try {
+        const response = await fetch("/api/state");
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || "Could not load state");
+        state = payload;
+        state.videos.forEach((entry, index) => {
+          const option = document.createElement("option");
+          option.value = String(index);
+          option.textContent = entry.file;
+          videoSelect.appendChild(option);
+        });
+        outputPath.textContent = `Saving to ${state.output_path}`;
+        outputPath.title = state.output_path;
+        app.hidden = false;
+        renderCurrent();
+      } catch (error) {
+        document.querySelector("header").hidden = true;
+        errorScreen.hidden = false;
+        errorScreen.textContent = `Could not start annotation viewer: ${error.message}`;
+      }
+    }
+
+    video.addEventListener("loadedmetadata", () => {
+      const duration = Math.round(video.duration * 1000) / 1000;
+      if (finiteNumber(duration) && currentAnnotation().duration !== duration) {
+        currentAnnotation().duration = duration;
+        changed();
+      }
+      updateTimeline();
+    });
+    video.addEventListener("timeupdate", updateTime);
+    video.addEventListener("seeked", renderSteps);
+
+    timeline.addEventListener("click", event => {
+      if (!Number.isFinite(video.duration)) return;
+      const bounds = timeline.getBoundingClientRect();
+      const fraction = (event.clientX - bounds.left) / bounds.width;
+      video.currentTime = Math.max(0, Math.min(video.duration, fraction * video.duration));
+    });
+
+    document.querySelectorAll("[data-nudge]").forEach(button => {
+      button.addEventListener("click", () => {
+        const next = video.currentTime + Number(button.dataset.nudge);
+        video.currentTime = Math.max(0, Math.min(video.duration || next, next));
+      });
+    });
+
+    videoSelect.addEventListener("change", () => switchVideo(Number(videoSelect.value)));
+    previousButton.addEventListener("click", () => switchVideo(currentIndex - 1));
+    nextButton.addEventListener("click", () => switchVideo(currentIndex + 1));
+    saveButton.addEventListener("click", saveAll);
+
+    outcome.addEventListener("change", () => {
+      const entry = currentAnnotation();
+      entry.outcome = outcome.value;
+      if (entry.outcome === "correct") {
+        entry.deviation_step = null;
+      } else if (entry.deviation_step == null) {
+        entry.deviation_step = 2;
+      }
+      deviationStep.value = entry.deviation_step == null ? "" : String(entry.deviation_step);
+      deviationStep.disabled = entry.outcome === "correct";
+      changed();
+    });
+
+    deviationStep.addEventListener("change", () => {
+      currentAnnotation().deviation_step = deviationStep.value
+        ? Number(deviationStep.value)
+        : null;
+      changed();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (["INPUT", "SELECT", "TEXTAREA"].includes(event.target.tagName)) return;
+      if (event.key >= "1" && event.key <= "3") {
+        setActiveStep(Number(event.key) - 1);
+        event.preventDefault();
+      } else if (event.key === "[") {
+        mark(activeStep, "start");
+        event.preventDefault();
+      } else if (event.key === "]") {
+        mark(activeStep, "end");
+        event.preventDefault();
+      } else if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        const delta = event.key === "ArrowLeft" ? -0.1 : 0.1;
+        const next = video.currentTime + delta;
+        video.currentTime = Math.max(0, Math.min(video.duration || next, next));
+        event.preventDefault();
+      } else if (event.key === " ") {
+        video.paused ? video.play() : video.pause();
+        event.preventDefault();
+      } else if (event.key.toLowerCase() === "s") {
+        saveAll();
+        event.preventDefault();
+      }
+    });
+
+    window.addEventListener("beforeunload", event => {
+      if (saveStatus.textContent === "Unsaved") {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    });
+
+    initialize();
+  </script>
+</body>
+</html>

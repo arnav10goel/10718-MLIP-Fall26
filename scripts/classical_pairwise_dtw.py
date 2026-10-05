@@ -133,9 +133,10 @@ def label_frames(times: np.ndarray, steps: list[dict]) -> np.ndarray:
 
 
 @njit
-def dtw_pair(
+def dtw_alignment(
     cost: np.ndarray, labels_a: np.ndarray, labels_b: np.ndarray, n_steps: int = 3
 ):
+    """Global DTW, plus the side-A frames matched to each side-B step."""
     if n_steps < 1:
         raise ValueError("n_steps must be positive")
     for label in labels_a:
@@ -178,6 +179,8 @@ def dtw_pair(
     step_count_a = np.zeros(n_steps)
     step_sum_b = np.zeros(n_steps)
     step_count_b = np.zeros(n_steps)
+    first_a_for_b = np.full(n_steps, n, dtype=np.int32)
+    last_a_for_b = np.full(n_steps, -1, dtype=np.int32)
     while True:
         local = cost[i, j]
         path_sum += local
@@ -190,6 +193,10 @@ def dtw_pair(
         if label_b >= 0:
             step_sum_b[label_b] += local
             step_count_b[label_b] += 1
+            if i < first_a_for_b[label_b]:
+                first_a_for_b[label_b] = i
+            if i > last_a_for_b[label_b]:
+                last_a_for_b[label_b] = i
         if i == 0 and j == 0:
             break
         choice = pointer[i, j]
@@ -206,7 +213,19 @@ def dtw_pair(
         step_count_a,
         step_sum_b,
         step_count_b,
+        first_a_for_b,
+        last_a_for_b,
     )
+
+
+@njit
+def dtw_pair(
+    cost: np.ndarray, labels_a: np.ndarray, labels_b: np.ndarray, n_steps: int = 3
+):
+    path_mean, sum_a, count_a, sum_b, count_b, _, _ = dtw_alignment(
+        cost, labels_a, labels_b, n_steps
+    )
+    return path_mean, sum_a, count_a, sum_b, count_b
 
 
 def step_distance(sum_a, count_a, sum_b, count_b, step_index: int) -> float:

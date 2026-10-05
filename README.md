@@ -4,9 +4,9 @@ Repository for the 10718 course project.
 
 ## Goal
 
-A test pair is one full video of a task done correctly and one cropped video of someone doing it. The crop should match the part of the full video it actually covers. If that match is much worse than matches between correct videos, that step was done wrong.
+A test pair is one full video of a task done correctly and one video of someone doing it. If that match is much worse than matches between correct videos, that step was done wrong.
 
-The scripts do not score a crop yet. They build the normal range: how far apart two correct videos of the same task look. A crop is a deviation when its cost on a step is above that range.
+The pairwise scripts build the normal range: how far apart two correct videos of the same task look. `score_recordings.py` scores complete, manually annotated demonstrations against that range. Subsequence alignment for a temporally cropped demonstration is not implemented yet.
 
 ## How similarity is measured
 
@@ -47,6 +47,24 @@ python3 -m venv .venv
 `download_coin.py` saves videos to `data/videos/<task>/<youtube_id>.mp4`. `prepare_coin.py` writes `data/prepared/manifest.jsonl` with the official `training` and `testing` split. The DTW scripts reuse cached features on a re-run.
 
 Each DTW script writes a summary JSON (mean, standard deviation, median, 10th and 90th percentiles, per step and for the whole video) and a square distance matrix. Rows of the matrix follow `video_ids` in the summary. The diagonal is 0. Use the per-step blocks.
+
+### Label recorded videos
+
+Put the recordings in `data/videos/ReplaceSIMCard/recorded/`, then open the local annotation viewer:
+
+```bash
+.venv/bin/python scripts/annotate_recordings.py
+```
+
+For each video, pause at the first and last visible frame of each of the three actions and mark its start and end. The viewer infers the correct/incorrect outcome from the filename, presets step 2 as the deviation in incorrect videos, and lets you change either value. It saves automatically to `data/prepared/recorded_annotations.json`.
+
+After all videos are annotated, compare every recording with all 48 canonical videos:
+
+```bash
+.venv/bin/python scripts/score_recordings.py
+```
+
+The detailed pair scores and per-recording averages are written to `data/prepared/recorded_similarity.json`. Correct/incorrect labels are copied into that output for evaluation but are not used to compute the alignments. The cutoff table, both labeling conditions, and the timestamp comparison are in `REPORT.md`.
 
 ## Example: ReplaceSIMCard
 
