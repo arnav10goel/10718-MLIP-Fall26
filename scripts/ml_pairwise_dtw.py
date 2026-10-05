@@ -74,6 +74,9 @@ def embed_frames(model, device: str, frames_bgr: np.ndarray) -> np.ndarray:
     parts = []
     for start in range(0, len(batch), 32):
         features = model.encode_image(batch[start : start + 32])
+        # Scale before the float32 norm so a float16 embedding cannot overflow.
+        scale = features.abs().amax(dim=-1, keepdim=True).clamp_min(1e-12)
+        features = (features / scale).float()
         features = features / features.norm(dim=-1, keepdim=True).clamp_min(1e-12)
-        parts.append(features.float().cpu().numpy())
+        parts.append(features.cpu().numpy())
     return np.concatenate(parts).astype(np.float32)

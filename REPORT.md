@@ -4,7 +4,7 @@ Distance is the mean cosine distance along the DTW path, averaged over the 48 re
 
 Source: 1,128 correct COIN pairs and six phone recordings, 5 October 2026.
 
-> **Histogram numbers predate the histogram fix.** All histogram tables below were computed before `frame_feature` normalized its colour and edge parts separately. The cutoffs are now 0.66, 0.63, 0.64 and 0.62 (see the README). Rerun `scripts/score_recordings.py` on the six recordings to refresh the histogram tables. CLIP numbers are unaffected.
+> **Histogram numbers predate the histogram fix.** All histogram tables below were computed before `frame_feature` normalized its colour and edge parts separately. The cutoffs are now 0.66, 0.63, 0.64 and 0.62 (see the README). Rerun `scripts/replace_simcard.py cutoff --encoder classical` and `scripts/replace_simcard.py score` to refresh the histogram tables. CLIP numbers are unaffected.
 
 ## Cutoff from the 48 correct videos
 

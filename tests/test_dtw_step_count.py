@@ -4,7 +4,7 @@ import unittest
 
 import numpy as np
 
-from scripts.classical_pairwise_dtw import dtw_pair
+from scripts.classical_pairwise_dtw import dtw_pair, open_end_alignment
 
 
 class DtwStepCountTests(unittest.TestCase):
@@ -70,6 +70,28 @@ class DtwStepCountTests(unittest.TestCase):
             with self.subTest(labels_a=labels_a[0], labels_b=labels_b[0]):
                 with self.assertRaises(ValueError):
                     dtw_pair(cost, labels_a, labels_b, n_steps=2)
+
+
+class OpenEndAlignmentTests(unittest.TestCase):
+    def test_prefix_stops_before_the_unmatched_reference_suffix(self):
+        cost = np.array(
+            [
+                [0.0, 5.0, 5.0],
+                [5.0, 0.0, 5.0],
+            ],
+            dtype=np.float64,
+        )
+        labels = np.array([0, 0, 1], dtype=np.int8)
+
+        path_mean, step_sum, step_count, end_index, last_step = open_end_alignment(
+            cost, labels, n_steps=2
+        )
+
+        self.assertEqual(end_index, 1)
+        self.assertEqual(last_step, 0)
+        self.assertEqual(path_mean, 0.0)
+        self.assertEqual(step_count[1], 0.0)
+        self.assertGreater(step_count[0], 0.0)
 
 
 if __name__ == "__main__":

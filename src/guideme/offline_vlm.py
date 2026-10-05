@@ -1,10 +1,8 @@
-"""Offline Gemini alignment: an annotated reference against a whole unlabelled execution.
+"""Offline Gemini alignment: an annotated reference against an unlabelled execution.
 
-The online check (vlm.predict_deviation) sees an execution prefix and reports at
-most one current mistake. This module sees the complete execution and reports,
-for every reference checklist step, whether and where it happened, plus a list
-of deviations. Uploads reuse vlm.upload_video; the request follows the same
-response_json_schema pattern.
+The execution may be a whole video or a clip that ends during a step. The model
+reports, for every reference checklist step, whether it is done, current, or not
+started, and whether that step deviates. Uploads reuse vlm.upload_video.
 """
 
 import json
@@ -20,7 +18,8 @@ import imageio_ffmpeg
 from jsonschema import Draft202012Validator, ValidationError
 
 
-STEP_STATUSES = ["done", "skipped", "out_of_order", "done_incorrectly", "unclear"]
+STEP_PROGRESS = ["done", "current", "not_started"]
+DEVIATION_ANSWER = ["yes", "no"]
 DEVIATION_TYPES = ["skipped_step", "wrong_order", "execution_error", "extra_action"]
 
 OFFLINE_SCHEMA = {
@@ -32,19 +31,21 @@ OFFLINE_SCHEMA = {
                 "type": "object",
                 "properties": {
                     "reference_step_id": {"type": "string"},
-                    "status": {"type": "string", "enum": STEP_STATUSES},
+                    "progress": {"type": "string", "enum": STEP_PROGRESS},
+                    "deviation": {"type": "string", "enum": DEVIATION_ANSWER},
                     "execution_start_s": {"type": ["number", "null"], "minimum": 0},
                     "execution_end_s": {"type": ["number", "null"], "minimum": 0},
                     "evidence": {"type": "string"},
                     "confidence": {"type": "number", "minimum": 0, "maximum": 1},
                 },
                 "required": [
-                    "reference_step_id", "status", "execution_start_s",
+                    "reference_step_id", "progress", "deviation", "execution_start_s",
                     "execution_end_s", "evidence", "confidence",
                 ],
                 "additionalProperties": False,
             },
         },
+        "current_step_id": {"type": ["string", "null"]},
         "deviations": {
             "type": "array",
             "items": {
@@ -66,13 +67,13 @@ OFFLINE_SCHEMA = {
         },
         "summary": {"type": "string"},
     },
-    "required": ["steps", "deviations", "summary"],
+    "required": ["steps", "current_step_id", "deviations", "summary"],
     "additionalProperties": False,
 }
 
-# Statuses that require a located execution interval, and those that forbid one.
-_LOCATED = {"done", "out_of_order", "done_incorrectly"}
-_UNLOCATED = {"skipped"}
+# A finished step needs both times. A step not reached yet cannot have them.
+_FINISHED = {"done"}
+_NOT_STARTED = {"not_started"}
 
 
 def coin_checklist_rows(info: dict, offset_s: float = 0.0) -> list[dict]:
@@ -110,7 +111,7 @@ def write_checklist_csv(rows: list[dict], path: str | Path) -> Path:
 
 
 def video_duration_s(path: str | Path) -> float:
-    """Duration from OpenCV frame count over nominal FPS (the method run_vlm uses)."""
+    """Duration from OpenCV frame count over nominal FPS."""
     capture = cv2.VideoCapture(str(path))
     try:
         frames = capture.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -182,6 +183,11 @@ def _validate(candidate: dict, step_ids: list[str], execution_duration_s: float 
     returned = [step["reference_step_id"] for step in candidate["steps"]]
     if sorted(returned) != sorted(step_ids) or len(set(returned)) != len(returned):
         raise ValueError("steps must list every checklist step_id exactly once")
+    current = [step["reference_step_id"] for step in candidate["steps"] if step["progress"] == "current"]
+    if len(current) > 1:
+        raise ValueError("at most one step can be current")
+    if candidate["current_step_id"] != (current[0] if current else None):
+        raise ValueError("current_step_id must match the step whose progress is current")
     for deviation in candidate["deviations"]:
         step_id = deviation["reference_step_id"]
         if step_id is not None and step_id not in step_ids:
@@ -192,20 +198,30 @@ def _validate(candidate: dict, step_ids: list[str], execution_duration_s: float 
     warnings: list[str] = []
     for step in candidate["steps"]:
         sid = step["reference_step_id"]
+        progress = step["progress"]
         for field in ("execution_start_s", "execution_end_s"):
             step[field] = _check_time(step[field], execution_duration_s, f"{sid} {field}", warnings)
         start, end = step["execution_start_s"], step["execution_end_s"]
-        if (start is None) != (end is None):
-            warnings.append(f"{sid}: only one of start/end is set; cleared both")
-            step["execution_start_s"] = step["execution_end_s"] = start = end = None
-        if start is not None and start > end:
+        if start is not None and end is not None and start > end:
             warnings.append(f"{sid}: start {start} is after end {end}; cleared both")
             step["execution_start_s"] = step["execution_end_s"] = start = end = None
-        if step["status"] in _UNLOCATED and start is not None:
-            warnings.append(f"{sid}: skipped step had execution times; cleared")
-            step["execution_start_s"] = step["execution_end_s"] = None
-        if step["status"] in _LOCATED and step["execution_start_s"] is None:
-            warnings.append(f"{sid}: status {step['status']} has no execution times")
+        if progress in _NOT_STARTED and (start is not None or end is not None):
+            warnings.append(f"{sid}: a step that has not started had execution times; cleared")
+            step["execution_start_s"] = step["execution_end_s"] = start = end = None
+        if progress in _FINISHED and (start is None) != (end is None):
+            warnings.append(f"{sid}: only one of start/end is set; cleared both")
+            step["execution_start_s"] = step["execution_end_s"] = start = end = None
+        if progress == "current" and start is None and end is not None:
+            warnings.append(f"{sid}: the current step had an end and no start; cleared the end")
+            step["execution_end_s"] = end = None
+        if progress in _NOT_STARTED and step["deviation"] != "no":
+            raise ValueError(f"{sid}: a step that has not started is not a deviation")
+        if step["deviation"] == "yes" and not step["evidence"].strip():
+            raise ValueError(f"{sid}: a deviation needs evidence")
+        if progress in _FINISHED and step["execution_start_s"] is None:
+            warnings.append(f"{sid}: a done step has no execution times")
+        if progress == "current" and step["execution_start_s"] is None:
+            warnings.append(f"{sid}: the current step has no execution_start_s")
     for index, deviation in enumerate(candidate["deviations"]):
         deviation["execution_time_s"] = _check_time(
             deviation["execution_time_s"], execution_duration_s, f"deviation {index}", warnings

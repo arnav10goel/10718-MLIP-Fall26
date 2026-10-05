@@ -45,43 +45,6 @@ Open the CSV in Sheets or Excel, fill the rows, and export as UTF-8 comma-separa
 CSV with decimal points. Keep all five columns, leave absent requirements empty,
 and put explanatory text in `requirements` rather than extra header or footer rows.
 
-The VLM runner accepts this reference CSV through `--checklist`, validates it
+The offline VLM runner accepts this reference CSV through `--checklist`, validates it
 against the reference video's metadata duration, and passes the rows as JSON text.
 The smoothie file contains a draft checklist; review it before use.
-
-## Private execution labels
-
-Save `annotations/execution/<task>/<video_id>.csv` under your data root. These
-labels are for evaluation only: never pass them as a checklist or model input.
-Use this separate header:
-
-```csv
-occurrence_id,reference_step_id,action,start_s,end_s,evidence_type,notes
-```
-
-| Column | Entry |
-| --- | --- |
-| `occurrence_id` | Unique occurrence ID in this execution: `e001`, `e002`, etc. |
-| `reference_step_id` | Matching semantic step from the paired reference; blank if unmatched or unclear. |
-| `action` | Short description of the observed procedural action. |
-| `start_s`, `end_s` | Seconds in this execution, with start included and end excluded. |
-| `evidence_type` | `visible_action` for observed performance; `result` for a result whose action is not shown. |
-| `notes` | Visibility limits, uncertain interpretation or other reviewer notes. |
-
-- Record execution order and timing, without forcing the reference sequence.
-  Repeated steps get new occurrence IDs but can reuse a reference-step ID.
-- Match purpose rather than equipment details. Leave unmatched actions blank;
-  do not invent a reference step or renumber its IDs.
-- Result intervals locate visible evidence, not when an unseen action occurred.
-  Keep them separate from visible-action timing in evaluation.
-- Leave unknown gaps unlabelled. A missing row does not establish a missed step
-  or a correct execution. Error-event annotations require a separate format.
-- Use the same numeric bounds and UTF-8 CSV export rules as the reference table.
-  The reference loader does not accept this seven-column execution format;
-  `load_execution_annotations` reads execution labels, and `score_current_steps`
-  scores paired step IDs. Connecting execution intervals to prediction
-  checkpoints is still pending.
-
-The [second smoothie draft](../data/annotations/execution/MakeStrawberrySmoothie/2T1Et9xE5IQ.csv)
-is paired with reference `-3C-VGhs2mo`. Its timestamps and interpretations need
-human review. It is another edited tutorial, not a labelled mistake recording.

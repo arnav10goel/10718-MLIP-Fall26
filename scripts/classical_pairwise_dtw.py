@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from coin_tasks import REPO_ROOT  # noqa: E402
 
 FPS = 5.0
+HISTOGRAM_FEATURE_VERSION = "per-part-l2"
 
 
 def frame_feature(frame_bgr: np.ndarray) -> np.ndarray:
@@ -193,6 +194,84 @@ def dtw_pair(
         cost, labels_a, labels_b, n_steps
     )
     return path_mean, sum_a, count_a, sum_b, count_b
+
+
+@njit
+def open_end_alignment(cost: np.ndarray, labels_b: np.ndarray, n_steps: int = 3):
+    """Map a cropped video onto a prefix of the reference.
+
+    Rows of ``cost`` are cropped frames and columns are reference frames.
+    Every cropped frame is used. The path starts at the first frame of both
+    videos and stops at the reference frame with the lowest accumulated cost.
+    Reference frames after that stop are left unused.
+    """
+    if n_steps < 1:
+        raise ValueError("n_steps must be positive")
+    for label in labels_b:
+        if label < -1 or label >= n_steps:
+            raise ValueError("labels_b contains a step outside n_steps")
+    n, m = cost.shape
+    accumulated = np.empty((n, m))
+    pointer = np.empty((n, m), np.uint8)
+    accumulated[0, 0] = cost[0, 0]
+    pointer[0, 0] = 0
+    for j in range(1, m):
+        accumulated[0, j] = accumulated[0, j - 1] + cost[0, j]
+        pointer[0, j] = 2
+    for i in range(1, n):
+        accumulated[i, 0] = accumulated[i - 1, 0] + cost[i, 0]
+        pointer[i, 0] = 1
+        for j in range(1, m):
+            diagonal = accumulated[i - 1, j - 1]
+            up = accumulated[i - 1, j]
+            left = accumulated[i, j - 1]
+            if diagonal <= up and diagonal <= left:
+                best = diagonal
+                choice = np.uint8(0)
+            elif up <= left:
+                best = up
+                choice = np.uint8(1)
+            else:
+                best = left
+                choice = np.uint8(2)
+            pointer[i, j] = choice
+            accumulated[i, j] = cost[i, j] + best
+
+    end_j = 0
+    best_cost = accumulated[n - 1, 0]
+    for j in range(1, m):
+        if accumulated[n - 1, j] < best_cost:
+            best_cost = accumulated[n - 1, j]
+            end_j = j
+
+    i = n - 1
+    j = end_j
+    path_sum = 0.0
+    path_count = 0
+    step_sum = np.zeros(n_steps)
+    step_count = np.zeros(n_steps)
+    last_step = np.int32(-1)
+    while True:
+        local = cost[i, j]
+        path_sum += local
+        path_count += 1
+        label = labels_b[j]
+        if label >= 0:
+            step_sum[label] += local
+            step_count[label] += 1
+            if last_step < 0:
+                last_step = label
+        if i == 0 and j == 0:
+            break
+        choice = pointer[i, j]
+        if choice == 0:
+            i -= 1
+            j -= 1
+        elif choice == 1:
+            i -= 1
+        else:
+            j -= 1
+    return path_sum / path_count, step_sum, step_count, np.int32(end_j), last_step
 
 
 def step_distance(sum_a, count_a, sum_b, count_b, step_index: int) -> float:

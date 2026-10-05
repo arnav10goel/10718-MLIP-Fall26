@@ -33,18 +33,24 @@ def fake_client(prediction, finish_reason="STOP"):
     return SimpleNamespace(models=SimpleNamespace(generate_content=generate)), generate
 
 
-def step(step_id, status, start=None, end=None):
-    return {"reference_step_id": step_id, "status": status, "execution_start_s": start,
-            "execution_end_s": end, "evidence": "seen", "confidence": 0.8}
+def step(step_id, progress, deviation="no", start=None, end=None, evidence="seen"):
+    return {"reference_step_id": step_id, "progress": progress, "deviation": deviation,
+            "execution_start_s": start, "execution_end_s": end, "evidence": evidence,
+            "confidence": 0.8}
 
 
 def good_prediction():
     return {
-        "steps": [step("s001", "done", 0, 4), step("s002", "skipped"), step("s003", "done", 5, 8)],
-        "deviations": [{"type": "skipped_step", "reference_step_id": "s002", "execution_time_s": None,
-                        "evidence": "edges never cut", "confidence": 0.7,
-                        "message": "Cut along the folds before pinning."}],
-        "summary": "Cutting was skipped.",
+        "steps": [
+            step("s001", "done", "no", 0, 4),
+            step("s002", "current", "yes", 5, None, "the cut does not follow the fold"),
+            step("s003", "not_started"),
+        ],
+        "current_step_id": "s002",
+        "deviations": [{"type": "execution_error", "reference_step_id": "s002", "execution_time_s": 5,
+                        "evidence": "the cut does not follow the fold", "confidence": 0.7,
+                        "message": "Cut along the fold shown in the tutorial."}],
+        "summary": "Folding is done. The current cut is wrong.",
     }
 
 
@@ -54,7 +60,8 @@ class PredictTests(unittest.TestCase):
         result = predict_offline_alignment(client, "uri://ref", "uri://exe", ROWS,
                                            execution_duration_s=10.0, fps=1, model="m")
         self.assertIsNone(result["validation_error"])
-        self.assertEqual(result["prediction"]["steps"][1]["status"], "skipped")
+        self.assertEqual(result["prediction"]["steps"][1]["progress"], "current")
+        self.assertEqual(result["prediction"]["steps"][1]["deviation"], "yes")
         request = generate.call_args.kwargs
         self.assertEqual(request["model"], "m")
         self.assertEqual(request["config"]["response_json_schema"], OFFLINE_SCHEMA)
@@ -73,12 +80,16 @@ class PredictTests(unittest.TestCase):
         cases["missing step"] = p
         p = good_prediction(); p["steps"][2]["reference_step_id"] = "s001"
         cases["duplicate step"] = p
+        p = good_prediction(); p["steps"][2] = step("s003", "not_started", "yes")
+        cases["not started marked wrong"] = p
         p = good_prediction(); p["deviations"][0]["reference_step_id"] = "s999"
         cases["unknown deviation step"] = p
         p = good_prediction(); p["deviations"][0]["message"] = " "
         cases["empty message"] = p
-        p = good_prediction(); p["steps"][0]["status"] = "maybe"
-        cases["bad status"] = p
+        p = good_prediction(); p["steps"][0]["progress"] = "maybe"
+        cases["bad progress"] = p
+        p = good_prediction(); p["current_step_id"] = "s001"
+        cases["current id mismatch"] = p
         for name, prediction in cases.items():
             with self.subTest(name):
                 client, _ = fake_client(prediction)
@@ -94,26 +105,35 @@ class PredictTests(unittest.TestCase):
 
     def test_timing_problems_are_repaired_with_warnings_not_rejected(self):
         p = good_prediction()
-        p["steps"][0] = step("s001", "done", 5, 3)          # start after end
-        p["steps"][1] = step("s002", "skipped", 1, 2)       # skipped with times
-        p["steps"][2] = step("s003", "done", 5, 99)         # far past the end
+        p["steps"][0] = step("s001", "done", "no", 5, 3)
+        p["steps"][2] = step("s003", "not_started", "no", 1, 2)
         client, _ = fake_client(p)
         result = predict_offline_alignment(client, "u1", "u2", ROWS, execution_duration_s=10.0)
         self.assertIsNone(result["validation_error"])
         steps = result["prediction"]["steps"]
-        self.assertEqual([s["status"] for s in steps], ["done", "skipped", "done"])
-        self.assertEqual([s["execution_start_s"] for s in steps], [None, None, None])
-        self.assertIsNone(steps[2]["execution_end_s"])
-        self.assertEqual(len(result["warnings"]), 6)
+        self.assertEqual([s["progress"] for s in steps], ["done", "current", "not_started"])
+        self.assertEqual(steps[1]["deviation"], "yes")
+        self.assertIsNone(steps[0]["execution_start_s"])
+        self.assertIsNone(steps[0]["execution_end_s"])
+        self.assertIsNone(steps[2]["execution_start_s"])
+        self.assertTrue(result["warnings"])
+
+        far = good_prediction()
+        far["steps"][0] = step("s001", "done", "no", 0, 99)
+        client, _ = fake_client(far)
+        result = predict_offline_alignment(client, "u1", "u2", ROWS, execution_duration_s=10.0)
+        self.assertIsNone(result["validation_error"])
+        self.assertIsNone(result["prediction"]["steps"][0]["execution_end_s"])
+        self.assertTrue(result["warnings"])
 
     def test_small_overshoot_past_the_end_is_clamped(self):
         p = good_prediction()
-        p["steps"][2] = step("s003", "done", 8, 12.5)
+        p["steps"][0] = step("s001", "done", "no", 0, 12.5)
         p["deviations"][0]["execution_time_s"] = 11.0
         client, _ = fake_client(p)
         result = predict_offline_alignment(client, "u1", "u2", ROWS, execution_duration_s=10.0)
         self.assertIsNone(result["validation_error"])
-        self.assertEqual(result["prediction"]["steps"][2]["execution_end_s"], 10.0)
+        self.assertEqual(result["prediction"]["steps"][0]["execution_end_s"], 10.0)
         self.assertEqual(result["prediction"]["deviations"][0]["execution_time_s"], 10.0)
 
     def test_bad_arguments_raise(self):

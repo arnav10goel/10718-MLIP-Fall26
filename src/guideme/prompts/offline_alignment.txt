@@ -1,36 +1,40 @@
-You are reviewing a finished recording of someone following an instructional video.
+You are watching a livestream of someone following an instructional video. The execution video ends at the present moment. Later actions have not happened yet.
 
 Inputs:
 - REFERENCE: the complete tutorial.
-- EXECUTION: the complete recording of the person doing the task. It has no labels.
+- EXECUTION: the livestream so far. It has no labels.
 - CHECKLIST: the tutorial's steps in order. start_s and end_s are seconds in REFERENCE.
-- EXECUTION_DURATION_S: length of EXECUTION in seconds, when given.
+- EXECUTION_DURATION_S: length of the livestream so far, in seconds, when given.
 
-Treat the checklist order as the required procedure. Align the execution to it.
+Treat the checklist order as the required procedure.
 
 For every checklist step, report exactly once, in checklist order:
-- status:
-  - "done": performed, in the expected order, with no visible problem.
-  - "skipped": never performed anywhere in the execution.
-  - "out_of_order": performed, but before a step that should come first, or after a step that should come later.
-  - "done_incorrectly": performed in order, with a visible mistake against what the tutorial shows.
-  - "unclear": the camera, cuts or framing do not let you decide.
-- execution_start_s / execution_end_s: where the step happens in EXECUTION, in seconds from its start. Use null for both when skipped. Use null when unclear and you cannot locate it.
-- evidence: one short observation from EXECUTION.
+- progress:
+  - "done": this step already finished earlier in the livestream.
+  - "current": this is the step underway at the end of the livestream. Use this for exactly one step when the task is not finished.
+  - "not_started": the livestream has not reached this step yet.
+- deviation:
+  - "yes": a done step was finished incorrectly, or the current step is visibly wrong compared with the tutorial.
+  - "no": a done step matches the tutorial, the current step matches so far, or the step has not started. A step that has not started is not a deviation.
+- execution_start_s / execution_end_s: where the step happens in the livestream, in seconds from its start. Use null for both when not_started. For the current step, execution_end_s may be null if it is still going.
+- evidence: one short observation. If deviation is "yes", say what is wrong.
 - confidence: 0 to 1.
 
-Then list each deviation once in "deviations":
-- "skipped_step", "wrong_order", "execution_error", or "extra_action" (an action not in the checklist that changes the result).
+Set current_step_id to the checklist step that is "current", or null when every step is already done.
+
+Then list each real mistake once in "deviations". Do not list a not_started step.
+- "skipped_step" only when an earlier step was passed over, "wrong_order", "execution_error", or "extra_action".
 - reference_step_id: the checklist step involved, or null for an extra action.
-- execution_time_s: when it shows in EXECUTION, or null for a skipped step.
-- message: one short instruction the person could act on.
-Use an empty list when there are no deviations.
+- execution_time_s: when it shows in the livestream, or null for a skipped earlier step.
+- message: one short instruction the person could act on now.
+Use an empty list when the done steps and the current step are correct.
 
 Rules:
-- Do not count a different camera angle, background, tools, hands, pace, or cuts in the video as a deviation.
-- A step that is merely hidden or cut from the recording is "unclear", not "skipped", unless its result is clearly absent later.
+- Do not count a different camera angle, background, tools, hands, pace, or cuts as a deviation.
+- Do not mark a later step skipped or incorrect just because the livestream ends before it.
+- Judge the current step by what is visible now, even if the person might fix it later. A SIM card, part, or tool that is oriented or placed differently from the tutorial is deviation "yes".
 - Do not invent requirements the tutorial does not show.
 - Use the exact step_id values from the checklist.
 
-Finish with "summary": one or two sentences on how the execution compares to the tutorial.
+Finish with "summary": one or two sentences on which steps are done and whether the current step is correct.
 Return only JSON.

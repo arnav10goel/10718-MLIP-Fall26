@@ -15,6 +15,7 @@ import argparse
 import json
 import math
 import re
+import sys
 import threading
 import webbrowser
 from datetime import datetime, timezone
@@ -23,15 +24,14 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from coin_tasks import PREPARED_DIR, REPO_ROOT
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-STEP_LABELS = (
-    "use the needle to open the SIM card slot",
-    "put the SIM card into the SIM card slot",
-    "press the SIM card slot back",
-)
-DEFAULT_VIDEO_DIR = REPO_ROOT / "data/videos/ReplaceSIMCard/recorded"
-DEFAULT_OUTPUT = PREPARED_DIR / "recorded_annotations.json"
+from coin_tasks import REPO_ROOT  # noqa: E402
+from replace_simcard import SPEC  # noqa: E402
+
+STEP_LABELS = SPEC.step_labels
+DEFAULT_VIDEO_DIR = SPEC.recording_dir()
+DEFAULT_OUTPUT = SPEC.annotations_path()
 VIEWER_HTML = Path(__file__).with_name("recording_annotation_viewer.html")
 RANGE_RE = re.compile(r"bytes=(\d*)-(\d*)$")
 
@@ -94,7 +94,7 @@ def load_state(video_names: list[str], output_path: Path) -> dict:
         output_display = str(output_path)
     return {
         "schema_version": 1,
-        "task": "ReplaceSIMCard",
+        "task": SPEC.task,
         "step_labels": list(STEP_LABELS),
         "output_path": output_display,
         "videos": videos,
@@ -193,7 +193,7 @@ def normalize_payload(payload: object, video_names: list[str]) -> dict:
 
     return {
         "schema_version": 1,
-        "task": "ReplaceSIMCard",
+        "task": SPEC.task,
         "step_labels": list(STEP_LABELS),
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "videos": videos,

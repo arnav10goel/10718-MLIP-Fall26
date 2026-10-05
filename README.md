@@ -6,7 +6,7 @@ Repository for the 10718 course project.
 
 A test pair is one full video of a task done correctly and one video of someone doing it. If that match is much worse than matches between correct videos, that step was done wrong.
 
-`scripts/run_coin_reference.py` compares one training reference with the other local videos that have the same steps. `score_recordings.py` scores the recorded demonstrations against the ReplaceSIMCard reference set. Subsequence alignment for a temporally cropped demonstration is not implemented yet.
+`scripts/replace_simcard.py` is the ReplaceSIMCard run of the shared runner in `scripts/task_runner.py`. Another task is a copy of that file with its own step labels and video count.
 
 ## How similarity is measured
 
@@ -42,7 +42,7 @@ python3 -m venv .venv
 .venv/bin/python scripts/prepare_coin.py
 ```
 
-`download_coin.py` saves videos to `data/videos/<task>/<youtube_id>.mp4`. `prepare_coin.py` writes `data/prepared/manifest.jsonl` with the official `training` and `testing` split. Score a chosen reference with `scripts/run_coin_reference.py`, below.
+`download_coin.py` saves videos to `data/videos/<task>/<youtube_id>.mp4`. `prepare_coin.py` writes `data/prepared/manifest.jsonl` with the official `training` and `testing` split.
 
 ### Label recorded videos
 
@@ -54,11 +54,15 @@ Put the recordings in `data/videos/ReplaceSIMCard/recorded/`, then open the loca
 
 For each video, pause at the first and last visible frame of each of the three actions and mark its start and end. The viewer infers the correct/incorrect outcome from the filename, presets step 2 as the deviation in incorrect videos, and lets you change either value. It saves automatically to `data/prepared/recorded_annotations.json`.
 
-After all videos are annotated, compare every recording with all 48 canonical videos:
+The cutoff is every pair among the 48 canonical videos. Score the recordings against that cutoff after they are annotated:
 
 ```bash
-.venv/bin/python scripts/score_recordings.py
+.venv/bin/python scripts/replace_simcard.py cutoff
+.venv/bin/python scripts/replace_simcard.py score
+.venv/bin/python scripts/replace_simcard.py score --no-recording-annotations
 ```
+
+`cutoff --encoder classical` or `cutoff --encoder clip` runs one feature type. A feature cache is reused when the video list is unchanged. Histogram features saved before the per-part normalization are computed again.
 
 The detailed pair scores and per-recording averages are written to `data/prepared/recorded_similarity.json`. Correct/incorrect labels are copied into that output for evaluation but are not used to compute the alignments. The cutoff table, both labeling conditions, and the timestamp comparison are in `REPORT.md`.
 
@@ -82,31 +86,3 @@ Those clips are listed in `replace_simcard_videos.json` and stored in `data/vide
 A cropped insert that costs more than about 0.30 in CLIP, or 0.63 with the histograms, is outside the normal range for "put the SIM in." A backwards card should push that step over the cutoff. A tray left halfway out should push "press the SIM card slot back" over 0.30 in CLIP, or 0.64 with the histograms.
 
 The histogram column uses the per-part normalization above. Before that fix, edge values held about 99% of the feature and the same run gave 0.537 ± 0.101, 0.486 ± 0.088, 0.526 ± 0.097 and 0.504 ± 0.077 (see `experiments/histogram_fix/`).
-
-## Task-selected offline reports
-
-`scripts/run_coin_reference.py` runs the same DTW approach on a chosen COIN task and training reference. With Python 3.12 and `uv`, from the repository root:
-
-```bash
-export UV_PROJECT_ENVIRONMENT=../.venv-baselines
-export UV_CACHE_DIR=../.uv-cache
-uv sync --locked
-uv run --locked python -m scripts.run_coin_reference \
-  --task MakeStrawberrySmoothie \
-  --reference-id=-3C-VGhs2mo \
-  --output ../smoothie-classical.json
-```
-
-For CLIP features, install the optional dependencies and select the encoder:
-
-```bash
-export HF_HOME="$PWD/../.hf-cache-clip"
-uv sync --locked --extra clip
-uv run --locked --extra clip python -m scripts.run_coin_reference \
-  --task OpenALockWithPaperclips \
-  --reference-id m_LXX3Oz1as \
-  --encoder clip \
-  --output ../lock-clip.json
-```
-
-The runner reads `data/raw/COIN.json` and `data/videos/<task>/<video-id>.mp4` or `.webm`. For another location with the same layout, set an absolute `GUIDEME_DATA_ROOT` or pass `--data-root`. It validates local media, selects videos with the same ordered COIN step IDs (including repeated IDs), and writes a JSON report with scores and exclusions. The output file must not already exist.
