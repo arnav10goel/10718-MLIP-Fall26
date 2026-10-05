@@ -1,0 +1,31 @@
+2026-10-05 13:26:38 MakeOrangeJuice: 3 steps ['cut oranges', 'juice the oranges', 'pour the orange juice into the cup']
+2026-10-05 13:26:38 23 correct of 54 annotated (45 on mirror); 10 natural deviants
+2026-10-05 13:26:39 [download 1/10] 0AYZ_RT_8ZY
+2026-10-05 13:26:40 [download 2/10] 0siIuxPtRN4
+2026-10-05 13:26:41 [download 3/10] 2q94H2ej2IQ
+2026-10-05 13:26:43 [download 4/10] 4UKCXC6x6Qs
+2026-10-05 13:26:44 [download 5/10] C-W0LnTxosg
+2026-10-05 13:26:45 [download 6/10] cksM6FCVJ50
+2026-10-05 13:26:46 [download 7/10] h930VZGBSRg
+2026-10-05 13:26:48 [download 8/10] lqWABqruPcI
+2026-10-05 13:26:49 [download 9/10] sLVJxrrDR-Y
+2026-10-05 13:26:50 [download 10/10] zA59lJ8i3Cs
+2026-10-05 13:27:04 [features 1/10] 0AYZ_RT_8ZY 488 frames
+2026-10-05 13:27:07 [features 2/10] 0siIuxPtRN4 206 frames
+2026-10-05 13:27:10 [features 3/10] 2q94H2ej2IQ 275 frames
+2026-10-05 13:27:16 [features 4/10] 4UKCXC6x6Qs 446 frames
+2026-10-05 13:27:20 [features 5/10] C-W0LnTxosg 268 frames
+2026-10-05 13:27:24 [features 6/10] cksM6FCVJ50 435 frames
+2026-10-05 13:27:26 [features 7/10] h930VZGBSRg 88 frames
+2026-10-05 13:27:30 [features 8/10] lqWABqruPcI 243 frames
+2026-10-05 13:27:34 [features 9/10] sLVJxrrDR-Y 356 frames
+2026-10-05 13:27:43 [features 10/10] zA59lJ8i3Cs 749 frames
+2026-10-05 13:27:43 used: 10 correct (6 training references, 4 held out), 0 natural deviants
+2026-10-05 13:27:44 step separation (between - within, mean over videos): 0.126; absolute-cost sd per step: [0.02, 0.032, 0.026]
+2026-10-05 13:27:44 held-out correct absolute  n=  4 any-flag  25% right-step 100% localized  75%
+2026-10-05 13:27:44 held-out correct relative  n=  4 any-flag  25% right-step 100% localized  75%
+2026-10-05 13:27:44 held-out correct prototype n=  4 any-flag  75% right-step 100% localized  25%
+2026-10-05 13:27:44 synthetic        absolute  n= 50 any-flag  26% right-step  14% localized  10%
+2026-10-05 13:27:44 synthetic        relative  n= 50 any-flag  12% right-step   2% localized   2%
+2026-10-05 13:27:44 synthetic        prototype n= 50 any-flag  70% right-step  16% localized  14%
+2026-10-05 13:27:44 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/MakeOrangeJuice_clip_screen.json

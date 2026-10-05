@@ -1,0 +1,31 @@
+2026-10-05 13:36:35 ReplaceSIMCard: 3 steps ['use the needle to open the SIM card slot', 'put the SIM card into the SIM card slot', 'press the SIM card slot back']
+2026-10-05 13:36:35 48 correct of 86 annotated (82 on mirror); 11 natural deviants
+2026-10-05 13:36:36 [download 1/10] 2Lk9SO8DIVk
+2026-10-05 13:36:37 [download 2/10] ASUDRGkdWWA
+2026-10-05 13:36:38 [download 3/10] B0oEvirFJas
+2026-10-05 13:36:40 [download 4/10] GoQpmUSHstw
+2026-10-05 13:36:41 [download 5/10] RozBliBcXlA
+2026-10-05 13:36:42 [download 6/10] V_BwPfCh1Z0
+2026-10-05 13:36:43 [download 7/10] cPmPYw3lzIw
+2026-10-05 13:36:44 [download 8/10] jaTb_TJTiAM
+2026-10-05 13:36:45 [download 9/10] qkguKz3BrJI
+2026-10-05 13:36:46 [download 10/10] ziEpBwJ1TOg
+2026-10-05 13:37:00 [features 1/10] 2Lk9SO8DIVk 228 frames
+2026-10-05 13:37:01 [features 2/10] ASUDRGkdWWA 121 frames
+2026-10-05 13:37:04 [features 3/10] B0oEvirFJas 208 frames
+2026-10-05 13:37:07 [features 4/10] GoQpmUSHstw 252 frames
+2026-10-05 13:37:10 [features 5/10] RozBliBcXlA 190 frames
+2026-10-05 13:37:12 [features 6/10] V_BwPfCh1Z0 125 frames
+2026-10-05 13:37:32 [features 7/10] cPmPYw3lzIw 174 frames
+2026-10-05 13:37:33 [features 8/10] jaTb_TJTiAM 133 frames
+2026-10-05 13:37:36 [features 9/10] qkguKz3BrJI 252 frames
+2026-10-05 13:37:41 [features 10/10] ziEpBwJ1TOg 310 frames
+2026-10-05 13:37:41 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:37:42 step separation (between - within, mean over videos): 0.081; absolute-cost sd per step: [0.022, 0.03, 0.033]
+2026-10-05 13:37:42 held-out correct absolute  n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:37:42 held-out correct relative  n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:37:42 held-out correct prototype n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:37:42 synthetic        absolute  n= 50 any-flag  16% right-step   4% localized   4%
+2026-10-05 13:37:42 synthetic        relative  n= 50 any-flag  20% right-step   8% localized   8%
+2026-10-05 13:37:42 synthetic        prototype n= 50 any-flag  32% right-step  10% localized   8%
+2026-10-05 13:37:42 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/ReplaceSIMCard_clip_screen.json

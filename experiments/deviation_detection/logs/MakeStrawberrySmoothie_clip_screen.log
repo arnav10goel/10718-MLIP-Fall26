@@ -1,0 +1,33 @@
+2026-10-05 13:28:45 MakeStrawberrySmoothie: 3 steps ['put strawberries and other fruits into the juicer', 'put yogurt, honey and other ingredients into the juicer', 'shake and juice']
+2026-10-05 13:28:45 17 correct of 97 annotated (82 on mirror); 20 natural deviants
+2026-10-05 13:28:47 [download 1/10] -3C-VGhs2mo
+2026-10-05 13:28:48 [download 2/10] 2T1Et9xE5IQ
+2026-10-05 13:28:49 [download 3/10] 4z_7hDi2ffQ
+2026-10-05 13:28:50 [download 4/10] B9hdVJVxT2w
+2026-10-05 13:28:51 [download 5/10] GGP7GWMFwDI
+2026-10-05 13:28:52 [download 6/10] TiDNVy5WDd0
+2026-10-05 13:28:53 [download 7/10] hqQLWgQgzfM
+2026-10-05 13:28:55 [download 8/10] nZPpXbf5woQ
+2026-10-05 13:28:56 [download 9/10] ofF5LwTSgng
+2026-10-05 13:28:57 [download 10/10] uXgn_02G_qY
+[h264 @ 0x140f1bd60] mmco: unref short failure
+    Last message repeated 1 times
+2026-10-05 13:29:09 [features 1/10] -3C-VGhs2mo 283 frames
+2026-10-05 13:29:12 [features 2/10] 2T1Et9xE5IQ 236 frames
+2026-10-05 13:29:14 [features 3/10] 4z_7hDi2ffQ 193 frames
+2026-10-05 13:29:16 [features 4/10] B9hdVJVxT2w 206 frames
+2026-10-05 13:29:18 [features 5/10] GGP7GWMFwDI 139 frames
+2026-10-05 13:29:22 [features 6/10] TiDNVy5WDd0 395 frames
+2026-10-05 13:29:25 [features 7/10] hqQLWgQgzfM 261 frames
+2026-10-05 13:29:29 [features 8/10] nZPpXbf5woQ 430 frames
+2026-10-05 13:29:31 [features 9/10] ofF5LwTSgng 114 frames
+2026-10-05 13:29:33 [features 10/10] uXgn_02G_qY 168 frames
+2026-10-05 13:29:33 used: 10 correct (7 training references, 3 held out), 0 natural deviants
+2026-10-05 13:29:34 step separation (between - within, mean over videos): 0.092; absolute-cost sd per step: [0.039, 0.035, 0.037]
+2026-10-05 13:29:34 held-out correct absolute  n=  3 any-flag  33% right-step 100% localized  67%
+2026-10-05 13:29:34 held-out correct relative  n=  3 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:29:34 held-out correct prototype n=  3 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:29:34 synthetic        absolute  n= 50 any-flag  12% right-step   4% localized   4%
+2026-10-05 13:29:34 synthetic        relative  n= 50 any-flag  10% right-step   4% localized   4%
+2026-10-05 13:29:34 synthetic        prototype n= 50 any-flag  38% right-step  30% localized   8%
+2026-10-05 13:29:34 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/MakeStrawberrySmoothie_clip_screen.json

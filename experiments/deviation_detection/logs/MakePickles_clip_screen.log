@@ -1,0 +1,31 @@
+2026-10-05 13:30:25 MakePickles: 3 steps ['put the ingredients into the can', 'pour the soup in', 'close cans']
+2026-10-05 13:30:25 36 correct of 85 annotated (78 on mirror); 16 natural deviants
+2026-10-05 13:30:27 [download 1/10] 341FiCKsB-8
+2026-10-05 13:30:29 [download 2/10] 5UhVvvbadus
+2026-10-05 13:30:31 [download 3/10] 8iwRPM2ONlo
+2026-10-05 13:30:32 [download 4/10] KhlTBZYxiYI
+2026-10-05 13:30:34 [download 5/10] QQyCegVLjd0
+2026-10-05 13:30:36 [download 6/10] cIkzsLJ6KHU
+2026-10-05 13:30:37 [download 7/10] hKr0Z91EOak
+2026-10-05 13:30:38 [download 8/10] nSb0UcaltbM
+2026-10-05 13:30:40 [download 9/10] xCNqUcnKRSE
+2026-10-05 13:30:42 [download 10/10] xTf6791YLwk
+2026-10-05 13:30:54 [features 1/10] 341FiCKsB-8 116 frames
+2026-10-05 13:30:58 [features 2/10] 5UhVvvbadus 319 frames
+2026-10-05 13:30:59 [features 3/10] 8iwRPM2ONlo 96 frames
+2026-10-05 13:31:01 [features 4/10] KhlTBZYxiYI 99 frames
+2026-10-05 13:31:08 [features 5/10] QQyCegVLjd0 497 frames
+2026-10-05 13:31:10 [features 6/10] cIkzsLJ6KHU 134 frames
+2026-10-05 13:31:13 [features 7/10] hKr0Z91EOak 183 frames
+2026-10-05 13:31:17 [features 8/10] nSb0UcaltbM 380 frames
+2026-10-05 13:31:22 [features 9/10] xCNqUcnKRSE 403 frames
+2026-10-05 13:31:24 [features 10/10] xTf6791YLwk 143 frames
+2026-10-05 13:31:24 used: 10 correct (7 training references, 3 held out), 0 natural deviants
+2026-10-05 13:31:27 step separation (between - within, mean over videos): 0.106; absolute-cost sd per step: [0.023, 0.033, 0.046]
+2026-10-05 13:31:27 held-out correct absolute  n=  3 any-flag  33% right-step 100% localized  67%
+2026-10-05 13:31:27 held-out correct relative  n=  3 any-flag  33% right-step 100% localized  67%
+2026-10-05 13:31:27 held-out correct prototype n=  3 any-flag  67% right-step 100% localized  33%
+2026-10-05 13:31:27 synthetic        absolute  n= 50 any-flag  22% right-step   8% localized   2%
+2026-10-05 13:31:27 synthetic        relative  n= 50 any-flag  16% right-step   4% localized   4%
+2026-10-05 13:31:27 synthetic        prototype n= 50 any-flag  36% right-step   6% localized   6%
+2026-10-05 13:31:27 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/MakePickles_clip_screen.json

@@ -1,0 +1,384 @@
+{
+ "BoilNoodles": {
+  "steps": [
+   "pour the noodles into the water and stir",
+   "pour the cooked noodles"
+  ],
+  "videos": 8,
+  "frame_accuracy": 0.554,
+  "chance": 0.5,
+  "confusion_rows_true_cols_pred": [
+   [
+    450,
+    291
+   ],
+   [
+    179,
+    134
+   ]
+  ],
+  "share_mean": [
+   0.51,
+   0.49
+  ],
+  "share_sd": [
+   0.301,
+   0.301
+  ],
+  "skip_caught": 0.0,
+  "skip_mean_z": 0.06
+ },
+ "ChangeTonerCartridge": {
+  "steps": [
+   "open the front door or cover of the printer",
+   "take out the toner cartridge",
+   "insert a new toner cartridge",
+   "close the front door or cover of the printer"
+  ],
+  "videos": 10,
+  "frame_accuracy": 0.391,
+  "chance": 0.25,
+  "confusion_rows_true_cols_pred": [
+   [
+    53,
+    1,
+    67,
+    19
+   ],
+   [
+    1,
+    0,
+    174,
+    0
+   ],
+   [
+    7,
+    0,
+    179,
+    9
+   ],
+   [
+    35,
+    12,
+    65,
+    18
+   ]
+  ],
+  "share_mean": [
+   0.088,
+   0.045,
+   0.773,
+   0.094
+  ],
+  "share_sd": [
+   0.075,
+   0.065,
+   0.104,
+   0.092
+  ],
+  "skip_caught": 0.0,
+  "skip_mean_z": -0.05
+ },
+ "CookOmelet": {
+  "steps": [
+   "pour the egg into the pot",
+   "fry eggs",
+   "pour the egg onto the plate"
+  ],
+  "videos": 9,
+  "frame_accuracy": 0.28,
+  "chance": 0.333,
+  "confusion_rows_true_cols_pred": [
+   [
+    123,
+    163,
+    69
+   ],
+   [
+    1102,
+    449,
+    254
+   ],
+   [
+    84,
+    100,
+    116
+   ]
+  ],
+  "share_mean": [
+   0.508,
+   0.3,
+   0.193
+  ],
+  "share_sd": [
+   0.263,
+   0.271,
+   0.141
+  ],
+  "skip_caught": 0.0,
+  "skip_mean_z": -0.19
+ },
+ "MakeBurger": {
+  "steps": [
+   "knead the meat",
+   "fry meat",
+   "combine meat and bread to make burger"
+  ],
+  "videos": 8,
+  "frame_accuracy": 0.613,
+  "chance": 0.333,
+  "confusion_rows_true_cols_pred": [
+   [
+    137,
+    24,
+    26
+   ],
+   [
+    7,
+    184,
+    271
+   ],
+   [
+    22,
+    34,
+    288
+   ]
+  ],
+  "share_mean": [
+   0.206,
+   0.276,
+   0.517
+  ],
+  "share_sd": [
+   0.093,
+   0.121,
+   0.168
+  ],
+  "skip_caught": 0.042,
+  "skip_mean_z": -0.43
+ },
+ "MakeMatchaTea": {
+  "steps": [
+   "add tea powder",
+   "brew tea and stir"
+  ],
+  "videos": 10,
+  "frame_accuracy": 0.332,
+  "chance": 0.5,
+  "confusion_rows_true_cols_pred": [
+   [
+    207,
+    133
+   ],
+   [
+    869,
+    291
+   ]
+  ],
+  "share_mean": [
+   0.617,
+   0.383
+  ],
+  "share_sd": [
+   0.324,
+   0.324
+  ],
+  "skip_caught": 0.0,
+  "skip_mean_z": 0.12
+ },
+ "MakeOrangeJuice": {
+  "steps": [
+   "cut oranges",
+   "juice the oranges",
+   "pour the orange juice into the cup"
+  ],
+  "videos": 10,
+  "frame_accuracy": 0.342,
+  "chance": 0.333,
+  "confusion_rows_true_cols_pred": [
+   [
+    276,
+    59,
+    125
+   ],
+   [
+    191,
+    10,
+    909
+   ],
+   [
+    23,
+    16,
+    401
+   ]
+  ],
+  "share_mean": [
+   0.283,
+   0.075,
+   0.642
+  ],
+  "share_sd": [
+   0.211,
+   0.087,
+   0.221
+  ],
+  "skip_caught": 0.033,
+  "skip_mean_z": -0.0
+ },
+ "MakePickles": {
+  "steps": [
+   "put the ingredients into the can",
+   "pour the soup in",
+   "close cans"
+  ],
+  "videos": 10,
+  "frame_accuracy": 0.445,
+  "chance": 0.333,
+  "confusion_rows_true_cols_pred": [
+   [
+    629,
+    72,
+    19
+   ],
+   [
+    325,
+    7,
+    3
+   ],
+   [
+    360,
+    17,
+    3
+   ]
+  ],
+  "share_mean": [
+   0.835,
+   0.126,
+   0.038
+  ],
+  "share_sd": [
+   0.112,
+   0.119,
+   0.056
+  ],
+  "skip_caught": 0.033,
+  "skip_mean_z": 0.07
+ },
+ "MakeStrawberrySmoothie": {
+  "steps": [
+   "put strawberries and other fruits into the juicer",
+   "put yogurt, honey and other ingredients into the juicer",
+   "shake and juice"
+  ],
+  "videos": 10,
+  "frame_accuracy": 0.293,
+  "chance": 0.333,
+  "confusion_rows_true_cols_pred": [
+   [
+    158,
+    186,
+    16
+   ],
+   [
+    148,
+    167,
+    10
+   ],
+   [
+    279,
+    407,
+    109
+   ]
+  ],
+  "share_mean": [
+   0.393,
+   0.517,
+   0.09
+  ],
+  "share_sd": [
+   0.239,
+   0.226,
+   0.082
+  ],
+  "skip_caught": 0.0,
+  "skip_mean_z": -0.11
+ },
+ "ReplaceSIMCard": {
+  "steps": [
+   "use the needle to open the SIM card slot",
+   "put the SIM card into the SIM card slot",
+   "press the SIM card slot back"
+  ],
+  "videos": 10,
+  "frame_accuracy": 0.517,
+  "chance": 0.333,
+  "confusion_rows_true_cols_pred": [
+   [
+    488,
+    1,
+    6
+   ],
+   [
+    195,
+    0,
+    0
+   ],
+   [
+    274,
+    0,
+    21
+   ]
+  ],
+  "share_mean": [
+   0.894,
+   0.011,
+   0.094
+  ],
+  "share_sd": [
+   0.11,
+   0.023,
+   0.099
+  ],
+  "skip_caught": 0.067,
+  "skip_mean_z": -0.07
+ },
+ "Transplant": {
+  "steps": [
+   "take out the plant",
+   "put in the plant",
+   "fill with some soil"
+  ],
+  "videos": 10,
+  "frame_accuracy": 0.273,
+  "chance": 0.333,
+  "confusion_rows_true_cols_pred": [
+   [
+    99,
+    106,
+    809
+   ],
+   [
+    87,
+    56,
+    518
+   ],
+   [
+    26,
+    53,
+    444
+   ]
+  ],
+  "share_mean": [
+   0.157,
+   0.153,
+   0.69
+  ],
+  "share_sd": [
+   0.205,
+   0.18,
+   0.296
+  ],
+  "skip_caught": 0.033,
+  "skip_mean_z": 0.03
+ }
+}

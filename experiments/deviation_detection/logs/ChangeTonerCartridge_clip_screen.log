@@ -1,0 +1,31 @@
+2026-10-05 13:35:39 ChangeTonerCartridge: 4 steps ['open the front door or cover of the printer', 'take out the toner cartridge', 'insert a new toner cartridge', 'close the front door or cover of the printer']
+2026-10-05 13:35:39 48 correct of 92 annotated (81 on mirror); 15 natural deviants
+2026-10-05 13:35:40 [download 1/10] 6FaUjFYHtss
+2026-10-05 13:35:41 [download 2/10] M536q0MYc0k
+2026-10-05 13:35:42 [download 3/10] Sm35_yCU4ks
+2026-10-05 13:35:43 [download 4/10] U4W-TC3D1e8
+2026-10-05 13:35:44 [download 5/10] ZCyzpw4Jz4U
+2026-10-05 13:35:44 [download 6/10] _jwW-HeyE7U
+2026-10-05 13:35:45 [download 7/10] e1boXSEcj_E
+2026-10-05 13:35:46 [download 8/10] fmt3iK0RzM4
+2026-10-05 13:35:47 [download 9/10] sWsUoX4vAHs
+2026-10-05 13:35:47 [download 10/10] stz8O9aUjTo
+2026-10-05 13:36:02 [features 1/10] 6FaUjFYHtss 528 frames
+2026-10-05 13:36:04 [features 2/10] M536q0MYc0k 163 frames
+2026-10-05 13:36:08 [features 3/10] Sm35_yCU4ks 370 frames
+2026-10-05 13:36:12 [features 4/10] U4W-TC3D1e8 456 frames
+2026-10-05 13:36:15 [features 5/10] ZCyzpw4Jz4U 204 frames
+2026-10-05 13:36:19 [features 6/10] _jwW-HeyE7U 459 frames
+2026-10-05 13:36:24 [features 7/10] e1boXSEcj_E 450 frames
+2026-10-05 13:36:28 [features 8/10] fmt3iK0RzM4 421 frames
+2026-10-05 13:36:30 [features 9/10] sWsUoX4vAHs 177 frames
+2026-10-05 13:36:31 [features 10/10] stz8O9aUjTo 123 frames
+2026-10-05 13:36:31 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:36:32 step separation (between - within, mean over videos): 0.094; absolute-cost sd per step: [0.023, 0.046, 0.049, 0.024]
+2026-10-05 13:36:33 held-out correct absolute  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:36:33 held-out correct relative  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:36:33 held-out correct prototype n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:36:33 synthetic        absolute  n= 70 any-flag  16% right-step   9% localized   3%
+2026-10-05 13:36:33 synthetic        relative  n= 70 any-flag  16% right-step   4% localized   4%
+2026-10-05 13:36:33 synthetic        prototype n= 70 any-flag  30% right-step  11% localized   6%
+2026-10-05 13:36:33 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/ChangeTonerCartridge_clip_screen.json

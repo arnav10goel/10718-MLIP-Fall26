@@ -1,0 +1,992 @@
+{
+ "UseRiceCookerToCookRice": {
+  "-eed1Kz-3DE": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 85.8,
+   "step_seconds": [
+    20.0,
+    16.0,
+    18.0,
+    9.0
+   ]
+  },
+  "5HLDOGNnIRM": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 138.7,
+   "step_seconds": [
+    25.0,
+    30.0,
+    41.0,
+    30.0
+   ]
+  },
+  "5dlHj9EUM34": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 102.3,
+   "step_seconds": [
+    18.0,
+    3.0,
+    21.5,
+    33.0
+   ]
+  },
+  "C8Q1LzbCie0": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 44.8,
+   "step_seconds": [
+    6.0,
+    7.0,
+    5.0,
+    15.0
+   ]
+  },
+  "Dkkj-SnMoIQ": {
+   "subset": "training",
+   "width": 320,
+   "height": 240,
+   "task_seconds": 98.9,
+   "step_seconds": [
+    11.0,
+    20.0,
+    7.0,
+    42.0
+   ]
+  },
+  "FVMUZh1U2pA": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 28.8,
+   "step_seconds": [
+    3.0,
+    6.0,
+    2.0,
+    1.0
+   ]
+  },
+  "HC2ShTEWufk": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 122.5,
+   "step_seconds": [
+    11.0,
+    21.0,
+    52.0,
+    14.0
+   ]
+  },
+  "J9beS6ijo1A": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 40.4,
+   "step_seconds": [
+    4.0,
+    9.5,
+    11.0,
+    4.0
+   ]
+  },
+  "JdV6Qlhldcc": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 43.9,
+   "step_seconds": [
+    3.5,
+    17.5,
+    8.0,
+    5.5
+   ]
+  },
+  "LebQFI7RSDc": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 130.7,
+   "step_seconds": [
+    20.0,
+    20.0,
+    13.0,
+    29.0
+   ]
+  },
+  "McN-mX1Vw4w": {
+   "subset": "testing",
+   "width": 640,
+   "height": 480,
+   "task_seconds": 148.5,
+   "step_seconds": [
+    12.0,
+    41.0,
+    20.0,
+    22.0
+   ]
+  },
+  "NadlIM8GD4U": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 33.8,
+   "step_seconds": [
+    1.0,
+    1.0,
+    4.0,
+    14.0
+   ]
+  },
+  "P6A_Hatooc8": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 116.4,
+   "step_seconds": [
+    4.5,
+    6.0,
+    16.0,
+    31.0
+   ]
+  },
+  "TUF1Onz9RKQ": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 144.8,
+   "step_seconds": [
+    14.0,
+    25.0,
+    17.0,
+    25.0
+   ]
+  },
+  "VUWV9rEme7c": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 87.7,
+   "step_seconds": [
+    15.0,
+    17.0,
+    15.0,
+    19.0
+   ]
+  },
+  "XQRTf_o_Fqk": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 186.9,
+   "step_seconds": [
+    16.5,
+    19.5,
+    40.0,
+    47.0
+   ]
+  },
+  "Yy6C5rqIdiY": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 72.6,
+   "step_seconds": [
+    20.0,
+    16.5,
+    6.0,
+    9.0
+   ]
+  },
+  "_C60n2pX-pI": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 43.3,
+   "step_seconds": [
+    2.0,
+    8.0,
+    4.5,
+    10.0
+   ]
+  },
+  "dPHa3neuweU": {
+   "subset": "testing",
+   "width": 854,
+   "height": 480,
+   "task_seconds": 52.2,
+   "step_seconds": [
+    4.0,
+    5.0,
+    19.0,
+    17.0
+   ]
+  },
+  "eB6ZjmlmEG0": {
+   "subset": "testing",
+   "width": 640,
+   "height": 480,
+   "task_seconds": 73.5,
+   "step_seconds": [
+    4.0,
+    13.0,
+    27.0,
+    12.0
+   ]
+  },
+  "eIfuW2Xozoc": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 77.7,
+   "step_seconds": [
+    3.0,
+    26.0,
+    5.0,
+    29.0
+   ]
+  },
+  "fRB5TBkh3Uw": {
+   "subset": "training",
+   "width": 640,
+   "height": 480,
+   "task_seconds": 84.1,
+   "step_seconds": [
+    5.0,
+    14.5,
+    23.0,
+    4.5
+   ]
+  },
+  "i_3EvG8JvzE": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 132.1,
+   "step_seconds": [
+    3.0,
+    53.0,
+    29.0,
+    6.0
+   ]
+  },
+  "j1GlPFg-4_Y": {
+   "subset": "testing",
+   "width": 400,
+   "height": 226,
+   "task_seconds": 39.6,
+   "step_seconds": [
+    5.0,
+    4.0,
+    10.0,
+    7.0
+   ]
+  },
+  "ljT2vI4efKo": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 53.6,
+   "step_seconds": [
+    4.0,
+    6.0,
+    10.0,
+    14.0
+   ]
+  },
+  "mko4kT_UHYc": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 131.9,
+   "step_seconds": [
+    3.0,
+    57.0,
+    14.0,
+    4.0
+   ]
+  },
+  "nXSLpxsXlrw": {
+   "subset": "training",
+   "width": 320,
+   "height": 240,
+   "task_seconds": 75.2,
+   "step_seconds": [
+    10.0,
+    11.0,
+    25.0,
+    8.0
+   ]
+  },
+  "syx4yrqdnxU": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 142.0,
+   "step_seconds": [
+    4.0,
+    34.0,
+    66.0,
+    7.0
+   ]
+  },
+  "u0VHcJXypxw": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 70.3,
+   "step_seconds": [
+    8.0,
+    4.0,
+    4.0,
+    34.0
+   ]
+  },
+  "wekw3n8Vrv8": {
+   "subset": "training",
+   "width": 854,
+   "height": 480,
+   "task_seconds": 126.4,
+   "step_seconds": [
+    20.0,
+    46.0,
+    2.0,
+    12.0
+   ]
+  },
+  "yJlipxO1S4U": {
+   "subset": "training",
+   "width": 960,
+   "height": 720,
+   "task_seconds": 45.7,
+   "step_seconds": [
+    3.5,
+    2.0,
+    10.5,
+    11.5
+   ]
+  }
+ },
+ "MakePaperWindMill": {
+  "2hXFndxddUk": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 84.5,
+   "step_seconds": [
+    28.0,
+    5.0,
+    18.0,
+    14.0
+   ]
+  },
+  "3vC5iDUT21E": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 206.6,
+   "step_seconds": [
+    43.0,
+    40.0,
+    22.0,
+    9.0
+   ]
+  },
+  "4ufBW5Cfpgw": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 148.0,
+   "step_seconds": [
+    30.0,
+    21.0,
+    70.0,
+    12.0
+   ]
+  },
+  "7Kkf5AD0pqk": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 65.3,
+   "step_seconds": [
+    21.0,
+    6.0,
+    13.0,
+    2.0
+   ]
+  },
+  "I33S4c7zrcg": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 140.7,
+   "step_seconds": [
+    26.0,
+    16.0,
+    33.0,
+    6.0
+   ]
+  },
+  "Ii1mFpJKZqM": {
+   "subset": "training",
+   "width": 854,
+   "height": 480,
+   "task_seconds": 125.7,
+   "step_seconds": [
+    37.0,
+    24.0,
+    32.0,
+    8.0
+   ]
+  },
+  "JhN6Yntahqs": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 172.0,
+   "step_seconds": [
+    37.0,
+    15.0,
+    28.0,
+    24.0
+   ]
+  },
+  "K4J1UeQATdU": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 104.1,
+   "step_seconds": [
+    17.0,
+    12.0,
+    24.0,
+    9.0
+   ]
+  },
+  "Rqnt7wptU_Y": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 200.8,
+   "step_seconds": [
+    7.0,
+    2.0,
+    32.0,
+    18.0
+   ]
+  },
+  "ShI_3qzmXJg": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 44.1,
+   "step_seconds": [
+    4.0,
+    8.0,
+    4.0,
+    6.0
+   ]
+  },
+  "TULczOB5joI": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 70.2,
+   "step_seconds": [
+    19.0,
+    11.0,
+    26.0,
+    9.0
+   ]
+  },
+  "VPKdkn39HqI": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 163.2,
+   "step_seconds": [
+    27.0,
+    9.0,
+    49.0,
+    12.0
+   ]
+  },
+  "ZCxYhx-qpL0": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 132.0,
+   "step_seconds": [
+    74.0,
+    2.0,
+    15.0,
+    11.0
+   ]
+  },
+  "e7p9QHRmd4k": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 107.9,
+   "step_seconds": [
+    26.0,
+    7.0,
+    35.0,
+    18.0
+   ]
+  },
+  "gyqkYYIxz3c": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 160.0,
+   "step_seconds": [
+    15.0,
+    8.0,
+    39.0,
+    20.0
+   ]
+  },
+  "kQCn-uR5_Pg": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 101.7,
+   "step_seconds": [
+    25.0,
+    12.0,
+    28.0,
+    13.0
+   ]
+  },
+  "oJROqzluTgI": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 140.8,
+   "step_seconds": [
+    34.0,
+    9.0,
+    37.0,
+    29.0
+   ]
+  },
+  "pQa9H3RTRTY": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 137.3,
+   "step_seconds": [
+    3.0,
+    14.0,
+    32.0,
+    17.0
+   ]
+  },
+  "phf_FGejg8o": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 125.7,
+   "step_seconds": [
+    9.0,
+    2.0,
+    11.0,
+    20.0
+   ]
+  },
+  "pu9Xpym242M": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 92.6,
+   "step_seconds": [
+    10.0,
+    16.0,
+    23.0,
+    8.0
+   ]
+  },
+  "wP2YPdpzdI0": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 141.7,
+   "step_seconds": [
+    23.0,
+    13.0,
+    31.0,
+    9.0
+   ]
+  },
+  "wtEQ0vsNaFo": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 172.5,
+   "step_seconds": [
+    19.0,
+    20.0,
+    53.0,
+    13.0
+   ]
+  },
+  "xeR7eBdNGUQ": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 132.0,
+   "step_seconds": [
+    26.0,
+    4.0,
+    15.0,
+    8.0
+   ]
+  },
+  "zV8ruZtvXyI": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 184.9,
+   "step_seconds": [
+    12.0,
+    14.0,
+    39.0,
+    27.0
+   ]
+  },
+  "zppd4UrccXA": {
+   "subset": "testing",
+   "width": 640,
+   "height": 480,
+   "task_seconds": 93.4,
+   "step_seconds": [
+    14.0,
+    5.0,
+    38.0,
+    26.0
+   ]
+  }
+ },
+ "PutOnQuiltCover": {
+  "Cf-qdR2-a-U": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 63.5,
+   "step_seconds": [
+    13.0,
+    14.0,
+    20.0,
+    12.0
+   ]
+  },
+  "DA6HxZUH7VQ": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 50.6,
+   "step_seconds": [
+    11.0,
+    5.0,
+    14.0,
+    10.0
+   ]
+  },
+  "Dt0wmPNFvr8": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 41.0,
+   "step_seconds": [
+    5.0,
+    4.0,
+    12.0,
+    6.0
+   ]
+  },
+  "ETp9-vEIa2M": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 86.8,
+   "step_seconds": [
+    23.0,
+    23.0,
+    15.0,
+    12.0
+   ]
+  },
+  "H52vAkIp80A": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 117.0,
+   "step_seconds": [
+    26.0,
+    5.5,
+    27.0,
+    36.0
+   ]
+  },
+  "Hg937Un-km8": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 76.1,
+   "step_seconds": [
+    19.0,
+    9.0,
+    27.0,
+    14.0
+   ]
+  },
+  "K-a36PqpUxM": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 84.6,
+   "step_seconds": [
+    12.0,
+    11.0,
+    35.0,
+    16.0
+   ]
+  },
+  "KjHOvpOLhUQ": {
+   "subset": "training",
+   "width": 848,
+   "height": 480,
+   "task_seconds": 71.0,
+   "step_seconds": [
+    34.0,
+    7.0,
+    11.0,
+    9.0
+   ]
+  },
+  "OWXhAz3kMxM": {
+   "subset": "testing",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 74.7,
+   "step_seconds": [
+    12.0,
+    16.0,
+    23.0,
+    14.0
+   ]
+  },
+  "Q4vBGQXUKj4": {
+   "subset": "training",
+   "width": 400,
+   "height": 300,
+   "task_seconds": 84.2,
+   "step_seconds": [
+    13.0,
+    4.0,
+    36.0,
+    20.0
+   ]
+  },
+  "QdgbKt0suWE": {
+   "subset": "training",
+   "width": 640,
+   "height": 360,
+   "task_seconds": 82.4,
+   "step_seconds": [
+    22.0,
+    15.0,
+    15.0,
+    14.0
+   ]
+  },
+  "RmiuR14GDsI": {
+   "subset": "testing",
+   "width": 608,
+   "height": 1080,
+   "task_seconds": 212.3,
+   "step_seconds": [
+    13.0,
+    46.0,
+    35.0,
+    90.0
+   ]
+  },
+  "TB3I5tFyukQ": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 71.1,
+   "step_seconds": [
+    15.0,
+    17.0,
+    10.0,
+    15.0
+   ]
+  },
+  "TJHBpquawcE": {
+   "subset": "testing",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 44.5,
+   "step_seconds": [
+    14.0,
+    8.0,
+    11.0,
+    8.0
+   ]
+  },
+  "c1IzS2oBBN0": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 77.0,
+   "step_seconds": [
+    13.0,
+    17.5,
+    28.0,
+    8.0
+   ]
+  },
+  "fFhdoyRkwzk": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 214.8,
+   "step_seconds": [
+    73.0,
+    28.0,
+    32.0,
+    60.0
+   ]
+  },
+  "jetCqIkjkpU": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 35.9,
+   "step_seconds": [
+    6.5,
+    2.0,
+    6.0,
+    10.5
+   ]
+  },
+  "kAfYt-TN1EQ": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 46.6,
+   "step_seconds": [
+    20.0,
+    5.0,
+    8.0,
+    2.0
+   ]
+  },
+  "kify7wrGgF8": {
+   "subset": "training",
+   "width": 640,
+   "height": 360,
+   "task_seconds": 131.7,
+   "step_seconds": [
+    10.0,
+    21.0,
+    37.0,
+    39.0
+   ]
+  },
+  "mX8e0cUBpaI": {
+   "subset": "training",
+   "width": 1280,
+   "height": 720,
+   "task_seconds": 69.6,
+   "step_seconds": [
+    12.0,
+    9.0,
+    24.0,
+    7.0
+   ]
+  },
+  "nO9n_GYSDAc": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 188.1,
+   "step_seconds": [
+    29.0,
+    11.0,
+    34.5,
+    78.0
+   ]
+  },
+  "okrhaW5PuAU": {
+   "subset": "training",
+   "width": 480,
+   "height": 360,
+   "task_seconds": 107.1,
+   "step_seconds": [
+    4.0,
+    21.0,
+    31.0,
+    24.0
+   ]
+  },
+  "p_zcYRKjFEs": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 48.1,
+   "step_seconds": [
+    11.0,
+    6.5,
+    14.5,
+    5.0
+   ]
+  },
+  "u-ZPjYbTI6U": {
+   "subset": "training",
+   "width": 1920,
+   "height": 1080,
+   "task_seconds": 97.8,
+   "step_seconds": [
+    27.0,
+    18.0,
+    36.0,
+    1.0
+   ]
+  },
+  "u6YiXoFOJF0": {
+   "subset": "training",
+   "width": 854,
+   "height": 480,
+   "task_seconds": 73.8,
+   "step_seconds": [
+    16.0,
+    15.0,
+    7.0,
+    18.0
+   ]
+  },
+  "uy-dcjCe-g8": {
+   "subset": "training",
+   "width": 640,
+   "height": 480,
+   "task_seconds": 84.5,
+   "step_seconds": [
+    15.0,
+    35.0,
+    19.0,
+    8.0
+   ]
+  }
+ }
+}

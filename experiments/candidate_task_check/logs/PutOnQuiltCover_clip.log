@@ -1,0 +1,5 @@
+Validating media for PutOnQuiltCover under /Users/arnav/Documents/10718-MLIP-Fall26/data
+Scoring 25 comparisons against H52vAkIp80A
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Wrote 25 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/candidate_task_check/runs/PutOnQuiltCover_clip.json

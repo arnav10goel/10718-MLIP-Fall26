@@ -1,0 +1,16 @@
+=== BoilNoodles classical start 2026-10-05 12:53:27
+exit 0 end 2026-10-05 12:53:54
+Scoring 7 comparisons against krNVdmW0Nto
+Wrote 7 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/cooking_dtw_baseline/runs/boilnoodles_classical.json
+=== BoilNoodles clip start 2026-10-05 12:53:54
+exit 0 end 2026-10-05 12:54:56
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Wrote 7 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/cooking_dtw_baseline/runs/boilnoodles_clip.json
+=== MakeBurger classical start 2026-10-05 12:54:56
+exit 0 end 2026-10-05 12:56:41
+Scoring 7 comparisons against aogu4SX7ULg
+Wrote 7 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/cooking_dtw_baseline/runs/makeburger_classical.json
+=== MakeBurger clip start 2026-10-05 12:56:41
+exit 0 end 2026-10-05 12:59:11
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Wrote 7 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/cooking_dtw_baseline/runs/makeburger_clip.json

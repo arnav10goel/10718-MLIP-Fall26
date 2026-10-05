@@ -1,0 +1,32 @@
+2026-10-05 13:39:19 CookOmelet: 3 steps ['pour the egg into the pot', 'fry eggs', 'pour the egg onto the plate']
+2026-10-05 13:39:19 20 correct of 93 annotated (83 on mirror); 11 natural deviants
+2026-10-05 13:39:19 [download 1/10] 382uPalxYhk
+2026-10-05 13:39:19 [download 2/10] 9Nr5JXHo9sQ
+2026-10-05 13:39:19 [download 3/10] GAN1s0AhZ-4
+2026-10-05 13:39:19 [download 4/10] J5_HmfZyhKo
+2026-10-05 13:39:19 [download 5/10] d15rDgh2ebY
+2026-10-05 13:39:19 [download 6/10] jGM8EImhpXg
+2026-10-05 13:39:19 [download 7/10] jbALNwE5cCQ
+2026-10-05 13:39:19 [download 8/10] nKfAPLrOUF0
+2026-10-05 13:39:19 [download 9/10] tVBL6hq2m5c
+2026-10-05 13:39:19 [download 10/10] wq0bNYQKpCY
+2026-10-05 13:39:19 [features 1/10] 382uPalxYhk 289 frames
+2026-10-05 13:39:19 [features 2/10] 9Nr5JXHo9sQ 437 frames
+2026-10-05 13:39:19 [features 3/10] GAN1s0AhZ-4 266 frames
+2026-10-05 13:39:19 [features 4/10] J5_HmfZyhKo 803 frames
+2026-10-05 13:39:19 [features 5/10] d15rDgh2ebY 385 frames
+2026-10-05 13:39:19 [features 6/10] jGM8EImhpXg 265 frames
+2026-10-05 13:39:19 [features 7/10] jbALNwE5cCQ 71 frames
+2026-10-05 13:39:19 [features 8/10] nKfAPLrOUF0 58 frames
+2026-10-05 13:39:19 [features 9/10] tVBL6hq2m5c 153 frames
+2026-10-05 13:39:19 [features 10/10] wq0bNYQKpCY 472 frames
+2026-10-05 13:39:19 dropped nKfAPLrOUF0: a step has no sampled frames
+2026-10-05 13:39:19 used: 9 correct (4 training references, 5 held out), 0 natural deviants
+2026-10-05 13:39:20 step separation (between - within, mean over videos): 0.089; absolute-cost sd per step: [0.035, 0.021, 0.042]
+2026-10-05 13:39:20 held-out correct absolute  n=  5 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:39:20 held-out correct relative  n=  5 any-flag  40% right-step 100% localized  60%
+2026-10-05 13:39:20 held-out correct prototype n=  5 any-flag  60% right-step 100% localized  40%
+2026-10-05 13:39:20 synthetic        absolute  n= 45 any-flag   0% right-step   0% localized   0%
+2026-10-05 13:39:20 synthetic        relative  n= 45 any-flag  13% right-step   4% localized   4%
+2026-10-05 13:39:20 synthetic        prototype n= 45 any-flag  60% right-step  16% localized   9%
+2026-10-05 13:39:20 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/CookOmelet_clip_screen.json

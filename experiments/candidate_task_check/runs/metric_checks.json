@@ -1,0 +1,132 @@
+{
+ "dtw_max_abs_error_vs_slow": 5.329070518200751e-15,
+ "task_control": {
+  "BoilNoodles": {
+   "same_task_mean": 0.2420731558428452,
+   "other_task_mean": 0.3245750660117235,
+   "same_task_sd": 0.04906483461917042,
+   "other_task_sd": 0.0443051547057405
+  },
+  "ChangeTonerCartridge": {
+   "same_task_mean": 0.2350561015609784,
+   "other_task_mean": 0.39118813529962787,
+   "same_task_sd": 0.02332398746625813,
+   "other_task_sd": 0.04908817717574245
+  },
+  "CookOmelet": {
+   "same_task_mean": 0.21370405397992703,
+   "other_task_mean": 0.33926456050255616,
+   "same_task_sd": 0.02967094665142219,
+   "other_task_sd": 0.04546159778363146
+  },
+  "MakeBurger": {
+   "same_task_mean": 0.31194028386629835,
+   "other_task_mean": 0.3635682375201296,
+   "same_task_sd": 0.03281664013458874,
+   "other_task_sd": 0.0368626605789938
+  },
+  "MakeMatchaTea": {
+   "same_task_mean": 0.2649052137254911,
+   "other_task_mean": 0.3516767543532748,
+   "same_task_sd": 0.06648533985320791,
+   "other_task_sd": 0.04283423187285685
+  },
+  "MakeOrangeJuice": {
+   "same_task_mean": 0.27659585691362043,
+   "other_task_mean": 0.33845957644231944,
+   "same_task_sd": 0.029426909140192366,
+   "other_task_sd": 0.05319458490408512
+  },
+  "MakePickles": {
+   "same_task_mean": 0.2974531172610077,
+   "other_task_mean": 0.33362547240448803,
+   "same_task_sd": 0.028721181401802583,
+   "other_task_sd": 0.039513356077733645
+  },
+  "MakeStrawberrySmoothie": {
+   "same_task_mean": 0.30813885902473387,
+   "other_task_mean": 0.3781700701120923,
+   "same_task_sd": 0.05402932978825807,
+   "other_task_sd": 0.04941362056578597
+  },
+  "ReplaceSIMCard": {
+   "same_task_mean": 0.19973651954829227,
+   "other_task_mean": 0.3905195963256434,
+   "same_task_sd": 0.033340048239996645,
+   "other_task_sd": 0.048111745463805
+  },
+  "Transplant": {
+   "same_task_mean": 0.257425781989664,
+   "other_task_mean": 0.3991711129652498,
+   "same_task_sd": 0.045578044580574135,
+   "other_task_sd": 0.03463267744114645
+  }
+ },
+ "step_specificity": {
+  "BoilNoodles": {
+   "same_step": 0.304381168580481,
+   "different_step": 0.3046009883816753,
+   "step_cost_correlation": 0.3669992243185963,
+   "variance_explained_by_pair": 0.6551537129199638
+  },
+  "ChangeTonerCartridge": {
+   "same_step": 0.21615798125664393,
+   "different_step": 0.2318340548210674,
+   "step_cost_correlation": 0.7183807413968898,
+   "variance_explained_by_pair": 0.7817248043111813
+  },
+  "CookOmelet": {
+   "same_step": 0.2635471383454623,
+   "different_step": 0.27884844849231066,
+   "step_cost_correlation": 0.6319209194202035,
+   "variance_explained_by_pair": 0.29548479739274547
+  },
+  "MakeBurger": {
+   "same_step": 0.3215677314216182,
+   "different_step": 0.36391944012471605,
+   "step_cost_correlation": 0.5458605760817234,
+   "variance_explained_by_pair": 0.5674251018629992
+  },
+  "MakeMatchaTea": {
+   "same_step": 0.34139520393477546,
+   "different_step": 0.34232378519243667,
+   "step_cost_correlation": 0.7906553371041108,
+   "variance_explained_by_pair": 0.8377505505702953
+  },
+  "MakeOrangeJuice": {
+   "same_step": 0.324582686247649,
+   "different_step": 0.3400671049400612,
+   "step_cost_correlation": 0.6381997912682448,
+   "variance_explained_by_pair": 0.6698888920902268
+  },
+  "MakePickles": {
+   "same_step": 0.3254081901576784,
+   "different_step": 0.33084774596823585,
+   "step_cost_correlation": 0.651860261797164,
+   "variance_explained_by_pair": 0.644814080370521
+  },
+  "MakeStrawberrySmoothie": {
+   "same_step": 0.30753976658538534,
+   "different_step": 0.31628493070602415,
+   "step_cost_correlation": 0.46738562200003386,
+   "variance_explained_by_pair": 0.6127373343675153
+  },
+  "ReplaceSIMCard": {
+   "same_step": 0.21906067044646652,
+   "different_step": 0.23054494573562234,
+   "step_cost_correlation": 0.36612982737445837,
+   "variance_explained_by_pair": 0.5001408009528844
+  },
+  "Transplant": {
+   "same_step": 0.3278952168093787,
+   "different_step": 0.3286859690591141,
+   "step_cost_correlation": 0.7469963701909478,
+   "variance_explained_by_pair": 0.8142665115515133
+  }
+ },
+ "histogram_energy_share": {
+  "hue": 0.004316698759794235,
+  "saturation": 0.011075286194682121,
+  "gradients": 0.984607994556427
+ }
+}

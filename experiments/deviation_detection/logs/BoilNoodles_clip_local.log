@@ -1,0 +1,19 @@
+2026-10-05 13:25:39 BoilNoodles: 2 steps ['pour the noodles into the water and stir', 'pour the cooked noodles']
+2026-10-05 13:25:39 32 correct of 97 annotated (80 on mirror); 0 natural deviants
+2026-10-05 13:25:52 [features 1/8] 1BrN3RGFXDs 332 frames
+2026-10-05 13:25:56 [features 2/8] 2BJnbSPb-V0 250 frames
+2026-10-05 13:25:58 [features 3/8] 4JwUCS5JjfY 189 frames
+2026-10-05 13:25:59 [features 4/8] 78u2RZpv_o4 57 frames
+2026-10-05 13:26:02 [features 5/8] TiI8UcSKnqs 373 frames
+2026-10-05 13:26:05 [features 6/8] V5B-nTO2Jl4 194 frames
+2026-10-05 13:26:07 [features 7/8] bFu3hfS6GNQ 162 frames
+2026-10-05 13:26:09 [features 8/8] krNVdmW0Nto 201 frames
+2026-10-05 13:26:09 used: 8 correct (5 training references, 3 held out), 0 natural deviants
+2026-10-05 13:26:10 step separation (between - within, mean over videos): 0.113; absolute-cost sd per step: [0.044, 0.04]
+2026-10-05 13:26:10 held-out correct absolute  n=  3 any-flag  33% right-step 100% localized  67%
+2026-10-05 13:26:10 held-out correct relative  n=  3 any-flag  67% right-step 100% localized  33%
+2026-10-05 13:26:10 held-out correct prototype n=  3 any-flag  67% right-step 100% localized  33%
+2026-10-05 13:26:10 synthetic        absolute  n= 24 any-flag  12% right-step  12% localized   4%
+2026-10-05 13:26:10 synthetic        relative  n= 24 any-flag  42% right-step   8% localized   8%
+2026-10-05 13:26:10 synthetic        prototype n= 24 any-flag  75% right-step  50% localized  38%
+2026-10-05 13:26:10 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/BoilNoodles_clip_local.json

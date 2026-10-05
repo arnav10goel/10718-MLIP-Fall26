@@ -1,0 +1,19 @@
+2026-10-05 13:25:37 MakeBurger: 3 steps ['knead the meat', 'fry meat', 'combine meat and bread to make burger']
+2026-10-05 13:25:37 20 correct of 88 annotated (76 on mirror); 24 natural deviants
+2026-10-05 13:25:37 [features 1/8] 6yLbrPvcxDs 116 frames
+2026-10-05 13:25:37 [features 2/8] DbTTRH-iJfk 418 frames
+2026-10-05 13:25:37 [features 3/8] ZZlBqkVbRaQ 335 frames
+2026-10-05 13:25:37 [features 4/8] aogu4SX7ULg 203 frames
+2026-10-05 13:25:37 [features 5/8] avEBVTvYePk 591 frames
+2026-10-05 13:25:37 [features 6/8] gnlUBK-cvfc 263 frames
+2026-10-05 13:25:37 [features 7/8] goEDc2eOZsw 283 frames
+2026-10-05 13:25:37 [features 8/8] pwRFmEYGbyc 119 frames
+2026-10-05 13:25:37 used: 8 correct (7 training references, 1 held out), 0 natural deviants
+2026-10-05 13:25:38 step separation (between - within, mean over videos): 0.172; absolute-cost sd per step: [0.062, 0.041, 0.03]
+2026-10-05 13:25:38 held-out correct absolute  n=  1 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:25:38 held-out correct relative  n=  1 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:25:38 held-out correct prototype n=  1 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:25:38 synthetic        absolute  n= 40 any-flag  20% right-step   5% localized   5%
+2026-10-05 13:25:38 synthetic        relative  n= 40 any-flag  15% right-step   2% localized   2%
+2026-10-05 13:25:38 synthetic        prototype n= 40 any-flag  40% right-step  22% localized  18%
+2026-10-05 13:25:38 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/MakeBurger_clip_local.json

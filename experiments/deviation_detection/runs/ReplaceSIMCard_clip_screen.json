@@ -1,0 +1,4148 @@
+{
+ "task": "ReplaceSIMCard",
+ "encoder": "clip",
+ "steps": [
+  "use the needle to open the SIM card slot",
+  "put the SIM card into the SIM card slot",
+  "press the SIM card slot back"
+ ],
+ "counts": {
+  "annotated": 86,
+  "on_mirror": 82,
+  "correct_on_mirror": 48,
+  "natural_deviants_on_mirror": 11,
+  "correct_used": 10,
+  "references": 8,
+  "held_out_correct": 2,
+  "natural_deviants_used": 0
+ },
+ "references": [
+  "ASUDRGkdWWA",
+  "B0oEvirFJas",
+  "GoQpmUSHstw",
+  "V_BwPfCh1Z0",
+  "cPmPYw3lzIw",
+  "jaTb_TJTiAM",
+  "qkguKz3BrJI",
+  "ziEpBwJ1TOg"
+ ],
+ "step_separation": 0.08051787956307331,
+ "normal_range": {
+  "absolute": {
+   "mean": [
+    0.1812,
+    0.2026,
+    0.2269
+   ],
+   "sd": [
+    0.022,
+    0.0303,
+    0.0329
+   ]
+  },
+  "relative": {
+   "mean": [
+    -0.0223,
+    -0.001,
+    0.0233
+   ],
+   "sd": [
+    0.0178,
+    0.0194,
+    0.0288
+   ]
+  },
+  "share": {
+   "mean": [
+    0.4534,
+    0.3279,
+    0.2187
+   ],
+   "sd": [
+    0.2375,
+    0.2412,
+    0.2888
+   ]
+  },
+  "position": {
+   "mean": [
+    0.4341,
+    0.4298,
+    0.598
+   ],
+   "sd": [
+    0.1153,
+    0.1802,
+    0.2604
+   ]
+  }
+ },
+ "calibration": [
+  {
+   "video_id": "ASUDRGkdWWA",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.504,
+    0.298,
+    0.198
+   ],
+   "position": [
+    0.479,
+    0.293,
+    0.863
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.83,
+    -0.49,
+    -0.4
+   ],
+   "z_relative": [
+    -0.16,
+    0.03,
+    0.08
+   ],
+   "z_share": [
+    0.21,
+    -0.13,
+    -0.07
+   ],
+   "z_position": [
+    0.39,
+    -0.76,
+    1.02
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "B0oEvirFJas",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.5,
+    0.5,
+    0.0
+   ],
+   "position": [
+    0.58,
+    0.42,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -1.1,
+    -1.15,
+    -1.66
+   ],
+   "z_relative": [
+    0.77,
+    0.15,
+    -0.58
+   ],
+   "z_share": [
+    0.2,
+    0.71,
+    -0.76
+   ],
+   "z_position": [
+    1.27,
+    -0.06,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "GoQpmUSHstw",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.325,
+    0.036,
+    0.639
+   ],
+   "position": [
+    0.53,
+    0.272,
+    0.498
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.86,
+    1.39,
+    -0.5
+   ],
+   "z_relative": [
+    0.23,
+    1.4,
+    -1.09
+   ],
+   "z_share": [
+    -0.54,
+    -1.21,
+    1.45
+   ],
+   "z_position": [
+    0.83,
+    -0.87,
+    -0.39
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "V_BwPfCh1Z0",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.184,
+    0.776,
+    0.04
+   ],
+   "position": [
+    0.336,
+    0.555,
+    0.19
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.52,
+    0.69,
+    -0.76
+   ],
+   "z_relative": [
+    1.32,
+    0.57,
+    -1.21
+   ],
+   "z_share": [
+    -1.13,
+    1.86,
+    -0.62
+   ],
+   "z_position": [
+    -0.85,
+    0.69,
+    -1.57
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "cPmPYw3lzIw",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.132,
+    0.098,
+    0.77
+   ],
+   "position": [
+    0.215,
+    0.601,
+    0.536
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.5,
+    -1.03,
+    1.3
+   ],
+   "z_relative": [
+    -0.63,
+    -1.61,
+    1.48
+   ],
+   "z_share": [
+    -1.35,
+    -0.95,
+    1.91
+   ],
+   "z_position": [
+    -1.9,
+    0.95,
+    -0.24
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "jaTb_TJTiAM",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.564,
+    0.421,
+    0.015
+   ],
+   "position": [
+    0.463,
+    0.532,
+    0.985
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.33,
+    0.12,
+    -0.21
+   ],
+   "z_relative": [
+    1.16,
+    -0.26,
+    -0.54
+   ],
+   "z_share": [
+    0.47,
+    0.39,
+    -0.71
+   ],
+   "z_position": [
+    0.25,
+    0.57,
+    1.49
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "qkguKz3BrJI",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.472,
+    0.44,
+    0.087
+   ],
+   "position": [
+    0.346,
+    0.662,
+    0.516
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.96,
+    -0.96,
+    1.29
+   ],
+   "z_relative": [
+    -1.04,
+    -1.36,
+    1.56
+   ],
+   "z_share": [
+    0.08,
+    0.47,
+    -0.45
+   ],
+   "z_position": [
+    -0.76,
+    1.29,
+    -0.31
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "ziEpBwJ1TOg",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.945,
+    0.055,
+    0.0
+   ],
+   "position": [
+    0.523,
+    0.103,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -0.33,
+    1.42,
+    0.94
+   ],
+   "z_relative": [
+    -1.66,
+    1.08,
+    0.3
+   ],
+   "z_share": [
+    2.07,
+    -1.13,
+    -0.76
+   ],
+   "z_position": [
+    0.77,
+    -1.81,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": false,
+    "any_flag": true
+   }
+  }
+ ],
+ "held_out_correct": [
+  {
+   "video_id": "2Lk9SO8DIVk",
+   "expected_steps": [],
+   "absolute": [
+    true,
+    false,
+    false
+   ],
+   "share": [
+    0.057,
+    0.882,
+    0.061
+   ],
+   "position": [
+    0.802,
+    0.451,
+    0.923
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    true,
+    false,
+    false
+   ],
+   "z_absolute": [
+    4.09,
+    0.54,
+    -0.19
+   ],
+   "z_relative": [
+    3.18,
+    -0.86,
+    -1.38
+   ],
+   "z_share": [
+    -1.67,
+    2.29,
+    -0.54
+   ],
+   "z_position": [
+    3.19,
+    0.12,
+    1.25
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "RozBliBcXlA",
+   "expected_steps": [],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.368,
+    0.063,
+    0.568
+   ],
+   "position": [
+    0.541,
+    0.653,
+    0.456
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.65,
+    -0.15,
+    -0.28
+   ],
+   "z_relative": [
+    1.62,
+    -0.62,
+    -0.58
+   ],
+   "z_share": [
+    -0.36,
+    -1.1,
+    1.21
+   ],
+   "z_position": [
+    0.93,
+    1.24,
+    -0.54
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": false
+   }
+  }
+ ],
+ "synthetic": [
+  {
+   "video_id": "2Lk9SO8DIVk",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    true,
+    false,
+    false
+   ],
+   "share": [
+    0.065,
+    0.857,
+    0.077
+   ],
+   "position": [
+    0.868,
+    0.43,
+    0.96
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    true,
+    false,
+    false
+   ],
+   "z_absolute": [
+    4.43,
+    0.42,
+    -0.37
+   ],
+   "z_relative": [
+    3.64,
+    -1.02,
+    -1.56
+   ],
+   "z_share": [
+    -1.63,
+    2.19,
+    -0.49
+   ],
+   "z_position": [
+    3.76,
+    0.0,
+    1.39
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "2Lk9SO8DIVk",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    true,
+    false,
+    false
+   ],
+   "share": [
+    0.069,
+    0.856,
+    0.074
+   ],
+   "position": [
+    0.792,
+    0.44,
+    0.922
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    true,
+    false,
+    false
+   ],
+   "z_absolute": [
+    3.9,
+    0.51,
+    -0.44
+   ],
+   "z_relative": [
+    3.19,
+    -0.69,
+    -1.51
+   ],
+   "z_share": [
+    -1.62,
+    2.19,
+    -0.5
+   ],
+   "z_position": [
+    3.11,
+    0.05,
+    1.24
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "2Lk9SO8DIVk",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    true,
+    false,
+    false
+   ],
+   "share": [
+    0.025,
+    0.886,
+    0.089
+   ],
+   "position": [
+    0.646,
+    0.454,
+    0.921
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    3.62,
+    0.13,
+    -0.08
+   ],
+   "z_relative": [
+    2.95,
+    -1.18,
+    -1.03
+   ],
+   "z_share": [
+    -1.8,
+    2.31,
+    -0.45
+   ],
+   "z_position": [
+    1.84,
+    0.13,
+    1.24
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "2Lk9SO8DIVk",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    true,
+    false,
+    false
+   ],
+   "share": [
+    0.057,
+    0.882,
+    0.061
+   ],
+   "position": [
+    0.842,
+    0.447,
+    0.942
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    true,
+    false,
+    false
+   ],
+   "z_absolute": [
+    3.99,
+    0.39,
+    -0.15
+   ],
+   "z_relative": [
+    3.16,
+    -1.01,
+    -1.27
+   ],
+   "z_share": [
+    -1.67,
+    2.29,
+    -0.54
+   ],
+   "z_position": [
+    3.54,
+    0.1,
+    1.32
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "2Lk9SO8DIVk",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    true,
+    false,
+    false
+   ],
+   "share": [
+    0.057,
+    0.882,
+    0.061
+   ],
+   "position": [
+    0.665,
+    0.46,
+    0.923
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    3.85,
+    0.36,
+    -0.33
+   ],
+   "z_relative": [
+    3.17,
+    -0.89,
+    -1.36
+   ],
+   "z_share": [
+    -1.67,
+    2.29,
+    -0.54
+   ],
+   "z_position": [
+    2.0,
+    0.17,
+    1.25
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "ASUDRGkdWWA",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.523,
+    0.27,
+    0.207
+   ],
+   "position": [
+    0.466,
+    0.278,
+    0.875
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.87,
+    0.12,
+    -0.4
+   ],
+   "z_relative": [
+    -0.54,
+    0.68,
+    -0.13
+   ],
+   "z_share": [
+    0.29,
+    -0.24,
+    -0.04
+   ],
+   "z_position": [
+    0.28,
+    -0.84,
+    1.06
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "ASUDRGkdWWA",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.517,
+    0.276,
+    0.207
+   ],
+   "position": [
+    0.472,
+    0.283,
+    0.859
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -1.1,
+    0.12,
+    -0.0
+   ],
+   "z_relative": [
+    -0.97,
+    0.54,
+    0.24
+   ],
+   "z_share": [
+    0.27,
+    -0.22,
+    -0.04
+   ],
+   "z_position": [
+    0.33,
+    -0.81,
+    1.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "ASUDRGkdWWA",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.483,
+    0.31,
+    0.207
+   ],
+   "position": [
+    0.471,
+    0.306,
+    0.859
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.84,
+    -0.49,
+    -0.0
+   ],
+   "z_relative": [
+    -0.41,
+    -0.19,
+    0.38
+   ],
+   "z_share": [
+    0.12,
+    -0.07,
+    -0.04
+   ],
+   "z_position": [
+    0.32,
+    -0.69,
+    1.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "ASUDRGkdWWA",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.504,
+    0.298,
+    0.198
+   ],
+   "position": [
+    0.481,
+    0.288,
+    0.867
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.67,
+    0.12,
+    -0.0
+   ],
+   "z_relative": [
+    -0.62,
+    0.38,
+    0.13
+   ],
+   "z_share": [
+    0.21,
+    -0.13,
+    -0.07
+   ],
+   "z_position": [
+    0.41,
+    -0.79,
+    1.03
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "ASUDRGkdWWA",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.504,
+    0.298,
+    0.198
+   ],
+   "position": [
+    0.474,
+    0.303,
+    0.863
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -1.13,
+    -1.0,
+    -0.0
+   ],
+   "z_relative": [
+    -0.36,
+    -0.61,
+    0.64
+   ],
+   "z_share": [
+    0.21,
+    -0.13,
+    -0.07
+   ],
+   "z_position": [
+    0.34,
+    -0.71,
+    1.02
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "B0oEvirFJas",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.551,
+    0.449,
+    0.0
+   ],
+   "position": [
+    0.558,
+    0.429,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -1.1,
+    -0.94,
+    -1.66
+   ],
+   "z_relative": [
+    0.66,
+    0.37,
+    -0.65
+   ],
+   "z_share": [
+    0.41,
+    0.5,
+    -0.76
+   ],
+   "z_position": [
+    1.08,
+    -0.01,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "B0oEvirFJas",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.573,
+    0.427,
+    0.0
+   ],
+   "position": [
+    0.599,
+    0.367,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -1.73,
+    -2.22,
+    -2.23
+   ],
+   "z_relative": [
+    1.21,
+    -0.39,
+    -0.48
+   ],
+   "z_share": [
+    0.5,
+    0.41,
+    -0.76
+   ],
+   "z_position": [
+    1.43,
+    -0.35,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "B0oEvirFJas",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.472,
+    0.528,
+    0.0
+   ],
+   "position": [
+    0.567,
+    0.44,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -1.1,
+    -1.52,
+    -2.02
+   ],
+   "z_relative": [
+    1.2,
+    -0.03,
+    -0.73
+   ],
+   "z_share": [
+    0.08,
+    0.83,
+    -0.76
+   ],
+   "z_position": [
+    1.15,
+    0.06,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "B0oEvirFJas",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.5,
+    0.5,
+    0.0
+   ],
+   "position": [
+    0.598,
+    0.402,
+    -1.0
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -0.17,
+    -1.87,
+    -2.55
+   ],
+   "z_relative": [
+    2.5,
+    -0.44,
+    -1.25
+   ],
+   "z_share": [
+    0.2,
+    0.71,
+    -0.76
+   ],
+   "z_position": [
+    1.42,
+    -0.15,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "B0oEvirFJas",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.5,
+    0.5,
+    0.0
+   ],
+   "position": [
+    0.551,
+    0.449,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -1.73,
+    -1.15,
+    -2.16
+   ],
+   "z_relative": [
+    0.56,
+    0.67,
+    -0.8
+   ],
+   "z_share": [
+    0.2,
+    0.71,
+    -0.76
+   ],
+   "z_position": [
+    1.01,
+    0.11,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "GoQpmUSHstw",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.279,
+    0.005,
+    0.716
+   ],
+   "position": [
+    0.571,
+    0.704,
+    0.471
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.83,
+    1.92,
+    0.03
+   ],
+   "z_relative": [
+    0.4,
+    1.3,
+    -1.12
+   ],
+   "z_share": [
+    -0.73,
+    -1.34,
+    1.72
+   ],
+   "z_position": [
+    1.19,
+    1.52,
+    -0.49
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "GoQpmUSHstw",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.323,
+    0.039,
+    0.638
+   ],
+   "position": [
+    0.535,
+    0.286,
+    0.495
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.86,
+    1.88,
+    -0.5
+   ],
+   "z_relative": [
+    -0.05,
+    1.91,
+    -1.26
+   ],
+   "z_share": [
+    -0.55,
+    -1.2,
+    1.45
+   ],
+   "z_position": [
+    0.88,
+    -0.8,
+    -0.39
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "GoQpmUSHstw",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.313,
+    0.037,
+    0.65
+   ],
+   "position": [
+    0.538,
+    0.244,
+    0.496
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.86,
+    1.42,
+    -0.58
+   ],
+   "z_relative": [
+    0.27,
+    1.48,
+    -1.16
+   ],
+   "z_share": [
+    -0.59,
+    -1.21,
+    1.49
+   ],
+   "z_position": [
+    0.9,
+    -1.03,
+    -0.39
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "GoQpmUSHstw",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.325,
+    0.036,
+    0.639
+   ],
+   "position": [
+    0.57,
+    0.573,
+    0.46
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.51,
+    0.75,
+    -0.8
+   ],
+   "z_relative": [
+    0.48,
+    1.04,
+    -1.0
+   ],
+   "z_share": [
+    -0.54,
+    -1.21,
+    1.45
+   ],
+   "z_position": [
+    1.18,
+    0.8,
+    -0.53
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "GoQpmUSHstw",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    true,
+    false
+   ],
+   "share": [
+    0.325,
+    0.036,
+    0.639
+   ],
+   "position": [
+    0.529,
+    0.261,
+    0.499
+   ],
+   "relative": [
+    false,
+    true,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.86,
+    2.35,
+    -0.5
+   ],
+   "z_relative": [
+    -0.31,
+    2.39,
+    -1.42
+   ],
+   "z_share": [
+    -0.54,
+    -1.21,
+    1.45
+   ],
+   "z_position": [
+    0.82,
+    -0.94,
+    -0.38
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "RozBliBcXlA",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    true,
+    false,
+    false
+   ],
+   "share": [
+    0.469,
+    0.092,
+    0.438
+   ],
+   "position": [
+    0.422,
+    0.492,
+    0.585
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    2.45,
+    0.02,
+    -0.05
+   ],
+   "z_relative": [
+    2.04,
+    -0.87,
+    -0.67
+   ],
+   "z_share": [
+    0.07,
+    -0.98,
+    0.76
+   ],
+   "z_position": [
+    -0.1,
+    0.35,
+    -0.05
+   ],
+   "judge_absolute": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "RozBliBcXlA",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.365,
+    0.0,
+    0.635
+   ],
+   "position": [
+    0.554,
+    -1.0,
+    0.469
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    true,
+    false
+   ],
+   "z_absolute": [
+    1.36,
+    1.18,
+    -0.37
+   ],
+   "z_relative": [
+    0.68,
+    0.92,
+    -1.04
+   ],
+   "z_share": [
+    -0.37,
+    -1.36,
+    1.44
+   ],
+   "z_position": [
+    1.04,
+    99.0,
+    -0.5
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "RozBliBcXlA",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.378,
+    0.065,
+    0.557
+   ],
+   "position": [
+    0.554,
+    0.671,
+    0.443
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.65,
+    -0.13,
+    -0.28
+   ],
+   "z_relative": [
+    1.61,
+    -0.6,
+    -0.58
+   ],
+   "z_share": [
+    -0.32,
+    -1.09,
+    1.17
+   ],
+   "z_position": [
+    1.04,
+    1.34,
+    -0.59
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "RozBliBcXlA",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.368,
+    0.063,
+    0.568
+   ],
+   "position": [
+    0.407,
+    0.045,
+    0.611
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    true,
+    false
+   ],
+   "z_absolute": [
+    0.73,
+    1.1,
+    -0.47
+   ],
+   "z_relative": [
+    0.26,
+    1.13,
+    -0.93
+   ],
+   "z_share": [
+    -0.36,
+    -1.1,
+    1.21
+   ],
+   "z_position": [
+    -0.23,
+    -2.14,
+    0.05
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "RozBliBcXlA",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.368,
+    0.063,
+    0.568
+   ],
+   "position": [
+    0.539,
+    0.759,
+    0.446
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.54,
+    -0.31,
+    -0.3
+   ],
+   "z_relative": [
+    1.63,
+    -0.73,
+    -0.51
+   ],
+   "z_share": [
+    -0.36,
+    -1.1,
+    1.21
+   ],
+   "z_position": [
+    0.91,
+    1.83,
+    -0.58
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "V_BwPfCh1Z0",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.035,
+    0.965,
+    0.0
+   ],
+   "position": [
+    0.877,
+    0.486,
+    -1.0
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    true,
+    false,
+    true
+   ],
+   "z_absolute": [
+    1.01,
+    -1.03,
+    -1.3
+   ],
+   "z_relative": [
+    2.22,
+    -0.71,
+    -0.89
+   ],
+   "z_share": [
+    -1.76,
+    2.64,
+    -0.76
+   ],
+   "z_position": [
+    3.84,
+    0.31,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "V_BwPfCh1Z0",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.209,
+    0.745,
+    0.045
+   ],
+   "position": [
+    0.365,
+    0.555,
+    0.217
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.52,
+    -0.01,
+    -0.76
+   ],
+   "z_relative": [
+    1.72,
+    -0.16,
+    -0.96
+   ],
+   "z_share": [
+    -1.03,
+    1.73,
+    -0.6
+   ],
+   "z_position": [
+    -0.6,
+    0.7,
+    -1.47
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "V_BwPfCh1Z0",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.235,
+    0.706,
+    0.059
+   ],
+   "position": [
+    0.368,
+    0.562,
+    0.281
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.3,
+    -0.22,
+    -0.22
+   ],
+   "z_relative": [
+    0.51,
+    -0.22,
+    -0.16
+   ],
+   "z_share": [
+    -0.92,
+    1.57,
+    -0.55
+   ],
+   "z_position": [
+    -0.57,
+    0.74,
+    -1.22
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "V_BwPfCh1Z0",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.184,
+    0.776,
+    0.04
+   ],
+   "position": [
+    0.582,
+    0.482,
+    0.473
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.41,
+    0.07,
+    -1.11
+   ],
+   "z_relative": [
+    1.81,
+    0.16,
+    -1.23
+   ],
+   "z_share": [
+    -1.13,
+    1.86,
+    -0.62
+   ],
+   "z_position": [
+    1.28,
+    0.29,
+    -0.48
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "V_BwPfCh1Z0",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.184,
+    0.776,
+    0.04
+   ],
+   "position": [
+    0.315,
+    0.56,
+    0.19
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.52,
+    -0.01,
+    -0.76
+   ],
+   "z_relative": [
+    1.72,
+    -0.15,
+    -0.96
+   ],
+   "z_share": [
+    -1.13,
+    1.86,
+    -0.62
+   ],
+   "z_position": [
+    -1.03,
+    0.72,
+    -1.57
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "cPmPYw3lzIw",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.028,
+    0.156,
+    0.817
+   ],
+   "position": [
+    0.241,
+    0.361,
+    0.535
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.65,
+    -1.32,
+    1.3
+   ],
+   "z_relative": [
+    -0.58,
+    -1.86,
+    1.62
+   ],
+   "z_share": [
+    -1.79,
+    -0.71,
+    2.07
+   ],
+   "z_position": [
+    -1.68,
+    -0.38,
+    -0.24
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "cPmPYw3lzIw",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.145,
+    0.025,
+    0.83
+   ],
+   "position": [
+    0.236,
+    0.604,
+    0.543
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.45,
+    -1.1,
+    0.48
+   ],
+   "z_relative": [
+    -0.04,
+    -1.25,
+    0.87
+   ],
+   "z_share": [
+    -1.3,
+    -1.25,
+    2.12
+   ],
+   "z_position": [
+    -1.72,
+    0.97,
+    -0.21
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "cPmPYw3lzIw",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.136,
+    0.101,
+    0.763
+   ],
+   "position": [
+    0.222,
+    0.619,
+    0.534
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.5,
+    -1.19,
+    0.76
+   ],
+   "z_relative": [
+    -0.2,
+    -1.48,
+    1.12
+   ],
+   "z_share": [
+    -1.34,
+    -0.94,
+    1.89
+   ],
+   "z_position": [
+    -1.84,
+    1.05,
+    -0.25
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "cPmPYw3lzIw",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.132,
+    0.098,
+    0.77
+   ],
+   "position": [
+    0.328,
+    0.248,
+    0.561
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.77,
+    -1.64,
+    0.48
+   ],
+   "z_relative": [
+    0.0,
+    -1.68,
+    1.14
+   ],
+   "z_share": [
+    -1.35,
+    -0.95,
+    1.91
+   ],
+   "z_position": [
+    -0.92,
+    -1.01,
+    -0.14
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "cPmPYw3lzIw",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.132,
+    0.098,
+    0.77
+   ],
+   "position": [
+    0.215,
+    0.698,
+    0.524
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.38,
+    -1.17,
+    -0.07
+   ],
+   "z_relative": [
+    0.4,
+    -1.03,
+    0.45
+   ],
+   "z_share": [
+    -1.35,
+    -0.95,
+    1.91
+   ],
+   "z_position": [
+    -1.9,
+    1.49,
+    -0.29
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "jaTb_TJTiAM",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.472,
+    0.509,
+    0.019
+   ],
+   "position": [
+    0.549,
+    0.437,
+    0.981
+   ],
+   "relative": [
+    true,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.42,
+    -0.98,
+    -0.81
+   ],
+   "z_relative": [
+    2.23,
+    -1.1,
+    -0.63
+   ],
+   "z_share": [
+    0.08,
+    0.75,
+    -0.69
+   ],
+   "z_position": [
+    0.99,
+    0.04,
+    1.47
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "jaTb_TJTiAM",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.636,
+    0.347,
+    0.017
+   ],
+   "position": [
+    0.473,
+    0.527,
+    0.983
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.33,
+    0.12,
+    -0.43
+   ],
+   "z_relative": [
+    1.3,
+    -0.13,
+    -0.71
+   ],
+   "z_share": [
+    0.77,
+    0.08,
+    -0.7
+   ],
+   "z_position": [
+    0.33,
+    0.54,
+    1.48
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "jaTb_TJTiAM",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.508,
+    0.475,
+    0.017
+   ],
+   "position": [
+    0.39,
+    0.601,
+    0.983
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.79,
+    0.13,
+    0.36
+   ],
+   "z_relative": [
+    0.36,
+    -0.37,
+    0.03
+   ],
+   "z_share": [
+    0.23,
+    0.61,
+    -0.7
+   ],
+   "z_position": [
+    -0.38,
+    0.95,
+    1.48
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "jaTb_TJTiAM",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.564,
+    0.421,
+    0.015
+   ],
+   "position": [
+    0.596,
+    0.354,
+    0.985
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.64,
+    0.12,
+    -0.43
+   ],
+   "z_relative": [
+    1.55,
+    -0.25,
+    -0.79
+   ],
+   "z_share": [
+    0.47,
+    0.39,
+    -0.71
+   ],
+   "z_position": [
+    1.41,
+    -0.42,
+    1.49
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "jaTb_TJTiAM",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.564,
+    0.421,
+    0.015
+   ],
+   "position": [
+    0.425,
+    0.583,
+    0.985
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    1.33,
+    0.13,
+    0.37
+   ],
+   "z_relative": [
+    0.8,
+    -0.58,
+    -0.1
+   ],
+   "z_share": [
+    0.47,
+    0.39,
+    -0.71
+   ],
+   "z_position": [
+    -0.08,
+    0.85,
+    1.49
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "qkguKz3BrJI",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.134,
+    0.775,
+    0.092
+   ],
+   "position": [
+    0.305,
+    0.521,
+    0.604
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.12,
+    -0.72,
+    -0.29
+   ],
+   "z_relative": [
+    0.48,
+    -0.54,
+    0.06
+   ],
+   "z_share": [
+    -1.35,
+    1.85,
+    -0.44
+   ],
+   "z_position": [
+    -1.12,
+    0.51,
+    0.02
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "qkguKz3BrJI",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.502,
+    0.405,
+    0.093
+   ],
+   "position": [
+    0.366,
+    0.66,
+    0.526
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.94,
+    -0.98,
+    0.38
+   ],
+   "z_relative": [
+    -0.46,
+    -0.87,
+    0.88
+   ],
+   "z_share": [
+    0.21,
+    0.32,
+    -0.44
+   ],
+   "z_position": [
+    -0.59,
+    1.28,
+    -0.28
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "qkguKz3BrJI",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.5,
+    0.414,
+    0.086
+   ],
+   "position": [
+    0.36,
+    0.67,
+    0.493
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.95,
+    -0.91,
+    1.25
+   ],
+   "z_relative": [
+    -1.04,
+    -1.29,
+    1.51
+   ],
+   "z_share": [
+    0.2,
+    0.36,
+    -0.46
+   ],
+   "z_position": [
+    -0.64,
+    1.33,
+    -0.4
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "qkguKz3BrJI",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.472,
+    0.44,
+    0.087
+   ],
+   "position": [
+    0.478,
+    0.514,
+    0.546
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    0.09,
+    -0.81,
+    -0.8
+   ],
+   "z_relative": [
+    1.03,
+    -0.42,
+    -0.35
+   ],
+   "z_share": [
+    0.08,
+    0.47,
+    -0.45
+   ],
+   "z_position": [
+    0.39,
+    0.47,
+    -0.2
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "qkguKz3BrJI",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.472,
+    0.44,
+    0.087
+   ],
+   "position": [
+    0.342,
+    0.669,
+    0.502
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    false
+   ],
+   "z_absolute": [
+    -0.94,
+    -1.1,
+    1.18
+   ],
+   "z_relative": [
+    -0.88,
+    -1.45,
+    1.52
+   ],
+   "z_share": [
+    0.08,
+    0.47,
+    -0.45
+   ],
+   "z_position": [
+    -0.8,
+    1.33,
+    -0.37
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   }
+  },
+  {
+   "video_id": "ziEpBwJ1TOg",
+   "kind": "skip",
+   "variant": "skip_0",
+   "expected_steps": [
+    0
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "position": [
+    0.5,
+    -1.0,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    true,
+    true
+   ],
+   "z_absolute": [
+    1.29,
+    1.42,
+    0.94
+   ],
+   "z_relative": [
+    -0.32,
+    0.47,
+    -0.12
+   ],
+   "z_share": [
+    2.3,
+    -1.36,
+    -0.76
+   ],
+   "z_position": [
+    0.57,
+    99.0,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "ziEpBwJ1TOg",
+   "kind": "skip",
+   "variant": "skip_1",
+   "expected_steps": [
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.941,
+    0.059,
+    0.0
+   ],
+   "position": [
+    0.524,
+    0.11,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -0.33,
+    1.17,
+    0.65
+   ],
+   "z_relative": [
+    -1.33,
+    0.97,
+    0.17
+   ],
+   "z_share": [
+    2.05,
+    -1.12,
+    -0.76
+   ],
+   "z_position": [
+    0.78,
+    -1.77,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "ziEpBwJ1TOg",
+   "kind": "skip",
+   "variant": "skip_2",
+   "expected_steps": [
+    2
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.929,
+    0.071,
+    0.0
+   ],
+   "position": [
+    0.528,
+    0.133,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -0.33,
+    1.42,
+    0.7
+   ],
+   "z_relative": [
+    -1.51,
+    1.21,
+    0.11
+   ],
+   "z_share": [
+    2.0,
+    -1.07,
+    -0.76
+   ],
+   "z_position": [
+    0.81,
+    -1.65,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": true,
+    "localized": true,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "ziEpBwJ1TOg",
+   "kind": "swap",
+   "variant": "swap_0",
+   "expected_steps": [
+    0,
+    1
+   ],
+   "absolute": [
+    false,
+    false,
+    false
+   ],
+   "share": [
+    0.945,
+    0.055,
+    0.0
+   ],
+   "position": [
+    0.5,
+    0.508,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    1.56,
+    0.63,
+    0.4
+   ],
+   "z_relative": [
+    0.68,
+    -0.16,
+    -0.31
+   ],
+   "z_share": [
+    2.07,
+    -1.13,
+    -0.76
+   ],
+   "z_position": [
+    0.57,
+    0.43,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  },
+  {
+   "video_id": "ziEpBwJ1TOg",
+   "kind": "swap",
+   "variant": "swap_1",
+   "expected_steps": [
+    1,
+    2
+   ],
+   "absolute": [
+    false,
+    true,
+    false
+   ],
+   "share": [
+    0.945,
+    0.055,
+    0.0
+   ],
+   "position": [
+    0.523,
+    0.103,
+    -1.0
+   ],
+   "relative": [
+    false,
+    false,
+    false
+   ],
+   "prototype": [
+    false,
+    false,
+    true
+   ],
+   "z_absolute": [
+    -0.33,
+    2.05,
+    1.17
+   ],
+   "z_relative": [
+    -2.16,
+    1.59,
+    0.26
+   ],
+   "z_share": [
+    2.07,
+    -1.13,
+    -0.76
+   ],
+   "z_position": [
+    0.77,
+    -1.81,
+    99.0
+   ],
+   "judge_absolute": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   },
+   "judge_relative": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": false
+   },
+   "judge_prototype": {
+    "right_step": false,
+    "localized": false,
+    "any_flag": true
+   }
+  }
+ ],
+ "natural": [],
+ "feature_failures": []
+}

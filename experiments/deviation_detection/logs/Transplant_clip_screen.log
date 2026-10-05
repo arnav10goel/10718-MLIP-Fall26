@@ -1,0 +1,31 @@
+2026-10-05 13:31:30 Transplant: 3 steps ['take out the plant', 'put in the plant', 'fill with some soil']
+2026-10-05 13:31:30 24 correct of 91 annotated (76 on mirror); 19 natural deviants
+2026-10-05 13:31:32 [download 1/10] 1PS6X_Kg3-M
+2026-10-05 13:31:33 [download 2/10] GADTjKlIg8A
+2026-10-05 13:31:35 [download 3/10] NKItrqXhycE
+2026-10-05 13:31:37 [download 4/10] U7Hv602KAxM
+2026-10-05 13:31:39 [download 5/10] Ux_DqwKxp7s
+2026-10-05 13:31:40 [download 6/10] dsvzdTkg9Bg
+2026-10-05 13:31:41 [download 7/10] nLVdqnQPS7c
+2026-10-05 13:31:42 [download 8/10] uzN0rSiHWdY
+2026-10-05 13:31:43 [download 9/10] xPyUcfQtIp4
+2026-10-05 13:31:46 [download 10/10] yTpgGkiKmC0
+2026-10-05 13:32:06 [features 1/10] 1PS6X_Kg3-M 753 frames
+2026-10-05 13:32:11 [features 2/10] GADTjKlIg8A 279 frames
+2026-10-05 13:32:14 [features 3/10] NKItrqXhycE 272 frames
+2026-10-05 13:32:20 [features 4/10] U7Hv602KAxM 421 frames
+2026-10-05 13:32:23 [features 5/10] Ux_DqwKxp7s 120 frames
+2026-10-05 13:32:29 [features 6/10] dsvzdTkg9Bg 528 frames
+2026-10-05 13:32:37 [features 7/10] nLVdqnQPS7c 608 frames
+2026-10-05 13:34:39 [features 8/10] uzN0rSiHWdY 146 frames
+2026-10-05 13:35:06 [features 9/10] xPyUcfQtIp4 358 frames
+2026-10-05 13:35:26 [features 10/10] yTpgGkiKmC0 497 frames
+2026-10-05 13:35:26 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:35:33 step separation (between - within, mean over videos): 0.063; absolute-cost sd per step: [0.045, 0.04, 0.037]
+2026-10-05 13:35:34 held-out correct absolute  n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:35:34 held-out correct relative  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:35:34 held-out correct prototype n=  2 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:35:34 synthetic        absolute  n= 50 any-flag  14% right-step   8% localized   4%
+2026-10-05 13:35:34 synthetic        relative  n= 50 any-flag   4% right-step   0% localized   0%
+2026-10-05 13:35:34 synthetic        prototype n= 50 any-flag  68% right-step  26% localized  14%
+2026-10-05 13:35:34 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/Transplant_clip_screen.json

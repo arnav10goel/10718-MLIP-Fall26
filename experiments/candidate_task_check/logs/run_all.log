@@ -1,0 +1,18 @@
+=== UseRiceCookerToCookRice classical start 2026-10-05 13:55:20
+exit 0 end 2026-10-05 13:57:28
+Wrote 30 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/candidate_task_check/runs/UseRiceCookerToCookRice_classical.json
+=== MakePaperWindMill classical start 2026-10-05 13:57:28
+exit 0 end 2026-10-05 14:00:15
+Wrote 24 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/candidate_task_check/runs/MakePaperWindMill_classical.json
+=== PutOnQuiltCover classical start 2026-10-05 14:00:15
+exit 0 end 2026-10-05 14:02:43
+Wrote 25 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/candidate_task_check/runs/PutOnQuiltCover_classical.json
+=== UseRiceCookerToCookRice clip start 2026-10-05 14:02:43
+exit 0 end 2026-10-05 14:10:42
+Wrote 30 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/candidate_task_check/runs/UseRiceCookerToCookRice_clip.json
+=== MakePaperWindMill clip start 2026-10-05 14:10:42
+exit 0 end 2026-10-05 14:18:48
+Wrote 24 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/candidate_task_check/runs/MakePaperWindMill_clip.json
+=== PutOnQuiltCover clip start 2026-10-05 14:18:48
+exit 0 end 2026-10-05 14:25:00
+Wrote 25 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/candidate_task_check/runs/PutOnQuiltCover_clip.json

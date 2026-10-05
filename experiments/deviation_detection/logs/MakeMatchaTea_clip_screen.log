@@ -1,0 +1,31 @@
+2026-10-05 13:29:36 MakeMatchaTea: 2 steps ['add tea powder', 'brew tea and stir']
+2026-10-05 13:29:36 64 correct of 102 annotated (93 on mirror); 0 natural deviants
+2026-10-05 13:29:38 [download 1/10] 2Qj-lk84EWs
+2026-10-05 13:29:38 [download 2/10] 7wj0WkGem3I
+2026-10-05 13:29:39 [download 3/10] DawU55r8OmY
+2026-10-05 13:29:40 [download 4/10] O6ralKDWUIg
+2026-10-05 13:29:41 [download 5/10] VOLL0u6QwUU
+2026-10-05 13:29:42 [download 6/10] aUOr9ChG9jU
+2026-10-05 13:29:43 [download 7/10] muzG96nISlo
+2026-10-05 13:29:44 [download 8/10] t04JvZONNEM
+2026-10-05 13:29:44 [download 9/10] vS3kGzgUZmY
+2026-10-05 13:29:45 [download 10/10] yN7xqkQVYis
+2026-10-05 13:29:56 [features 1/10] 2Qj-lk84EWs 101 frames
+2026-10-05 13:29:58 [features 2/10] 7wj0WkGem3I 87 frames
+2026-10-05 13:29:59 [features 3/10] DawU55r8OmY 112 frames
+2026-10-05 13:30:02 [features 4/10] O6ralKDWUIg 180 frames
+2026-10-05 13:30:09 [features 5/10] VOLL0u6QwUU 419 frames
+2026-10-05 13:30:10 [features 6/10] aUOr9ChG9jU 49 frames
+2026-10-05 13:30:14 [features 7/10] muzG96nISlo 279 frames
+2026-10-05 13:30:17 [features 8/10] t04JvZONNEM 303 frames
+2026-10-05 13:30:20 [features 9/10] vS3kGzgUZmY 251 frames
+2026-10-05 13:30:21 [features 10/10] yN7xqkQVYis 104 frames
+2026-10-05 13:30:21 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:30:23 step separation (between - within, mean over videos): 0.067; absolute-cost sd per step: [0.043, 0.03]
+2026-10-05 13:30:23 held-out correct absolute  n=  2 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:30:23 held-out correct relative  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:30:23 held-out correct prototype n=  2 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:30:23 synthetic        absolute  n= 30 any-flag  20% right-step  13% localized   7%
+2026-10-05 13:30:23 synthetic        relative  n= 30 any-flag   7% right-step   0% localized   0%
+2026-10-05 13:30:23 synthetic        prototype n= 30 any-flag  60% right-step  23% localized  23%
+2026-10-05 13:30:23 wrote /Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/runs/MakeMatchaTea_clip_screen.json

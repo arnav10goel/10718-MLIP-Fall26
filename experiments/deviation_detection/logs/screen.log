@@ -1,0 +1,76 @@
+=== MakeOrangeJuice 2026-10-05 13:26:37
+2026-10-05 13:26:38 23 correct of 54 annotated (45 on mirror); 10 natural deviants
+2026-10-05 13:27:43 used: 10 correct (6 training references, 4 held out), 0 natural deviants
+2026-10-05 13:27:44 step separation (between - within, mean over videos): 0.126; absolute-cost sd per step: [0.02, 0.032, 0.026]
+2026-10-05 13:27:44 held-out correct absolute  n=  4 any-flag  25% right-step 100% localized  75%
+2026-10-05 13:27:44 held-out correct relative  n=  4 any-flag  25% right-step 100% localized  75%
+2026-10-05 13:27:44 held-out correct prototype n=  4 any-flag  75% right-step 100% localized  25%
+2026-10-05 13:27:44 synthetic        absolute  n= 50 any-flag  26% right-step  14% localized  10%
+2026-10-05 13:27:44 synthetic        relative  n= 50 any-flag  12% right-step   2% localized   2%
+2026-10-05 13:27:44 synthetic        prototype n= 50 any-flag  70% right-step  16% localized  14%
+=== CookOmelet 2026-10-05 13:27:45
+2026-10-05 13:27:47 20 correct of 93 annotated (83 on mirror); 11 natural deviants
+2026-10-05 13:28:42 used: 10 correct (5 training references, 5 held out), 0 natural deviants
+2026-10-05 13:28:43 step separation (between - within, mean over videos): nan; absolute-cost sd per step: [0.058, 0.026, 0.03]
+    for name, (query, expected) in synthetic_deviants(feats[vid], labels[vid], n_steps).items():
+  File "/Users/arnav/Documents/10718-MLIP-Fall26/experiments/deviation_detection/scripts/common.py", line 183, in synthetic_deviants
+=== MakeStrawberrySmoothie 2026-10-05 13:28:44
+2026-10-05 13:28:45 17 correct of 97 annotated (82 on mirror); 20 natural deviants
+2026-10-05 13:29:33 used: 10 correct (7 training references, 3 held out), 0 natural deviants
+2026-10-05 13:29:34 step separation (between - within, mean over videos): 0.092; absolute-cost sd per step: [0.039, 0.035, 0.037]
+2026-10-05 13:29:34 held-out correct absolute  n=  3 any-flag  33% right-step 100% localized  67%
+2026-10-05 13:29:34 held-out correct relative  n=  3 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:29:34 held-out correct prototype n=  3 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:29:34 synthetic        absolute  n= 50 any-flag  12% right-step   4% localized   4%
+2026-10-05 13:29:34 synthetic        relative  n= 50 any-flag  10% right-step   4% localized   4%
+2026-10-05 13:29:34 synthetic        prototype n= 50 any-flag  38% right-step  30% localized   8%
+=== MakeMatchaTea 2026-10-05 13:29:35
+2026-10-05 13:29:36 64 correct of 102 annotated (93 on mirror); 0 natural deviants
+2026-10-05 13:30:21 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:30:23 step separation (between - within, mean over videos): 0.067; absolute-cost sd per step: [0.043, 0.03]
+2026-10-05 13:30:23 held-out correct absolute  n=  2 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:30:23 held-out correct relative  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:30:23 held-out correct prototype n=  2 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:30:23 synthetic        absolute  n= 30 any-flag  20% right-step  13% localized   7%
+2026-10-05 13:30:23 synthetic        relative  n= 30 any-flag   7% right-step   0% localized   0%
+2026-10-05 13:30:23 synthetic        prototype n= 30 any-flag  60% right-step  23% localized  23%
+=== MakePickles 2026-10-05 13:30:24
+2026-10-05 13:30:25 36 correct of 85 annotated (78 on mirror); 16 natural deviants
+2026-10-05 13:31:24 used: 10 correct (7 training references, 3 held out), 0 natural deviants
+2026-10-05 13:31:27 step separation (between - within, mean over videos): 0.106; absolute-cost sd per step: [0.023, 0.033, 0.046]
+2026-10-05 13:31:27 held-out correct absolute  n=  3 any-flag  33% right-step 100% localized  67%
+2026-10-05 13:31:27 held-out correct relative  n=  3 any-flag  33% right-step 100% localized  67%
+2026-10-05 13:31:27 held-out correct prototype n=  3 any-flag  67% right-step 100% localized  33%
+2026-10-05 13:31:27 synthetic        absolute  n= 50 any-flag  22% right-step   8% localized   2%
+2026-10-05 13:31:27 synthetic        relative  n= 50 any-flag  16% right-step   4% localized   4%
+2026-10-05 13:31:27 synthetic        prototype n= 50 any-flag  36% right-step   6% localized   6%
+=== Transplant 2026-10-05 13:31:29
+2026-10-05 13:31:30 24 correct of 91 annotated (76 on mirror); 19 natural deviants
+2026-10-05 13:35:26 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:35:33 step separation (between - within, mean over videos): 0.063; absolute-cost sd per step: [0.045, 0.04, 0.037]
+2026-10-05 13:35:34 held-out correct absolute  n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:35:34 held-out correct relative  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:35:34 held-out correct prototype n=  2 any-flag 100% right-step 100% localized   0%
+2026-10-05 13:35:34 synthetic        absolute  n= 50 any-flag  14% right-step   8% localized   4%
+2026-10-05 13:35:34 synthetic        relative  n= 50 any-flag   4% right-step   0% localized   0%
+2026-10-05 13:35:34 synthetic        prototype n= 50 any-flag  68% right-step  26% localized  14%
+=== ChangeTonerCartridge 2026-10-05 13:35:38
+2026-10-05 13:35:39 48 correct of 92 annotated (81 on mirror); 15 natural deviants
+2026-10-05 13:36:31 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:36:32 step separation (between - within, mean over videos): 0.094; absolute-cost sd per step: [0.023, 0.046, 0.049, 0.024]
+2026-10-05 13:36:33 held-out correct absolute  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:36:33 held-out correct relative  n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:36:33 held-out correct prototype n=  2 any-flag   0% right-step 100% localized 100%
+2026-10-05 13:36:33 synthetic        absolute  n= 70 any-flag  16% right-step   9% localized   3%
+2026-10-05 13:36:33 synthetic        relative  n= 70 any-flag  16% right-step   4% localized   4%
+2026-10-05 13:36:33 synthetic        prototype n= 70 any-flag  30% right-step  11% localized   6%
+=== ReplaceSIMCard 2026-10-05 13:36:34
+2026-10-05 13:36:35 48 correct of 86 annotated (82 on mirror); 11 natural deviants
+2026-10-05 13:37:41 used: 10 correct (8 training references, 2 held out), 0 natural deviants
+2026-10-05 13:37:42 step separation (between - within, mean over videos): 0.081; absolute-cost sd per step: [0.022, 0.03, 0.033]
+2026-10-05 13:37:42 held-out correct absolute  n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:37:42 held-out correct relative  n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:37:42 held-out correct prototype n=  2 any-flag  50% right-step 100% localized  50%
+2026-10-05 13:37:42 synthetic        absolute  n= 50 any-flag  16% right-step   4% localized   4%
+2026-10-05 13:37:42 synthetic        relative  n= 50 any-flag  20% right-step   8% localized   8%
+2026-10-05 13:37:42 synthetic        prototype n= 50 any-flag  32% right-step  10% localized   8%

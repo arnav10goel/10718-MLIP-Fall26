@@ -1,0 +1,5 @@
+Validating media for MakeBurger under /Users/arnav/Documents/10718-MLIP-Fall26/data
+Scoring 7 comparisons against aogu4SX7ULg
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Wrote 7 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/cooking_dtw_baseline/runs/makeburger_clip.json
