@@ -80,7 +80,7 @@ class PredictTests(unittest.TestCase):
         p = good_prediction(); p["steps"][0] = step("s001", "done", 5, 3)
         cases["start after end"] = p
         p = good_prediction(); p["steps"][2] = step("s003", "done", 5, 99)
-        cases["past execution end"] = p
+        cases["far past execution end"] = p
         p = good_prediction(); p["deviations"][0]["reference_step_id"] = "s999"
         cases["unknown deviation step"] = p
         p = good_prediction(); p["deviations"][0]["message"] = " "
@@ -99,6 +99,16 @@ class PredictTests(unittest.TestCase):
                 client, _ = fake_client(text, finish_reason=reason)
                 result = predict_offline_alignment(client, "u1", "u2", ROWS)
                 self.assertIsNone(result["prediction"])
+
+    def test_small_overshoot_past_the_end_is_clamped(self):
+        p = good_prediction()
+        p["steps"][2] = step("s003", "done", 8, 12.5)
+        p["deviations"][0]["execution_time_s"] = 11.0
+        client, _ = fake_client(p)
+        result = predict_offline_alignment(client, "u1", "u2", ROWS, execution_duration_s=10.0)
+        self.assertIsNone(result["validation_error"])
+        self.assertEqual(result["prediction"]["steps"][2]["execution_end_s"], 10.0)
+        self.assertEqual(result["prediction"]["deviations"][0]["execution_time_s"], 10.0)
 
     def test_bad_arguments_raise(self):
         client, _ = fake_client(good_prediction())

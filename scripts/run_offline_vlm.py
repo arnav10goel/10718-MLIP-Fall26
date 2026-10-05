@@ -60,6 +60,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--data-root", help="Absolute media root; overrides GUIDEME_DATA_ROOT")
     parser.add_argument("--fps", type=float, default=1, help="Gemini sampling FPS (default: 1)")
     parser.add_argument("--model", default="gemini-3.5-flash-lite", help="Gemini model ID")
+    parser.add_argument("--media-resolution", default="high", choices=("low", "medium", "high"),
+                        help="Gemini media resolution per frame (default: high)")
+    parser.add_argument("--timeout-s", type=float, default=900, help="Network timeout per request")
     parser.add_argument("--env-file", default=str(REPO_ROOT / ".env"), help="Local credentials file")
     parser.add_argument("--dry-run", action="store_true", help="Prepare clips and request only")
     args = parser.parse_args(argv)
@@ -105,7 +108,10 @@ def main(argv: list[str] | None = None) -> int:
         checklist_path = write_checklist_csv(rows, clips / "reference_checklist.csv")
     else:
         checklist_path = Path(args.checklist).resolve()
-    rows = load_reference_annotations(checklist_path, ref_duration)
+    # A CSV checklist uses the original video's seconds; a re-encoded clip can be a few ms shorter.
+    rows = load_reference_annotations(
+        checklist_path, ref_duration if args.coin_reference_id else max(ref_duration, ref_end)
+    )
     if not rows:
         raise ValueError("Checklist must contain at least one step")
 
@@ -125,6 +131,8 @@ def main(argv: list[str] | None = None) -> int:
         "started_at": datetime.now(timezone.utc).isoformat(),
         "requested_model": args.model,
         "fps": args.fps,
+        "media_resolution": args.media_resolution,
+        "timeout_s": args.timeout_s,
         "inputs": {
             "reference": {"path": str(paths["reference"]), "sha256": _sha256(paths["reference"]),
                           "cut_s": [ref_start, ref_end]},
@@ -151,7 +159,7 @@ def main(argv: list[str] | None = None) -> int:
         api_key = os.environ.get("GEMINI_API_KEY") or env_values.get("GEMINI_API_KEY")
         if not api_key or not api_key.strip():
             raise ValueError("Set GEMINI_API_KEY locally before running this command")
-        client = genai.Client(api_key=api_key, http_options={"timeout": 300000, "retry_options": {"attempts": 1}})
+        client = genai.Client(api_key=api_key, http_options={"timeout": int(args.timeout_s * 1000), "retry_options": {"attempts": 1}})
         stage = "upload_reference"
         try:
             report["uploads"]["reference"] = upload_video(client, reference_clip, processing_timeout_s=300)
@@ -161,6 +169,7 @@ def main(argv: list[str] | None = None) -> int:
             report["result"] = predict_offline_alignment(
                 client, report["uploads"]["reference"]["uri"], report["uploads"]["execution"]["uri"],
                 rows, execution_duration_s=exe_duration, fps=args.fps, model=args.model,
+                media_resolution=f"MEDIA_RESOLUTION_{args.media_resolution.upper()}",
             )
             report["status"] = "ok" if report["result"]["prediction"] is not None else "invalid_output"
         except Exception as error:

@@ -160,13 +160,27 @@ def cut_segments(source: str | Path, segments: list[tuple[float, float]], output
     return output
 
 
+# Gemini samples frames (1 fps by default), so its last timestamp can land a
+# second or two past the end. Pull small overshoots back; reject larger ones.
+END_SLACK_S = 5.0
+
+
+def _clamp_time(value: float | None, execution_duration_s: float | None) -> float | None:
+    if value is None or execution_duration_s is None or value <= execution_duration_s:
+        return value
+    if value <= execution_duration_s + END_SLACK_S:
+        return round(execution_duration_s, 3)
+    raise ValueError(f"time {value} is past the end of the execution ({execution_duration_s:.1f} s)")
+
+
 def _validate(candidate: dict, step_ids: list[str], execution_duration_s: float | None) -> None:
     Draft202012Validator(OFFLINE_SCHEMA).validate(candidate)
     returned = [step["reference_step_id"] for step in candidate["steps"]]
     if sorted(returned) != sorted(step_ids) or len(set(returned)) != len(returned):
         raise ValueError("steps must list every checklist step_id exactly once")
-    slack = 1.0  # seconds of tolerance past the end for rounding
     for step in candidate["steps"]:
+        for field in ("execution_start_s", "execution_end_s"):
+            step[field] = _clamp_time(step[field], execution_duration_s)
         start, end = step["execution_start_s"], step["execution_end_s"]
         if step["status"] in _LOCATED and (start is None or end is None):
             raise ValueError(f"{step['reference_step_id']}: status {step['status']} needs execution times")
@@ -174,18 +188,13 @@ def _validate(candidate: dict, step_ids: list[str], execution_duration_s: float 
             raise ValueError(f"{step['reference_step_id']}: a skipped step cannot have execution times")
         if start is not None and end is not None and start > end:
             raise ValueError(f"{step['reference_step_id']}: execution_start_s is after execution_end_s")
-        for value in (start, end):
-            if value is not None and execution_duration_s is not None and value > execution_duration_s + slack:
-                raise ValueError(f"{step['reference_step_id']}: time is past the end of the execution")
     for deviation in candidate["deviations"]:
         step_id = deviation["reference_step_id"]
         if step_id is not None and step_id not in step_ids:
             raise ValueError("deviation reference_step_id must be a checklist step_id or null")
         if not deviation["message"].strip() or not deviation["evidence"].strip():
             raise ValueError("each deviation needs a nonempty message and evidence")
-        t = deviation["execution_time_s"]
-        if t is not None and execution_duration_s is not None and t > execution_duration_s + slack:
-            raise ValueError("deviation time is past the end of the execution")
+        deviation["execution_time_s"] = _clamp_time(deviation["execution_time_s"], execution_duration_s)
 
 
 def predict_offline_alignment(
@@ -197,6 +206,7 @@ def predict_offline_alignment(
     execution_duration_s: float | None = None,
     fps: float = 1,
     model: str = "gemini-3.5-flash-lite",
+    media_resolution: str = "MEDIA_RESOLUTION_HIGH",
 ) -> dict:
     """Ask Gemini for a step-by-step alignment of a whole execution to the reference.
 
@@ -225,7 +235,7 @@ def predict_offline_alignment(
             {
                 "file_data": {"file_uri": uri, "mime_type": "video/mp4"},
                 "video_metadata": {"fps": fps},
-                "media_resolution": {"level": "MEDIA_RESOLUTION_HIGH"},
+                "media_resolution": {"level": media_resolution},
                 "media_processing": "STATIC",
             },
         ])
