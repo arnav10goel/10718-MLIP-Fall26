@@ -1,0 +1,56 @@
+{
+ "case": "correct",
+ "source": "e7p9QHRmd4k",
+ "segments_s": [
+  [
+   4.874712206283087,
+   13.0
+  ],
+  [
+   13.0,
+   40.0
+  ],
+  [
+   40.0,
+   50.0
+  ],
+  [
+   50.0,
+   86.0
+  ],
+  [
+   86.0,
+   112.73973569621779
+  ]
+ ],
+ "steps": [
+  {
+   "reference_step_id": "s001",
+   "label": "fold the edges of the paper",
+   "status": "done",
+   "execution_start_s": 8.13,
+   "execution_end_s": 34.13
+  },
+  {
+   "reference_step_id": "s002",
+   "label": "cut along the edges",
+   "status": "done",
+   "execution_start_s": 35.13,
+   "execution_end_s": 42.13
+  },
+  {
+   "reference_step_id": "s003",
+   "label": "fold the squares inward and fix them",
+   "status": "done",
+   "execution_start_s": 45.13,
+   "execution_end_s": 80.13
+  },
+  {
+   "reference_step_id": "s004",
+   "label": "fix the wind mill on the bracket",
+   "status": "done",
+   "execution_start_s": 81.13,
+   "execution_end_s": 99.13
+  }
+ ]
+}
