@@ -43,7 +43,14 @@ def frame_feature(frame_bgr: np.ndarray) -> np.ndarray:
     for bin_id in range(9):
         hog_cells[:, bin_id] = (magnitude_cells * (bin_index == bin_id)).sum(axis=1)
     hog = hog_cells.ravel()
-    feature = np.concatenate([hue, sat, hog]).astype(np.float32)
+    # Normalize each block first. Raw gradient sums are far larger than the
+    # colour counts and would otherwise hold ~99% of the vector.
+    blocks = []
+    for block in (hue, sat, hog):
+        block = block.astype(np.float32)
+        block_norm = float(np.linalg.norm(block))
+        blocks.append(block / block_norm if block_norm > 0 else block)
+    feature = np.concatenate(blocks)
     norm = float(np.linalg.norm(feature))
     if norm > 0:
         feature /= norm
