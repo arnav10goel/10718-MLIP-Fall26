@@ -55,6 +55,32 @@ def manifest_row(youtube_id: str, info: dict, video_path: Path) -> dict:
     }
 
 
+def cohort_manifest_rows(
+    database: dict[str, dict], cohort: dict, media_paths: dict[str, Path]
+) -> list[dict]:
+    """Prepare selected COIN videos for scoring using caller-supplied media paths."""
+    rows = []
+    for youtube_id in cohort["training_ids"] + cohort["testing_ids"]:
+        if youtube_id not in media_paths:
+            raise ValueError(f"Missing media path for {youtube_id}")
+        video_path = Path(media_paths[youtube_id])
+        if not video_path.is_absolute():
+            raise ValueError(f"Media path for {youtube_id} must be absolute: {video_path}")
+        info = database[youtube_id]
+        rows.append({
+            "youtube_id": youtube_id,
+            "task": info["class"],
+            "recipe_type": info["recipe_type"],
+            "subset": info["subset"],
+            "duration": info["duration"],
+            "roi_start": info["start"],
+            "roi_end": info["end"],
+            "video_path": video_path.as_posix(),
+            "steps": [step_record(step) for step in info["annotation"]],
+        })
+    return rows
+
+
 def write_jsonl(path: Path, rows: list[dict]) -> None:
     with path.open("w") as f:
         for row in rows:

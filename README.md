@@ -50,7 +50,7 @@ Each DTW script writes a summary JSON (mean, standard deviation, median, 10th an
 
 ## Example: ReplaceSIMCard
 
-The run so far is ReplaceSIMCard, task id 141. The scripts keep the 48 downloaded videos whose annotation is exactly these three steps, once each, in this order:
+The original 48-video run is ReplaceSIMCard, task id 141. The scripts keep the 48 downloaded videos whose annotation is exactly these three steps, once each, in this order:
 
 1. use the needle to open the SIM card slot
 2. put the SIM card into the SIM card slot
@@ -66,3 +66,31 @@ Those clips are listed in `replace_simcard_videos.json` and stored in `data/vide
 | Whole video | 0.504 ± 0.077 | 0.200 ± 0.039 | 0.66 | 0.28 |
 
 A cropped insert that costs more than about 0.30 in CLIP, or 0.66 with the histograms, is outside the normal range for "put the SIM in." A backwards card should push that step over the cutoff. A tray left halfway out should push "press the SIM card slot back" over 0.30 in CLIP, or 0.72 with the histograms.
+
+## Task-selected offline reports
+
+`scripts/run_coin_reference.py` runs the same DTW approach on a chosen COIN task and training reference. With Python 3.12 and `uv`, from the repository root:
+
+```bash
+export UV_PROJECT_ENVIRONMENT=../.venv-baselines
+export UV_CACHE_DIR=../.uv-cache
+uv sync --locked
+uv run --locked python -m scripts.run_coin_reference \
+  --task MakeStrawberrySmoothie \
+  --reference-id=-3C-VGhs2mo \
+  --output ../smoothie-classical.json
+```
+
+For CLIP features, install the optional dependencies and select the encoder:
+
+```bash
+export HF_HOME="$PWD/../.hf-cache-clip"
+uv sync --locked --extra clip
+uv run --locked --extra clip python -m scripts.run_coin_reference \
+  --task OpenALockWithPaperclips \
+  --reference-id m_LXX3Oz1as \
+  --encoder clip \
+  --output ../lock-clip.json
+```
+
+The runner reads `data/raw/COIN.json` and `data/videos/<task>/<video-id>.mp4` or `.webm`. For another location with the same layout, set an absolute `GUIDEME_DATA_ROOT` or pass `--data-root`. It validates local media, selects videos with the same ordered COIN step IDs (including repeated IDs), and writes a JSON report with scores and exclusions. The output file must not already exist.

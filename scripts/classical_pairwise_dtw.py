@@ -133,7 +133,17 @@ def label_frames(times: np.ndarray, steps: list[dict]) -> np.ndarray:
 
 
 @njit
-def dtw_pair(cost: np.ndarray, labels_a: np.ndarray, labels_b: np.ndarray):
+def dtw_pair(
+    cost: np.ndarray, labels_a: np.ndarray, labels_b: np.ndarray, n_steps: int = 3
+):
+    if n_steps < 1:
+        raise ValueError("n_steps must be positive")
+    for label in labels_a:
+        if label < -1 or label >= n_steps:
+            raise ValueError("labels_a contains a step outside n_steps")
+    for label in labels_b:
+        if label < -1 or label >= n_steps:
+            raise ValueError("labels_b contains a step outside n_steps")
     n, m = cost.shape
     inf = 1e18
     accumulated = np.empty((n + 1, m + 1))
@@ -164,10 +174,10 @@ def dtw_pair(cost: np.ndarray, labels_a: np.ndarray, labels_b: np.ndarray):
     j = m - 1
     path_sum = 0.0
     path_count = 0
-    step_sum_a = np.zeros(3)
-    step_count_a = np.zeros(3)
-    step_sum_b = np.zeros(3)
-    step_count_b = np.zeros(3)
+    step_sum_a = np.zeros(n_steps)
+    step_count_a = np.zeros(n_steps)
+    step_sum_b = np.zeros(n_steps)
+    step_count_b = np.zeros(n_steps)
     while True:
         local = cost[i, j]
         path_sum += local
