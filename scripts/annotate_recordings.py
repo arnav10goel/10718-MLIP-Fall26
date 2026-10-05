@@ -23,8 +23,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from classical_pairwise_dtw import STEP_LABELS
 from coin_tasks import PREPARED_DIR, REPO_ROOT
+
+STEP_LABELS = (
+    "use the needle to open the SIM card slot",
+    "put the SIM card into the SIM card slot",
+    "press the SIM card slot back",
+)
 DEFAULT_VIDEO_DIR = REPO_ROOT / "data/videos/ReplaceSIMCard/recorded"
 DEFAULT_OUTPUT = PREPARED_DIR / "recorded_annotations.json"
 VIEWER_HTML = Path(__file__).with_name("recording_annotation_viewer.html")

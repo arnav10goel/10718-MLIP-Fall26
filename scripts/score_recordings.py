@@ -22,10 +22,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from annotate_recordings import STEP_LABELS  # noqa: E402
 from classical_pairwise_dtw import (  # noqa: E402
     FPS,
-    STEP_LABELS,
-    canonical_videos,
     dtw_alignment,
     dtw_pair,
     frame_feature,
@@ -45,6 +44,22 @@ CLASSICAL_RECORDING_CACHE = PREPARED_DIR / "recorded_classical_features.npz"
 CLIP_RECORDING_CACHE = PREPARED_DIR / "recorded_clip_features.npz"
 CLASSICAL_SUMMARY = PREPARED_DIR / "sim_classical_dtw_summary.json"
 CLIP_SUMMARY = PREPARED_DIR / "sim_clip_dtw_summary.json"
+
+
+def canonical_videos() -> list[dict]:
+    rows = []
+    with (PREPARED_DIR / "manifest.jsonl").open() as f:
+        for line in f:
+            row = json.loads(line)
+            if row["task"] != "ReplaceSIMCard" or len(row["steps"]) != 3:
+                continue
+            if [step["label"] for step in row["steps"]] != list(STEP_LABELS):
+                continue
+            rows.append(row)
+    rows.sort(key=lambda row: row["youtube_id"])
+    if len(rows) != 48:
+        raise RuntimeError(f"expected 48 canonical videos, found {len(rows)}")
+    return rows
 
 
 def load_annotations() -> list[dict]:

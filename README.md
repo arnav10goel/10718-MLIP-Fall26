@@ -6,7 +6,7 @@ Repository for the 10718 course project.
 
 A test pair is one full video of a task done correctly and one video of someone doing it. If that match is much worse than matches between correct videos, that step was done wrong.
 
-The pairwise scripts build the normal range: how far apart two correct videos of the same task look. `score_recordings.py` scores complete, manually annotated demonstrations against that range. Subsequence alignment for a temporally cropped demonstration is not implemented yet.
+`scripts/run_coin_reference.py` compares one training reference with the other local videos that have the same steps. `score_recordings.py` scores the recorded demonstrations against the ReplaceSIMCard reference set. Subsequence alignment for a temporally cropped demonstration is not implemented yet.
 
 ## How similarity is measured
 
@@ -16,7 +16,7 @@ The pairwise scripts build the normal range: how far apart two correct videos of
 4. DTW aligns the two sequences. It can match one frame to several frames, so a slower or longer clip still lines up. The local cost of pairing frame \(i\) with frame \(j\) is the cosine distance \(c(i,j) = 1 - f_i \cdot g_j\).
 5. The reported distance is the average of \(c(i,j)\) along the alignment path, inside each step. The raw DTW sum is not used, because it grows just because the path is longer.
 
-| Script | Features |
+| Module | Features |
 | --- | --- |
 | `scripts/classical_pairwise_dtw.py` | 16-bin hue histogram, 8-bin saturation histogram, and a 4×4 grid of 9-bin gradient-orientation histograms, from a 64×64 frame |
 | `scripts/ml_pairwise_dtw.py` | 512-D CLIP ViT-B/32 embedding (OpenAI weights), from a 224×224 frame |
@@ -40,13 +40,9 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/download_coin.py
 .venv/bin/python scripts/prepare_coin.py
-.venv/bin/python scripts/classical_pairwise_dtw.py
-.venv/bin/python scripts/ml_pairwise_dtw.py
 ```
 
-`download_coin.py` saves videos to `data/videos/<task>/<youtube_id>.mp4`. `prepare_coin.py` writes `data/prepared/manifest.jsonl` with the official `training` and `testing` split. The DTW scripts reuse cached features on a re-run.
-
-Each DTW script writes a summary JSON (mean, standard deviation, median, 10th and 90th percentiles, per step and for the whole video) and a square distance matrix. Rows of the matrix follow `video_ids` in the summary. The diagonal is 0. Use the per-step blocks.
+`download_coin.py` saves videos to `data/videos/<task>/<youtube_id>.mp4`. `prepare_coin.py` writes `data/prepared/manifest.jsonl` with the official `training` and `testing` split. Score a chosen reference with `scripts/run_coin_reference.py`, below.
 
 ### Label recorded videos
 
