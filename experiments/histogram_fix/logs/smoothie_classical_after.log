@@ -1,0 +1,5 @@
+Validating media for MakeStrawberrySmoothie under /Users/arnav/Documents/10718-MLIP-Fall26/data
+Scoring 16 comparisons against -3C-VGhs2mo
+[h264 @ 0x14ee2cb00] mmco: unref short failure
+    Last message repeated 1 times
+Wrote 16 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/histogram_fix/runs/MakeStrawberrySmoothie_classical_after.json

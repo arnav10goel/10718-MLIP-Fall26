@@ -1,0 +1,1435 @@
+{
+  "schema_version": 1,
+  "task": "PutOnQuiltCover",
+  "reference_id": "H52vAkIp80A",
+  "data_root": "/Users/arnav/Documents/10718-MLIP-Fall26/data",
+  "annotation_source": {
+    "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/raw/COIN.json",
+    "sha256": "c4b2d299328d007be422f58ce65ddf9fdbd9d71e56342c64a6d239b35c5eb111"
+  },
+  "method": {
+    "name": "classical_reference_dtw",
+    "fps": 5.0,
+    "feature_cache": false,
+    "uses_comparison_annotations": true,
+    "hash_check": "observed_only"
+  },
+  "summary": {
+    "annotated_videos": 40,
+    "usable_media": 26,
+    "matching_training": 19,
+    "matching_testing": 7,
+    "comparisons_scored": 25,
+    "comparison_failures": 0,
+    "cohort_exclusions": 14
+  },
+  "inventory_records": [
+    {
+      "video_id": "4SLggq4L_aY",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/4SLggq4L_aY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "6njTJ_Z_zko",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/6njTJ_Z_zko",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "9YsJrX1i4to",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/9YsJrX1i4to",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "Cf-qdR2-a-U",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/Cf-qdR2-a-U",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/Cf-qdR2-a-U.mp4",
+      "size_bytes": 17523442,
+      "sha256": "a32fe80b99d86e3e9563d293b7f267c13636fb6422821c781e82c16804807b6d",
+      "decoded_frame_count": 1587,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "DA6HxZUH7VQ",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/DA6HxZUH7VQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/DA6HxZUH7VQ.mp4",
+      "size_bytes": 10196351,
+      "sha256": "8899da43601664e7b6cd8400cdb1b06dae2f63007deed66669ae440cb94bc68b",
+      "decoded_frame_count": 1736,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "DRciVgAKV8Y",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/DRciVgAKV8Y",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "Dt0wmPNFvr8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/Dt0wmPNFvr8",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/Dt0wmPNFvr8.mp4",
+      "size_bytes": 16361323,
+      "sha256": "d148b1a0e62fa537e05a699616534d287bebbc9241a48ec1c13b88845aae4df4",
+      "decoded_frame_count": 1398,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "EFOhjljieqs",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/EFOhjljieqs",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "ETp9-vEIa2M",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/ETp9-vEIa2M",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/ETp9-vEIa2M.mp4",
+      "size_bytes": 54608562,
+      "sha256": "b9db6efc6d839f5c864290aa31779f58e6d722525fd41a411a7efcff558f2ba4",
+      "decoded_frame_count": 3281,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "H52vAkIp80A",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/H52vAkIp80A",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/H52vAkIp80A.mp4",
+      "size_bytes": 51772338,
+      "sha256": "7bd08b2b834071ec479297152145d1e551ad6060bb5c3decedca4c2970ac150c",
+      "decoded_frame_count": 5967,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "Hg937Un-km8",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/Hg937Un-km8",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/Hg937Un-km8.mp4",
+      "size_bytes": 28479391,
+      "sha256": "5945c8735a7729dcc7ae1386e3a1b22d58d8bb58bfc2535bb6fe5122bb524afb",
+      "decoded_frame_count": 2285,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "HjkbCrEiDz4",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/HjkbCrEiDz4",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "K-a36PqpUxM",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/K-a36PqpUxM",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/K-a36PqpUxM.mp4",
+      "size_bytes": 40659435,
+      "sha256": "16255feee54f58bed81f77b1cbcf99b21c794f9d7e25e66a2bd8f4a356fc88ff",
+      "decoded_frame_count": 3683,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "KjHOvpOLhUQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/KjHOvpOLhUQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/KjHOvpOLhUQ.mp4",
+      "size_bytes": 10064197,
+      "sha256": "6bdc073d5cdbf985817daf0f43e77ce9db772ec42615a89180f92b57e213cf4e",
+      "decoded_frame_count": 2311,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "OWXhAz3kMxM",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/OWXhAz3kMxM",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/OWXhAz3kMxM.mp4",
+      "size_bytes": 16345864,
+      "sha256": "a0ed00157fab4f24c5ca46f2ff14cae6b5669f9ef8bc963a48d24c144c51b01c",
+      "decoded_frame_count": 2148,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "PBwogeu5ePM",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/PBwogeu5ePM",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "Pit7DH8vwpw",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/Pit7DH8vwpw",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "Q4vBGQXUKj4",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/Q4vBGQXUKj4",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/Q4vBGQXUKj4.mp4",
+      "size_bytes": 5077469,
+      "sha256": "f65108c324a36d2b342b9866e58c7a45b17b9e388a8b292e8ae9a7023d48d0a2",
+      "decoded_frame_count": 2689,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "QdgbKt0suWE",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/QdgbKt0suWE",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/QdgbKt0suWE.mp4",
+      "size_bytes": 5678894,
+      "sha256": "d0aa4049a0f877eb016c864270a408d84adca09b41812a11bb884b02d612459b",
+      "decoded_frame_count": 2095,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "RmiuR14GDsI",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/RmiuR14GDsI",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/RmiuR14GDsI.mp4",
+      "size_bytes": 23180593,
+      "sha256": "e2e42a3ad61d237b47c0dd4399d28bf781602b77b3c7584a9aa8453e8a0f668c",
+      "decoded_frame_count": 6561,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "TB3I5tFyukQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/TB3I5tFyukQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/TB3I5tFyukQ.mp4",
+      "size_bytes": 67155884,
+      "sha256": "30a95e6c08fb9b05e53500feef2be801f14ae99e6fcc24e6a8c63280a45a52d6",
+      "decoded_frame_count": 6289,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "TJHBpquawcE",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/TJHBpquawcE",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/TJHBpquawcE.mp4",
+      "size_bytes": 18115521,
+      "sha256": "8ad43bde4deb50f4ef018443df1237e0c475f33f733fc25f5fa5c1e5af59f80d",
+      "decoded_frame_count": 1865,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "c1IzS2oBBN0",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/c1IzS2oBBN0",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/c1IzS2oBBN0.mp4",
+      "size_bytes": 28640898,
+      "sha256": "560b2a288b23d4eb47c4ebd0dbdf6269add352abc6ecb9c5e413ee3807cb56ea",
+      "decoded_frame_count": 2722,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "c5_nxWFndM8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/c5_nxWFndM8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "fFhdoyRkwzk",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/fFhdoyRkwzk",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/fFhdoyRkwzk.mp4",
+      "size_bytes": 60759074,
+      "sha256": "385393d1aeafbbeb7eca2c8bd5cdab5e8a5c48e60b12bdd1b9c23a1bb0476b08",
+      "decoded_frame_count": 6719,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "fHv947jR_6U",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/fHv947jR_6U",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "gX63hR_ad7w",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/gX63hR_ad7w",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "gu6sBGHLYjw",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/gu6sBGHLYjw",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "jetCqIkjkpU",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/jetCqIkjkpU",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/jetCqIkjkpU.mp4",
+      "size_bytes": 17126144,
+      "sha256": "ac9da8a0eae38432300d4218f27dcdccc8daba106e21aaa47d6eeba620555e95",
+      "decoded_frame_count": 1282,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "kAfYt-TN1EQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/kAfYt-TN1EQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/kAfYt-TN1EQ.mp4",
+      "size_bytes": 10359227,
+      "sha256": "58d8d2c31c610dd48a3bbb2a130e0f46290cfd4f3734dc8b0d0d28cd5cb1efa4",
+      "decoded_frame_count": 1345,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "kify7wrGgF8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/kify7wrGgF8",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/kify7wrGgF8.mp4",
+      "size_bytes": 7073384,
+      "sha256": "e709af1bf66521510ccecf3fce659f6669fa85c15a6c53955d161ac19f755d6d",
+      "decoded_frame_count": 3292,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "mX8e0cUBpaI",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/mX8e0cUBpaI",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/mX8e0cUBpaI.mp4",
+      "size_bytes": 5191109,
+      "sha256": "7fd736056ea8c43399814031b285227f37adcb2cdbef4ac8e336c701672df1ee",
+      "decoded_frame_count": 2009,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "nFLfJcIHtu0",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/nFLfJcIHtu0",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "nO9n_GYSDAc",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/nO9n_GYSDAc",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/nO9n_GYSDAc.mp4",
+      "size_bytes": 75657915,
+      "sha256": "959bba9a84858d2c93b9c3429674da003a615c1ec38a559a248ca63a8e4c6533",
+      "decoded_frame_count": 6363,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "okrhaW5PuAU",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/okrhaW5PuAU",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/okrhaW5PuAU.mp4",
+      "size_bytes": 7998328,
+      "sha256": "b91dbbe0da43ec17dbc724b00c2b33663174a5fef2114f54da157cdafeb54e69",
+      "decoded_frame_count": 3870,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "p_zcYRKjFEs",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/p_zcYRKjFEs",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/p_zcYRKjFEs.mp4",
+      "size_bytes": 20874092,
+      "sha256": "7271ae1d2aa430193fe37e9b51bd8d5c9cd1cd479c93536a2345f1d360e0e805",
+      "decoded_frame_count": 1509,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "u-ZPjYbTI6U",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/u-ZPjYbTI6U",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/u-ZPjYbTI6U.mp4",
+      "size_bytes": 54811132,
+      "sha256": "4d9e0a2b68db7f3fedcda5a87f0db890ac575e883cacce5b5bb53935f70b4397",
+      "decoded_frame_count": 2943,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "u6YiXoFOJF0",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/u6YiXoFOJF0",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/u6YiXoFOJF0.mp4",
+      "size_bytes": 8935752,
+      "sha256": "272eeeb17112fbcaf8b81ff94f9d4ca84d8c981d4e2e9b8fd645c2cdf240bf22",
+      "decoded_frame_count": 2488,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "uH4VhFGCH7A",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/uH4VhFGCH7A",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "uy-dcjCe-g8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/uy-dcjCe-g8",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/PutOnQuiltCover/uy-dcjCe-g8.mp4",
+      "size_bytes": 9315997,
+      "sha256": "557bb3bccf4d48398ee9bd5a0b604387e5b83db52430001f975b2c1ff2d05bdf",
+      "decoded_frame_count": 3019,
+      "usable": true,
+      "issues": []
+    }
+  ],
+  "cohort": {
+    "task": "PutOnQuiltCover",
+    "reference_id": "H52vAkIp80A",
+    "step_ids": [
+      "138",
+      "139",
+      "140",
+      "141"
+    ],
+    "training_ids": [
+      "Dt0wmPNFvr8",
+      "H52vAkIp80A",
+      "K-a36PqpUxM",
+      "KjHOvpOLhUQ",
+      "Q4vBGQXUKj4",
+      "QdgbKt0suWE",
+      "TB3I5tFyukQ",
+      "c1IzS2oBBN0",
+      "fFhdoyRkwzk",
+      "jetCqIkjkpU",
+      "kAfYt-TN1EQ",
+      "kify7wrGgF8",
+      "mX8e0cUBpaI",
+      "nO9n_GYSDAc",
+      "okrhaW5PuAU",
+      "p_zcYRKjFEs",
+      "u-ZPjYbTI6U",
+      "u6YiXoFOJF0",
+      "uy-dcjCe-g8"
+    ],
+    "testing_ids": [
+      "Cf-qdR2-a-U",
+      "DA6HxZUH7VQ",
+      "ETp9-vEIa2M",
+      "Hg937Un-km8",
+      "OWXhAz3kMxM",
+      "RmiuR14GDsI",
+      "TJHBpquawcE"
+    ],
+    "excluded": [
+      {
+        "video_id": "4SLggq4L_aY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "6njTJ_Z_zko",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "9YsJrX1i4to",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "DRciVgAKV8Y",
+        "reason": "unavailable_media"
+      },
+      {
+        "video_id": "EFOhjljieqs",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "HjkbCrEiDz4",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "PBwogeu5ePM",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "Pit7DH8vwpw",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "c5_nxWFndM8",
+        "reason": "unavailable_media"
+      },
+      {
+        "video_id": "fHv947jR_6U",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "gX63hR_ad7w",
+        "reason": "unavailable_media"
+      },
+      {
+        "video_id": "gu6sBGHLYjw",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "nFLfJcIHtu0",
+        "reason": "unavailable_media"
+      },
+      {
+        "video_id": "uH4VhFGCH7A",
+        "reason": "different_steps"
+      }
+    ]
+  },
+  "scoring": {
+    "task": "PutOnQuiltCover",
+    "reference_id": "H52vAkIp80A",
+    "reference_frames": 585,
+    "steps": [
+      {
+        "id": "138",
+        "label": "put nicely and align the quilt and the cover"
+      },
+      {
+        "id": "139",
+        "label": "roll the quilt cover and the quilt together"
+      },
+      {
+        "id": "140",
+        "label": "take out the quilt cover from another side"
+      },
+      {
+        "id": "141",
+        "label": "put and arrange nicely"
+      }
+    ],
+    "scores": [
+      {
+        "video_id": "Dt0wmPNFvr8",
+        "split": "training",
+        "sampled_frames": 205,
+        "global_distance": 0.26828765594042264,
+        "step_distances": [
+          0.4079988301717318,
+          0.3155863200072889,
+          0.17831656316445496,
+          0.3392111913598139
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 25
+          },
+          {
+            "reference": 27,
+            "comparison": 20
+          },
+          {
+            "reference": 135,
+            "comparison": 394
+          },
+          {
+            "reference": 180,
+            "comparison": 31
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "K-a36PqpUxM",
+        "split": "training",
+        "sampled_frames": 423,
+        "global_distance": 0.6569555659579416,
+        "step_distances": [
+          0.7460829600691795,
+          0.6611247092592246,
+          0.715722667590651,
+          0.5988072581080548
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 60
+          },
+          {
+            "reference": 27,
+            "comparison": 124
+          },
+          {
+            "reference": 135,
+            "comparison": 175
+          },
+          {
+            "reference": 180,
+            "comparison": 166
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "KjHOvpOLhUQ",
+        "split": "training",
+        "sampled_frames": 355,
+        "global_distance": 0.2936948826170375,
+        "step_distances": [
+          0.30106070395772466,
+          0.2849600580941748,
+          0.29866723165367587,
+          0.3588052484724257
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 235
+          },
+          {
+            "reference": 27,
+            "comparison": 200
+          },
+          {
+            "reference": 135,
+            "comparison": 55
+          },
+          {
+            "reference": 180,
+            "comparison": 45
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "Q4vBGQXUKj4",
+        "split": "training",
+        "sampled_frames": 421,
+        "global_distance": 0.26109508377873997,
+        "step_distances": [
+          0.25546931761961716,
+          0.2238740094833904,
+          0.2715714530824112,
+          0.30300964911778766
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 65
+          },
+          {
+            "reference": 27,
+            "comparison": 20
+          },
+          {
+            "reference": 135,
+            "comparison": 188
+          },
+          {
+            "reference": 180,
+            "comparison": 112
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "QdgbKt0suWE",
+        "split": "training",
+        "sampled_frames": 412,
+        "global_distance": 0.29023120841409406,
+        "step_distances": [
+          0.24260988670294403,
+          0.22817563999272744,
+          0.36145064640928193,
+          0.311197084149757
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 244
+          },
+          {
+            "reference": 27,
+            "comparison": 107
+          },
+          {
+            "reference": 135,
+            "comparison": 75
+          },
+          {
+            "reference": 180,
+            "comparison": 77
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "TB3I5tFyukQ",
+        "split": "training",
+        "sampled_frames": 356,
+        "global_distance": 0.37413890168198155,
+        "step_distances": [
+          0.2991476950963379,
+          0.3253593915817784,
+          0.34863464598302485,
+          0.5339260598023732
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 304
+          },
+          {
+            "reference": 27,
+            "comparison": 85
+          },
+          {
+            "reference": 135,
+            "comparison": 50
+          },
+          {
+            "reference": 180,
+            "comparison": 75
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "c1IzS2oBBN0",
+        "split": "training",
+        "sampled_frames": 385,
+        "global_distance": 0.277231466362619,
+        "step_distances": [
+          0.24693260667550615,
+          0.25219281936913474,
+          0.27599693520788704,
+          0.258235718558232
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 68
+          },
+          {
+            "reference": 27,
+            "comparison": 133
+          },
+          {
+            "reference": 135,
+            "comparison": 141
+          },
+          {
+            "reference": 180,
+            "comparison": 72
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "fFhdoyRkwzk",
+        "split": "training",
+        "sampled_frames": 1074,
+        "global_distance": 0.2530956595997478,
+        "step_distances": [
+          0.2603814864045525,
+          0.24185734346272453,
+          0.21854595845930924,
+          0.23694231710636132
+        ],
+        "step_path_counts": [
+          {
+            "reference": 244,
+            "comparison": 365
+          },
+          {
+            "reference": 27,
+            "comparison": 140
+          },
+          {
+            "reference": 219,
+            "comparison": 160
+          },
+          {
+            "reference": 441,
+            "comparison": 301
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "jetCqIkjkpU",
+        "split": "training",
+        "sampled_frames": 179,
+        "global_distance": 0.3117270071282346,
+        "step_distances": [
+          0.3275156617594453,
+          0.30189339088069067,
+          0.2744680641977875,
+          0.4048938768960181
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 32
+          },
+          {
+            "reference": 27,
+            "comparison": 10
+          },
+          {
+            "reference": 135,
+            "comparison": 30
+          },
+          {
+            "reference": 180,
+            "comparison": 105
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "kAfYt-TN1EQ",
+        "split": "training",
+        "sampled_frames": 233,
+        "global_distance": 0.2302937004301283,
+        "step_distances": [
+          0.2215659619910877,
+          0.19959607446330718,
+          0.2185648081548236,
+          0.30572685301303865
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 314
+          },
+          {
+            "reference": 27,
+            "comparison": 29
+          },
+          {
+            "reference": 135,
+            "comparison": 64
+          },
+          {
+            "reference": 180,
+            "comparison": 10
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "kify7wrGgF8",
+        "split": "training",
+        "sampled_frames": 659,
+        "global_distance": 0.3022088755787052,
+        "step_distances": [
+          0.2625905182728401,
+          0.23623724851027997,
+          0.23826705503223683,
+          0.286658935325268
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 50
+          },
+          {
+            "reference": 27,
+            "comparison": 105
+          },
+          {
+            "reference": 204,
+            "comparison": 185
+          },
+          {
+            "reference": 180,
+            "comparison": 195
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "mX8e0cUBpaI",
+        "split": "training",
+        "sampled_frames": 348,
+        "global_distance": 0.3667226062880622,
+        "step_distances": [
+          0.34567932830407067,
+          0.3687151555661802,
+          0.38618295159604815,
+          0.3484410120617776
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 69
+          },
+          {
+            "reference": 27,
+            "comparison": 45
+          },
+          {
+            "reference": 135,
+            "comparison": 120
+          },
+          {
+            "reference": 180,
+            "comparison": 35
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "nO9n_GYSDAc",
+        "split": "training",
+        "sampled_frames": 940,
+        "global_distance": 0.29496875785766763,
+        "step_distances": [
+          0.2682357505944829,
+          0.2872198211624968,
+          0.308782476794513,
+          0.26551412743014785
+        ],
+        "step_path_counts": [
+          {
+            "reference": 165,
+            "comparison": 145
+          },
+          {
+            "reference": 27,
+            "comparison": 55
+          },
+          {
+            "reference": 250,
+            "comparison": 173
+          },
+          {
+            "reference": 384,
+            "comparison": 390
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "okrhaW5PuAU",
+        "split": "training",
+        "sampled_frames": 535,
+        "global_distance": 0.4144170896619813,
+        "step_distances": [
+          0.4691940580423062,
+          0.4250167117074684,
+          0.38098369772716234,
+          0.3956420042448574
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 20
+          },
+          {
+            "reference": 27,
+            "comparison": 126
+          },
+          {
+            "reference": 135,
+            "comparison": 155
+          },
+          {
+            "reference": 180,
+            "comparison": 120
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "p_zcYRKjFEs",
+        "split": "training",
+        "sampled_frames": 241,
+        "global_distance": 0.22002487029784765,
+        "step_distances": [
+          0.1990489183990815,
+          0.22206580297714132,
+          0.19789714182409038,
+          0.28820916000339725
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 339
+          },
+          {
+            "reference": 27,
+            "comparison": 33
+          },
+          {
+            "reference": 135,
+            "comparison": 73
+          },
+          {
+            "reference": 180,
+            "comparison": 25
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "u-ZPjYbTI6U",
+        "split": "training",
+        "sampled_frames": 489,
+        "global_distance": 0.4230037673925742,
+        "step_distances": [
+          0.47736173520079095,
+          0.47327758603625825,
+          0.43463016092851664,
+          0.3184255513879988
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 141
+          },
+          {
+            "reference": 27,
+            "comparison": 90
+          },
+          {
+            "reference": 135,
+            "comparison": 267
+          },
+          {
+            "reference": 180,
+            "comparison": 5
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "u6YiXoFOJF0",
+        "split": "training",
+        "sampled_frames": 369,
+        "global_distance": 0.24866615197597405,
+        "step_distances": [
+          0.18525056428205527,
+          0.2240952936808268,
+          0.21751029450426657,
+          0.3556676651040713
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 123
+          },
+          {
+            "reference": 27,
+            "comparison": 75
+          },
+          {
+            "reference": 135,
+            "comparison": 35
+          },
+          {
+            "reference": 180,
+            "comparison": 90
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "uy-dcjCe-g8",
+        "split": "training",
+        "sampled_frames": 423,
+        "global_distance": 0.37677565588910356,
+        "step_distances": [
+          0.40436215990628954,
+          0.40631788079070036,
+          0.3065403096469832,
+          0.44348742768720345
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 75
+          },
+          {
+            "reference": 27,
+            "comparison": 175
+          },
+          {
+            "reference": 135,
+            "comparison": 243
+          },
+          {
+            "reference": 180,
+            "comparison": 54
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "Cf-qdR2-a-U",
+        "split": "testing",
+        "sampled_frames": 317,
+        "global_distance": 0.2974062621084034,
+        "step_distances": [
+          0.4257004873110698,
+          0.34526082636818056,
+          0.2769457340516426,
+          0.2384116815669196
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 65
+          },
+          {
+            "reference": 27,
+            "comparison": 70
+          },
+          {
+            "reference": 135,
+            "comparison": 176
+          },
+          {
+            "reference": 180,
+            "comparison": 252
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "DA6HxZUH7VQ",
+        "split": "testing",
+        "sampled_frames": 253,
+        "global_distance": 0.297765124659253,
+        "step_distances": [
+          0.2892200302027591,
+          0.23410650233840086,
+          0.2237043444565145,
+          0.37578881796059616
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 155
+          },
+          {
+            "reference": 27,
+            "comparison": 182
+          },
+          {
+            "reference": 135,
+            "comparison": 92
+          },
+          {
+            "reference": 180,
+            "comparison": 103
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "ETp9-vEIa2M",
+        "split": "testing",
+        "sampled_frames": 434,
+        "global_distance": 0.29498764898023033,
+        "step_distances": [
+          0.33630037560909487,
+          0.27692700676296067,
+          0.23916411854602673,
+          0.22904955125168752
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 115
+          },
+          {
+            "reference": 27,
+            "comparison": 115
+          },
+          {
+            "reference": 135,
+            "comparison": 75
+          },
+          {
+            "reference": 180,
+            "comparison": 114
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "Hg937Un-km8",
+        "split": "testing",
+        "sampled_frames": 381,
+        "global_distance": 0.24796549418033698,
+        "step_distances": [
+          0.2819230323861003,
+          0.24269062035901534,
+          0.20195116213378234,
+          0.27907828596639045
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 95
+          },
+          {
+            "reference": 27,
+            "comparison": 46
+          },
+          {
+            "reference": 135,
+            "comparison": 327
+          },
+          {
+            "reference": 180,
+            "comparison": 81
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "OWXhAz3kMxM",
+        "split": "testing",
+        "sampled_frames": 374,
+        "global_distance": 0.2754627933868995,
+        "step_distances": [
+          0.3379924815052595,
+          0.24753929753200257,
+          0.2275549207140666,
+          0.23718931823656494
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 60
+          },
+          {
+            "reference": 27,
+            "comparison": 118
+          },
+          {
+            "reference": 135,
+            "comparison": 115
+          },
+          {
+            "reference": 180,
+            "comparison": 159
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "RmiuR14GDsI",
+        "split": "testing",
+        "sampled_frames": 1062,
+        "global_distance": 0.37354205416869757,
+        "step_distances": [
+          0.501615300316077,
+          0.48537775329441646,
+          0.44915768064519085,
+          0.37173814160956276
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 65
+          },
+          {
+            "reference": 27,
+            "comparison": 230
+          },
+          {
+            "reference": 135,
+            "comparison": 175
+          },
+          {
+            "reference": 180,
+            "comparison": 450
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "TJHBpquawcE",
+        "split": "testing",
+        "sampled_frames": 223,
+        "global_distance": 0.40393582470396644,
+        "step_distances": [
+          0.4944818570128241,
+          0.3694480979588124,
+          0.34798204062470034,
+          0.4823676468597518
+        ],
+        "step_path_counts": [
+          {
+            "reference": 130,
+            "comparison": 71
+          },
+          {
+            "reference": 27,
+            "comparison": 179
+          },
+          {
+            "reference": 135,
+            "comparison": 272
+          },
+          {
+            "reference": 180,
+            "comparison": 45
+          }
+        ],
+        "step_issues": []
+      }
+    ],
+    "failures": []
+  }
+}

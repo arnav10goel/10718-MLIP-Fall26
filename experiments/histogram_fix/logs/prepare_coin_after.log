@@ -1,0 +1,8 @@
+videos on disk: 56
+  training: 43
+  testing:  13
+  ReplaceSIMCard: 48/86 (train 38, test 10, missing 38)
+  BoilNoodles: 8/97 (train 5, test 3, missing 89)
+  WashDish: 0/40 (train 0, test 0, missing 40)
+  CleanToilet: 0/56 (train 0, test 0, missing 56)
+wrote data/prepared/

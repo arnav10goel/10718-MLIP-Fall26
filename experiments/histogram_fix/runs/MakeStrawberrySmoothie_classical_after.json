@@ -1,0 +1,2142 @@
+{
+  "schema_version": 1,
+  "task": "MakeStrawberrySmoothie",
+  "reference_id": "-3C-VGhs2mo",
+  "data_root": "/Users/arnav/Documents/10718-MLIP-Fall26/data",
+  "annotation_source": {
+    "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/raw/COIN.json",
+    "sha256": "c4b2d299328d007be422f58ce65ddf9fdbd9d71e56342c64a6d239b35c5eb111"
+  },
+  "method": {
+    "name": "classical_reference_dtw",
+    "fps": 5.0,
+    "feature_cache": false,
+    "uses_comparison_annotations": true,
+    "hash_check": "observed_only"
+  },
+  "summary": {
+    "annotated_videos": 97,
+    "usable_media": 17,
+    "matching_training": 13,
+    "matching_testing": 4,
+    "comparisons_scored": 16,
+    "comparison_failures": 0,
+    "cohort_exclusions": 80
+  },
+  "inventory_records": [
+    {
+      "video_id": "-3C-VGhs2mo",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/-3C-VGhs2mo",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/-3C-VGhs2mo.mp4",
+      "size_bytes": 12447216,
+      "sha256": "2f3bde60c1ae53aea5b74cb2bb57643a1a0cd4a809e9fef8e470d14ea41bb6be",
+      "decoded_frame_count": 2528,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "-6gGYsBHF1U",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/-6gGYsBHF1U",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "0DAxt38R_Lc",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/0DAxt38R_Lc",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "2T1Et9xE5IQ",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/2T1Et9xE5IQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/2T1Et9xE5IQ.mp4",
+      "size_bytes": 19240592,
+      "sha256": "c10d666083e28b9e14bd80edc172b2babf43a41206cda5a01a7547e77c675b8b",
+      "decoded_frame_count": 3489,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "2hGU0LlnJaY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/2hGU0LlnJaY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "3o1Roq0pyQE",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/3o1Roq0pyQE",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "3sUGrp2V-6Q",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/3sUGrp2V-6Q",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "4jRP5QtdZSw",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/4jRP5QtdZSw",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "4z_7hDi2ffQ",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/4z_7hDi2ffQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/4z_7hDi2ffQ.mp4",
+      "size_bytes": 5146733,
+      "sha256": "26f7e8ac72add4f5d478602ec5c164f1b0f99b0835fcb905b4c2856fd3e337f6",
+      "decoded_frame_count": 3252,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "5QcwTZaqTL8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/5QcwTZaqTL8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "6PgYzMyDkEU",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/6PgYzMyDkEU",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "7U_w-qmK0qw",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/7U_w-qmK0qw",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/7U_w-qmK0qw.mp4",
+      "size_bytes": 47678122,
+      "sha256": "67bf723826a4ef7c8feacc7721f7407c6ecf9c074ba113126070fddd7819d6e2",
+      "decoded_frame_count": 2656,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "7wNAZK1Y2hY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/7wNAZK1Y2hY",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/7wNAZK1Y2hY.mp4",
+      "size_bytes": 50812820,
+      "sha256": "378b9fd9ed620bd028403057138f2d8afc68e8c09154fce522f171559dcafbf4",
+      "decoded_frame_count": 4097,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "7yVOKB6a2iE",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/7yVOKB6a2iE",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "8Vq4q8kHvf4",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/8Vq4q8kHvf4",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "9O9GMyqSthk",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/9O9GMyqSthk",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "9fHhck_Orjc",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/9fHhck_Orjc",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "B9hdVJVxT2w",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/B9hdVJVxT2w",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/B9hdVJVxT2w.mp4",
+      "size_bytes": 6050209,
+      "sha256": "a817b2223b102835e8fb67d0bbdf7e924cc9b7c55631e5dd7c1b08d00a0352d0",
+      "decoded_frame_count": 1368,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "CjoPiHNco8A",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/CjoPiHNco8A",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "EFITQYoEa0Q",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/EFITQYoEa0Q",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/EFITQYoEa0Q.mp4",
+      "size_bytes": 26821679,
+      "sha256": "75a5d07ffc7956ab9518096bc52bc46c0780c4b91854381a3afb39f597abf6f2",
+      "decoded_frame_count": 2555,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "ELkklM6plPk",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/ELkklM6plPk",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/ELkklM6plPk.mp4",
+      "size_bytes": 21826258,
+      "sha256": "606b548db504df7d65cb2a5471fbe93ffa373c7db364d14c7e0b8e9d50eac0ca",
+      "decoded_frame_count": 3638,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "FdkA7ud1-rE",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/FdkA7ud1-rE",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/FdkA7ud1-rE.mp4",
+      "size_bytes": 23267195,
+      "sha256": "505464e2bf304d1e5a6b094419cb51d3ce56180c0e69a41cd888e77dd5bf05e3",
+      "decoded_frame_count": 3786,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "GGP7GWMFwDI",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/GGP7GWMFwDI",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/GGP7GWMFwDI.mp4",
+      "size_bytes": 16730464,
+      "sha256": "a1556fb7dce7891453ebe092bc94bbdeb5a3b662a980933500a10b11ddb51f96",
+      "decoded_frame_count": 1798,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "GamLf68iz0E",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/GamLf68iz0E",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "GjedPLUBz0k",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/GjedPLUBz0k",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "HmaZw8PWKhY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/HmaZw8PWKhY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "JX65eqx-4TI",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/JX65eqx-4TI",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "LHRxEQ3cGtU",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/LHRxEQ3cGtU",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "LMdXdn1L0fg",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/LMdXdn1L0fg",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "M7TogGphqHA",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/M7TogGphqHA",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "MBIxE-0iXSI",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/MBIxE-0iXSI",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "NhNpONDZmF0",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/NhNpONDZmF0",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "NuYURXdqpBU",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/NuYURXdqpBU",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "OUrpmy8Oa_I",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/OUrpmy8Oa_I",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "P2RTA0wyXUk",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/P2RTA0wyXUk",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "PXGJtOlSHJU",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/PXGJtOlSHJU",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "QSyn8fpJH9o",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/QSyn8fpJH9o",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "Rf0PP7j9LtU",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/Rf0PP7j9LtU",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "SgIyPHcIrWQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/SgIyPHcIrWQ",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "TiDNVy5WDd0",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/TiDNVy5WDd0",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/TiDNVy5WDd0.mp4",
+      "size_bytes": 4373488,
+      "sha256": "b71daca6f65f45f75e07bbc2bf23de9eb914dd9df1a1d5a491cbeddaff646a8e",
+      "decoded_frame_count": 2752,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "U17jQxLGZPo",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/U17jQxLGZPo",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "Uke0kWnxSr8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/Uke0kWnxSr8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "VFQ7dsVtWUI",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/VFQ7dsVtWUI",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "VfXMuxgoVm8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/VfXMuxgoVm8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "VuIfNM9T1Qg",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/VuIfNM9T1Qg",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "WQzW5u3dyJQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/WQzW5u3dyJQ",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "XIhj52gau-A",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/XIhj52gau-A",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "ZRSPLtrD0QE",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/ZRSPLtrD0QE",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "_2N1hAfuOBI",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/_2N1hAfuOBI",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "_9npIqkWGCo",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/_9npIqkWGCo",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "_baOs_bMoe0",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/_baOs_bMoe0",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "aNl0XTxhwUk",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/aNl0XTxhwUk",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "ccZeG1TNhF8",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/ccZeG1TNhF8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "d8qJioRkyQk",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/d8qJioRkyQk",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "dAqDTcrdXYY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/dAqDTcrdXYY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "dSK3h8OlFzs",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/dSK3h8OlFzs",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "eQClJvavxPo",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/eQClJvavxPo",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "ecO_q9gwYvo",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/ecO_q9gwYvo",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "f3ctblgIZSQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/f3ctblgIZSQ",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "f8H6LTu-TtA",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/f8H6LTu-TtA",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "f8VIg3QrYTU",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/f8VIg3QrYTU",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "fVNPJNxFxJI",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/fVNPJNxFxJI",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "gRwbb5wfcsY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/gRwbb5wfcsY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "gUEfhzDKdys",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/gUEfhzDKdys",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "gd9I_A46R0Q",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/gd9I_A46R0Q",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "hW2I5bOrjIs",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/hW2I5bOrjIs",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "hqQLWgQgzfM",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/hqQLWgQgzfM",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/hqQLWgQgzfM.mp4",
+      "size_bytes": 11910972,
+      "sha256": "cb844cc88e4bfb14f6e8aed265c2f47fa124e6305a46b4d2e27fc3a04700b2b9",
+      "decoded_frame_count": 3099,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "hqZdB-ziP2U",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/hqZdB-ziP2U",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "irdAhqUhV48",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/irdAhqUhV48",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "jhkXfjMuz10",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/jhkXfjMuz10",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "lBDloS8Fo1E",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/lBDloS8Fo1E",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "n1ifOFfVeJY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/n1ifOFfVeJY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "nRtHlenRnIQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/nRtHlenRnIQ",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "nZPpXbf5woQ",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/nZPpXbf5woQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/nZPpXbf5woQ.mp4",
+      "size_bytes": 20644554,
+      "sha256": "0b2e87ac5941c392746fa6b9d2f3a2e2a34039305cbca7ee1cb7768326de7d15",
+      "decoded_frame_count": 4956,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "nomrLUoiKaM",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/nomrLUoiKaM",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "noq2I5Sew9A",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/noq2I5Sew9A",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "ofF5LwTSgng",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/ofF5LwTSgng",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/ofF5LwTSgng.mp4",
+      "size_bytes": 8498006,
+      "sha256": "10286562b56aca971274ff6b83373d4fbc41914046f53d033ce3d6c655d2dc19",
+      "decoded_frame_count": 1131,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "olAbkD2Bsmg",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/olAbkD2Bsmg",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "puEZuZeFg1M",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/puEZuZeFg1M",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "qvjJDgqRksY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/qvjJDgqRksY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "rke6C0lLGk0",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/rke6C0lLGk0",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/rke6C0lLGk0.mp4",
+      "size_bytes": 24313378,
+      "sha256": "9c1cbea05e8c51c61384af55f70cef8066b6cdcbd1c37bd32932e1200268a260",
+      "decoded_frame_count": 2370,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "rp_yk7TAv00",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/rp_yk7TAv00",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "sFsFLnAsrhw",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/sFsFLnAsrhw",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "tfK822v4iO0",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/tfK822v4iO0",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "tfLHp47OKx8",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/tfLHp47OKx8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "uLO-UieE8KY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/uLO-UieE8KY",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "uXgn_02G_qY",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/uXgn_02G_qY",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/uXgn_02G_qY.mp4",
+      "size_bytes": 16786634,
+      "sha256": "bb045fe2c92745f6d58d416910fb7bbc7df57a0b90289d004c579c7cdbbbe479",
+      "decoded_frame_count": 2586,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "vdeqAe9njyw",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/vdeqAe9njyw",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "vg6m6QcGaR8",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/vg6m6QcGaR8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "vjeDGSdHuP8",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/vjeDGSdHuP8",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "wNPLO4B8bZQ",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/wNPLO4B8bZQ",
+      "expected_sha256": null,
+      "path": "/Users/arnav/Documents/10718-MLIP-Fall26/data/videos/MakeStrawberrySmoothie/wNPLO4B8bZQ.mp4",
+      "size_bytes": 21003660,
+      "sha256": "f6dd3ee3a2e6b6ddd9e37a901ef897fa5dc68600e56f3b52ffe6a2b044bd504c",
+      "decoded_frame_count": 3474,
+      "usable": true,
+      "issues": []
+    },
+    {
+      "video_id": "woPjcErqbqU",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/woPjcErqbqU",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "wsyVKL8RiSc",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/wsyVKL8RiSc",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "xPCtTM1emik",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/xPCtTM1emik",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "xY1A-d1bxZg",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/xY1A-d1bxZg",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "xqO4lohby8A",
+      "subset": "testing",
+      "source_url": "https://www.youtube.com/embed/xqO4lohby8A",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    },
+    {
+      "video_id": "zDXvVztsGk4",
+      "subset": "training",
+      "source_url": "https://www.youtube.com/embed/zDXvVztsGk4",
+      "expected_sha256": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null,
+      "decoded_frame_count": null,
+      "usable": false,
+      "issues": [
+        "missing_media"
+      ]
+    }
+  ],
+  "cohort": {
+    "task": "MakeStrawberrySmoothie",
+    "reference_id": "-3C-VGhs2mo",
+    "step_ids": [
+      "102",
+      "103",
+      "104"
+    ],
+    "training_ids": [
+      "-3C-VGhs2mo",
+      "7U_w-qmK0qw",
+      "7wNAZK1Y2hY",
+      "B9hdVJVxT2w",
+      "EFITQYoEa0Q",
+      "ELkklM6plPk",
+      "FdkA7ud1-rE",
+      "GGP7GWMFwDI",
+      "TiDNVy5WDd0",
+      "hqQLWgQgzfM",
+      "nZPpXbf5woQ",
+      "rke6C0lLGk0",
+      "uXgn_02G_qY"
+    ],
+    "testing_ids": [
+      "2T1Et9xE5IQ",
+      "4z_7hDi2ffQ",
+      "ofF5LwTSgng",
+      "wNPLO4B8bZQ"
+    ],
+    "excluded": [
+      {
+        "video_id": "-6gGYsBHF1U",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "0DAxt38R_Lc",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "2hGU0LlnJaY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "3o1Roq0pyQE",
+        "reason": "unavailable_media"
+      },
+      {
+        "video_id": "3sUGrp2V-6Q",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "4jRP5QtdZSw",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "5QcwTZaqTL8",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "6PgYzMyDkEU",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "7yVOKB6a2iE",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "8Vq4q8kHvf4",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "9O9GMyqSthk",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "9fHhck_Orjc",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "CjoPiHNco8A",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "GamLf68iz0E",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "GjedPLUBz0k",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "HmaZw8PWKhY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "JX65eqx-4TI",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "LHRxEQ3cGtU",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "LMdXdn1L0fg",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "M7TogGphqHA",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "MBIxE-0iXSI",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "NhNpONDZmF0",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "NuYURXdqpBU",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "OUrpmy8Oa_I",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "P2RTA0wyXUk",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "PXGJtOlSHJU",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "QSyn8fpJH9o",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "Rf0PP7j9LtU",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "SgIyPHcIrWQ",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "U17jQxLGZPo",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "Uke0kWnxSr8",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "VFQ7dsVtWUI",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "VfXMuxgoVm8",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "VuIfNM9T1Qg",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "WQzW5u3dyJQ",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "XIhj52gau-A",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "ZRSPLtrD0QE",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "_2N1hAfuOBI",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "_9npIqkWGCo",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "_baOs_bMoe0",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "aNl0XTxhwUk",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "ccZeG1TNhF8",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "d8qJioRkyQk",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "dAqDTcrdXYY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "dSK3h8OlFzs",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "eQClJvavxPo",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "ecO_q9gwYvo",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "f3ctblgIZSQ",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "f8H6LTu-TtA",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "f8VIg3QrYTU",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "fVNPJNxFxJI",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "gRwbb5wfcsY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "gUEfhzDKdys",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "gd9I_A46R0Q",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "hW2I5bOrjIs",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "hqZdB-ziP2U",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "irdAhqUhV48",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "jhkXfjMuz10",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "lBDloS8Fo1E",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "n1ifOFfVeJY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "nRtHlenRnIQ",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "nomrLUoiKaM",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "noq2I5Sew9A",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "olAbkD2Bsmg",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "puEZuZeFg1M",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "qvjJDgqRksY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "rp_yk7TAv00",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "sFsFLnAsrhw",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "tfK822v4iO0",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "tfLHp47OKx8",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "uLO-UieE8KY",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "vdeqAe9njyw",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "vg6m6QcGaR8",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "vjeDGSdHuP8",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "woPjcErqbqU",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "wsyVKL8RiSc",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "xPCtTM1emik",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "xY1A-d1bxZg",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "xqO4lohby8A",
+        "reason": "different_steps"
+      },
+      {
+        "video_id": "zDXvVztsGk4",
+        "reason": "different_steps"
+      }
+    ]
+  },
+  "scoring": {
+    "task": "MakeStrawberrySmoothie",
+    "reference_id": "-3C-VGhs2mo",
+    "reference_frames": 283,
+    "steps": [
+      {
+        "id": "102",
+        "label": "put strawberries and other fruits into the juicer"
+      },
+      {
+        "id": "103",
+        "label": "put yogurt, honey and other ingredients into the juicer"
+      },
+      {
+        "id": "104",
+        "label": "shake and juice"
+      }
+    ],
+    "scores": [
+      {
+        "video_id": "7U_w-qmK0qw",
+        "split": "training",
+        "sampled_frames": 276,
+        "global_distance": 0.5449850510792682,
+        "step_distances": [
+          0.5031893152155374,
+          0.5835895796616872,
+          0.614742310543855
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 95
+          },
+          {
+            "reference": 20,
+            "comparison": 30
+          },
+          {
+            "reference": 120,
+            "comparison": 50
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "7wNAZK1Y2hY",
+        "split": "training",
+        "sampled_frames": 340,
+        "global_distance": 0.36936425601734835,
+        "step_distances": [
+          0.3585369332631429,
+          0.35124592552582423,
+          0.5434117289880911
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 75
+          },
+          {
+            "reference": 20,
+            "comparison": 150
+          },
+          {
+            "reference": 120,
+            "comparison": 80
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "B9hdVJVxT2w",
+        "split": "training",
+        "sampled_frames": 206,
+        "global_distance": 0.32728108209476137,
+        "step_distances": [
+          0.4402036735415459,
+          0.34322828203439715,
+          0.2905350557310664
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 50
+          },
+          {
+            "reference": 20,
+            "comparison": 60
+          },
+          {
+            "reference": 120,
+            "comparison": 134
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "EFITQYoEa0Q",
+        "split": "training",
+        "sampled_frames": 218,
+        "global_distance": 0.295480819767861,
+        "step_distances": [
+          0.26905582547187806,
+          0.2867076850907747,
+          0.3250488467514515
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 5
+          },
+          {
+            "reference": 20,
+            "comparison": 129
+          },
+          {
+            "reference": 120,
+            "comparison": 30
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "ELkklM6plPk",
+        "split": "training",
+        "sampled_frames": 345,
+        "global_distance": 0.23672285891961362,
+        "step_distances": [
+          0.27588182381893456,
+          0.2845490843057632,
+          0.1939964726212479
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 95
+          },
+          {
+            "reference": 20,
+            "comparison": 10
+          },
+          {
+            "reference": 120,
+            "comparison": 105
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "FdkA7ud1-rE",
+        "split": "training",
+        "sampled_frames": 348,
+        "global_distance": 0.3630073580933713,
+        "step_distances": [
+          0.3734801809560685,
+          0.412249316573143,
+          0.33778682701560664
+        ],
+        "step_path_counts": [
+          {
+            "reference": 35,
+            "comparison": 150
+          },
+          {
+            "reference": 20,
+            "comparison": 50
+          },
+          {
+            "reference": 129,
+            "comparison": 65
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "GGP7GWMFwDI",
+        "split": "training",
+        "sampled_frames": 139,
+        "global_distance": 0.3831184051483343,
+        "step_distances": [
+          0.36497658680785783,
+          0.4434759721159935,
+          0.4853274271656306
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 44
+          },
+          {
+            "reference": 20,
+            "comparison": 5
+          },
+          {
+            "reference": 120,
+            "comparison": 65
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "TiDNVy5WDd0",
+        "split": "training",
+        "sampled_frames": 395,
+        "global_distance": 0.2916548910020273,
+        "step_distances": [
+          0.3208030460511937,
+          0.30177911251783374,
+          0.28550515142725963
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 85
+          },
+          {
+            "reference": 20,
+            "comparison": 75
+          },
+          {
+            "reference": 120,
+            "comparison": 85
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "hqQLWgQgzfM",
+        "split": "training",
+        "sampled_frames": 261,
+        "global_distance": 0.463087573068302,
+        "step_distances": [
+          0.45650269985198977,
+          0.3372939969102542,
+          0.528961283890974
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 40
+          },
+          {
+            "reference": 20,
+            "comparison": 15
+          },
+          {
+            "reference": 120,
+            "comparison": 168
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "nZPpXbf5woQ",
+        "split": "training",
+        "sampled_frames": 430,
+        "global_distance": 0.338516077607177,
+        "step_distances": [
+          0.4092988723284239,
+          0.3822347313165665,
+          0.3007751134007868
+        ],
+        "step_path_counts": [
+          {
+            "reference": 22,
+            "comparison": 35
+          },
+          {
+            "reference": 20,
+            "comparison": 10
+          },
+          {
+            "reference": 180,
+            "comparison": 110
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "rke6C0lLGk0",
+        "split": "training",
+        "sampled_frames": 351,
+        "global_distance": 0.3391985849097923,
+        "step_distances": [
+          0.33955136984586715,
+          0.35403900157946805,
+          0.3116110286102681
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 20
+          },
+          {
+            "reference": 20,
+            "comparison": 65
+          },
+          {
+            "reference": 188,
+            "comparison": 205
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "uXgn_02G_qY",
+        "split": "training",
+        "sampled_frames": 168,
+        "global_distance": 0.2938530306091578,
+        "step_distances": [
+          0.21847453266382216,
+          0.25018881807724636,
+          0.36061596657131234
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 10
+          },
+          {
+            "reference": 20,
+            "comparison": 15
+          },
+          {
+            "reference": 120,
+            "comparison": 136
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "2T1Et9xE5IQ",
+        "split": "testing",
+        "sampled_frames": 236,
+        "global_distance": 0.2565116100392099,
+        "step_distances": [
+          0.3122289672493934,
+          0.2762392553687095,
+          0.27899021009604136
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 60
+          },
+          {
+            "reference": 20,
+            "comparison": 75
+          },
+          {
+            "reference": 120,
+            "comparison": 40
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "4z_7hDi2ffQ",
+        "split": "testing",
+        "sampled_frames": 193,
+        "global_distance": 0.38376595548521925,
+        "step_distances": [
+          0.41924545019865034,
+          0.4548355728387833,
+          0.3088693997399373
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 5
+          },
+          {
+            "reference": 20,
+            "comparison": 45
+          },
+          {
+            "reference": 120,
+            "comparison": 110
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "ofF5LwTSgng",
+        "split": "testing",
+        "sampled_frames": 114,
+        "global_distance": 0.21085487427222854,
+        "step_distances": [
+          0.2004876951758678,
+          0.1743355870246887,
+          0.21635260631640751
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 26
+          },
+          {
+            "reference": 20,
+            "comparison": 5
+          },
+          {
+            "reference": 120,
+            "comparison": 45
+          }
+        ],
+        "step_issues": []
+      },
+      {
+        "video_id": "wNPLO4B8bZQ",
+        "split": "testing",
+        "sampled_frames": 266,
+        "global_distance": 0.3221771529800183,
+        "step_distances": [
+          0.38184273838996885,
+          0.33290387243032454,
+          0.2961062981277449
+        ],
+        "step_path_counts": [
+          {
+            "reference": 20,
+            "comparison": 20
+          },
+          {
+            "reference": 20,
+            "comparison": 10
+          },
+          {
+            "reference": 126,
+            "comparison": 130
+          }
+        ],
+        "step_issues": []
+      }
+    ],
+    "failures": []
+  }
+}

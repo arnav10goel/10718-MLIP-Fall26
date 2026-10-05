@@ -1,0 +1,23 @@
+=== SIM classical all-pairs (after) 2026-10-05 14:36:41
+exit 0
+global mean 0.4133 std 0.1028
+use the needle to open the SIM card slot: mean 0.4314 std 0.1137
+put the SIM card into the SIM card slot: mean 0.4014 std 0.1139
+press the SIM card slot back: mean 0.4169 std 0.1130
+wrote data/prepared/sim_classical_dtw_summary.json
+=== smoothie classical (after) 2026-10-05 14:38:44
+exit 0
+Wrote 16 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/histogram_fix/runs/MakeStrawberrySmoothie_classical_after.json
+=== UseRiceCookerToCookRice classical (after) 2026-10-05 14:39:56
+exit 0
+Wrote 30 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/histogram_fix/runs/UseRiceCookerToCookRice_classical_after.json
+=== MakePaperWindMill classical (after) 2026-10-05 14:43:10
+exit 0
+Wrote 24 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/histogram_fix/runs/MakePaperWindMill_classical_after.json
+=== PutOnQuiltCover classical (after) 2026-10-05 14:47:01
+exit 0
+Wrote 25 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/histogram_fix/runs/PutOnQuiltCover_classical_after.json
+=== MakeStrawberrySmoothie clip (same) 2026-10-05 14:49:32
+exit 0
+Wrote 16 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/histogram_fix/runs/MakeStrawberrySmoothie_clip_same.json
+ALL DONE 2026-10-05 14:52:49

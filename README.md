@@ -18,13 +18,13 @@ A test pair is one full video of a task done correctly and one video of someone 
 
 | Module | Features |
 | --- | --- |
-| `scripts/classical_pairwise_dtw.py` | 16-bin hue histogram, 8-bin saturation histogram, and a 4×4 grid of 9-bin gradient-orientation histograms, from a 64×64 frame |
+| `scripts/classical_pairwise_dtw.py` | 16-bin hue histogram, 8-bin saturation histogram, and a 4×4 grid of 9-bin gradient-orientation histograms, from a 64×64 frame. Each of the three parts is normalized on its own before they are joined, so colour and edges count equally |
 | `scripts/ml_pairwise_dtw.py` | 512-D CLIP ViT-B/32 embedding (OpenAI weights), from a 224×224 frame |
 
 ## What the values mean
 
 - **0** means the aligned frames point the same direction.
-- **2** means they point in opposite directions.
+- **2** means they point in opposite directions. Histogram features are never negative, so their cost stays between 0 and 1.
 - The **mean** is the typical cost across the correct pairs.
 - The **standard deviation** is how much that cost varies among correct pairs.
 - The **cutoff** is mean + 2 standard deviations. A step whose cost is above that is a deviation.
@@ -74,12 +74,14 @@ Those clips are listed in `replace_simcard_videos.json` and stored in `data/vide
 
 | Step | Histograms | CLIP | Histogram cutoff | CLIP cutoff |
 | --- | --- | --- | --- | --- |
-| Open the slot | 0.537 ± 0.101 | 0.196 ± 0.044 | 0.74 | 0.28 |
-| Put the SIM in | 0.486 ± 0.088 | 0.197 ± 0.050 | 0.66 | 0.30 |
-| Press the tray back | 0.526 ± 0.097 | 0.202 ± 0.047 | 0.72 | 0.30 |
-| Whole video | 0.504 ± 0.077 | 0.200 ± 0.039 | 0.66 | 0.28 |
+| Open the slot | 0.431 ± 0.114 | 0.196 ± 0.044 | 0.66 | 0.28 |
+| Put the SIM in | 0.401 ± 0.114 | 0.197 ± 0.050 | 0.63 | 0.30 |
+| Press the tray back | 0.417 ± 0.113 | 0.202 ± 0.047 | 0.64 | 0.30 |
+| Whole video | 0.413 ± 0.103 | 0.200 ± 0.039 | 0.62 | 0.28 |
 
-A cropped insert that costs more than about 0.30 in CLIP, or 0.66 with the histograms, is outside the normal range for "put the SIM in." A backwards card should push that step over the cutoff. A tray left halfway out should push "press the SIM card slot back" over 0.30 in CLIP, or 0.72 with the histograms.
+A cropped insert that costs more than about 0.30 in CLIP, or 0.63 with the histograms, is outside the normal range for "put the SIM in." A backwards card should push that step over the cutoff. A tray left halfway out should push "press the SIM card slot back" over 0.30 in CLIP, or 0.64 with the histograms.
+
+The histogram column uses the per-part normalization above. Before that fix, edge values held about 99% of the feature and the same run gave 0.537 ± 0.101, 0.486 ± 0.088, 0.526 ± 0.097 and 0.504 ± 0.077 (see `experiments/histogram_fix/`).
 
 ## Task-selected offline reports
 

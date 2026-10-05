@@ -1,0 +1,105 @@
+[1/48] 0b6joFdBwUw 397 frames
+[2/48] 2Lk9SO8DIVk 228 frames
+[3/48] 4PkwcBoEpuw 451 frames
+[4/48] 50dWHdvU5cA 430 frames
+[5/48] 6PgT3YTghW0 268 frames
+[6/48] 8J13YRXw0Sk 453 frames
+[7/48] 8_-nQFpNAl4 395 frames
+[8/48] 93GnoFu-5ho 366 frames
+[9/48] ASUDRGkdWWA 121 frames
+[10/48] B0oEvirFJas 208 frames
+[11/48] C9w4V0cd7_w 318 frames
+[12/48] CG8Xh4bRw5Q 427 frames
+[13/48] DRKF_C-dA5o 615 frames
+[14/48] GMuuN6HDBDE 239 frames
+[15/48] Gjiomnfp2KY 495 frames
+[16/48] GoQpmUSHstw 252 frames
+[17/48] JsJbj8RmNdo 227 frames
+[18/48] O91Tl8lB5J4 163 frames
+[19/48] OHCLCTFJFlw 318 frames
+[20/48] Ong3oLo72bU 502 frames
+[21/48] PyDMx39d3_I 355 frames
+[22/48] QLHYfvfVY7k 338 frames
+[23/48] QvrF7WmDRFE 539 frames
+[24/48] RCIoDkl5jV0 399 frames
+[25/48] RozBliBcXlA 190 frames
+[26/48] TI2K6-ykoC8 286 frames
+[27/48] UjRs9rfVm2A 315 frames
+[28/48] V_BwPfCh1Z0 125 frames
+[29/48] VaET7EoFWHI 329 frames
+[30/48] Vn9h2KKyTeE 524 frames
+[31/48] YXdYQlGonRw 157 frames
+[32/48] ZWMROBj5WR4 161 frames
+[33/48] aOAnYbHdqsI 295 frames
+[34/48] cPmPYw3lzIw 174 frames
+[35/48] cRUX7Roqxbk 207 frames
+[h264 @ 0x14d62de40] mmco: unref short failure
+    Last message repeated 1 times
+[36/48] gfNUu4DjZ3Q 301 frames
+[37/48] iKW_TX4fsGQ 199 frames
+[38/48] jaTb_TJTiAM 133 frames
+[39/48] jwFQu_beN_U 328 frames
+[40/48] lKBwkhmx8qI 248 frames
+[41/48] nZcn0axMKM0 152 frames
+[42/48] qkguKz3BrJI 252 frames
+[43/48] rhHGfAz_who 362 frames
+[44/48] vnshhQ3ExUw 206 frames
+[45/48] wqusEcBLfBU 238 frames
+[46/48] xW09r26n_vU 152 frames
+[47/48] zRtZbAQMhjw 378 frames
+[48/48] ziEpBwJ1TOg 310 frames
+aligning 1128 pairs
+finished reference 1/48
+finished reference 2/48
+finished reference 3/48
+finished reference 4/48
+finished reference 5/48
+finished reference 6/48
+finished reference 7/48
+finished reference 8/48
+finished reference 9/48
+finished reference 10/48
+finished reference 11/48
+finished reference 12/48
+finished reference 13/48
+finished reference 14/48
+finished reference 15/48
+finished reference 16/48
+finished reference 17/48
+finished reference 18/48
+finished reference 19/48
+finished reference 20/48
+finished reference 21/48
+finished reference 22/48
+finished reference 23/48
+finished reference 24/48
+finished reference 25/48
+finished reference 26/48
+finished reference 27/48
+finished reference 28/48
+finished reference 29/48
+finished reference 30/48
+finished reference 31/48
+finished reference 32/48
+finished reference 33/48
+finished reference 34/48
+finished reference 35/48
+finished reference 36/48
+finished reference 37/48
+finished reference 38/48
+finished reference 39/48
+finished reference 40/48
+finished reference 41/48
+finished reference 42/48
+finished reference 43/48
+finished reference 44/48
+finished reference 45/48
+finished reference 46/48
+finished reference 47/48
+finished reference 48/48
+pairs: 1128
+global mean 0.5045 std 0.0773
+use the needle to open the SIM card slot: mean 0.5366 std 0.1013
+put the SIM card into the SIM card slot: mean 0.4855 std 0.0877
+press the SIM card slot back: mean 0.5263 std 0.0965
+wrote data/prepared/sim_classical_dtw_summary.json

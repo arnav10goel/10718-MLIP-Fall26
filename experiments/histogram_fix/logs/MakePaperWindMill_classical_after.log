@@ -1,0 +1,4 @@
+Validating media for MakePaperWindMill under /Users/arnav/Documents/10718-MLIP-Fall26/data
+Scoring 24 comparisons against 4ufBW5Cfpgw
+[h264 @ 0x130f196e0] mmco: unref short failure
+Wrote 24 scores to /Users/arnav/Documents/10718-MLIP-Fall26/experiments/histogram_fix/runs/MakePaperWindMill_classical_after.json
