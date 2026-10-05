@@ -161,40 +161,56 @@ def cut_segments(source: str | Path, segments: list[tuple[float, float]], output
 
 
 # Gemini samples frames (1 fps by default), so its last timestamp can land a
-# second or two past the end. Pull small overshoots back; reject larger ones.
+# second or two past the end. Pull small overshoots back to the end. Larger
+# timing problems are repaired (the time is cleared) and reported as warnings,
+# so one bad timestamp does not throw away every step's verdict.
 END_SLACK_S = 5.0
 
 
-def _clamp_time(value: float | None, execution_duration_s: float | None) -> float | None:
+def _check_time(value, execution_duration_s, where, warnings):
     if value is None or execution_duration_s is None or value <= execution_duration_s:
         return value
     if value <= execution_duration_s + END_SLACK_S:
         return round(execution_duration_s, 3)
-    raise ValueError(f"time {value} is past the end of the execution ({execution_duration_s:.1f} s)")
+    warnings.append(f"{where}: time {value} is past the end ({execution_duration_s:.1f} s); cleared")
+    return None
 
 
-def _validate(candidate: dict, step_ids: list[str], execution_duration_s: float | None) -> None:
+def _validate(candidate: dict, step_ids: list[str], execution_duration_s: float | None) -> list[str]:
+    """Reject malformed answers; repair timing problems and return them as warnings."""
     Draft202012Validator(OFFLINE_SCHEMA).validate(candidate)
     returned = [step["reference_step_id"] for step in candidate["steps"]]
     if sorted(returned) != sorted(step_ids) or len(set(returned)) != len(returned):
         raise ValueError("steps must list every checklist step_id exactly once")
-    for step in candidate["steps"]:
-        for field in ("execution_start_s", "execution_end_s"):
-            step[field] = _clamp_time(step[field], execution_duration_s)
-        start, end = step["execution_start_s"], step["execution_end_s"]
-        if step["status"] in _LOCATED and (start is None or end is None):
-            raise ValueError(f"{step['reference_step_id']}: status {step['status']} needs execution times")
-        if step["status"] in _UNLOCATED and (start is not None or end is not None):
-            raise ValueError(f"{step['reference_step_id']}: a skipped step cannot have execution times")
-        if start is not None and end is not None and start > end:
-            raise ValueError(f"{step['reference_step_id']}: execution_start_s is after execution_end_s")
     for deviation in candidate["deviations"]:
         step_id = deviation["reference_step_id"]
         if step_id is not None and step_id not in step_ids:
             raise ValueError("deviation reference_step_id must be a checklist step_id or null")
         if not deviation["message"].strip() or not deviation["evidence"].strip():
             raise ValueError("each deviation needs a nonempty message and evidence")
-        deviation["execution_time_s"] = _clamp_time(deviation["execution_time_s"], execution_duration_s)
+
+    warnings: list[str] = []
+    for step in candidate["steps"]:
+        sid = step["reference_step_id"]
+        for field in ("execution_start_s", "execution_end_s"):
+            step[field] = _check_time(step[field], execution_duration_s, f"{sid} {field}", warnings)
+        start, end = step["execution_start_s"], step["execution_end_s"]
+        if (start is None) != (end is None):
+            warnings.append(f"{sid}: only one of start/end is set; cleared both")
+            step["execution_start_s"] = step["execution_end_s"] = start = end = None
+        if start is not None and start > end:
+            warnings.append(f"{sid}: start {start} is after end {end}; cleared both")
+            step["execution_start_s"] = step["execution_end_s"] = start = end = None
+        if step["status"] in _UNLOCATED and start is not None:
+            warnings.append(f"{sid}: skipped step had execution times; cleared")
+            step["execution_start_s"] = step["execution_end_s"] = None
+        if step["status"] in _LOCATED and step["execution_start_s"] is None:
+            warnings.append(f"{sid}: status {step['status']} has no execution times")
+    for index, deviation in enumerate(candidate["deviations"]):
+        deviation["execution_time_s"] = _check_time(
+            deviation["execution_time_s"], execution_duration_s, f"deviation {index}", warnings
+        )
+    return warnings
 
 
 def predict_offline_alignment(
@@ -214,8 +230,9 @@ def predict_offline_alignment(
     validated reference rows (annotations.load_reference_annotations) whose times
     are seconds in the reference video. The execution carries no labels.
 
-    Returns prediction (or None with validation_error), the request, the raw
-    response and the SDK call duration. API errors raise.
+    Returns prediction (or None with validation_error), warnings for repaired
+    timing problems, the request, the raw response and the SDK call duration.
+    API errors raise.
     """
     for name, uri in (("reference_uri", reference_uri), ("execution_uri", execution_uri)):
         if not isinstance(uri, str) or not uri.strip():
@@ -267,6 +284,7 @@ def predict_offline_alignment(
 
     prediction = None
     validation_error = None
+    warnings: list[str] = []
     try:
         candidates = raw_response.get("candidates")
         if not isinstance(candidates, list) or len(candidates) != 1:
@@ -277,7 +295,7 @@ def predict_offline_alignment(
         if not isinstance(text, str) or not text.strip():
             raise ValueError("Response contains no prediction text")
         candidate = json.loads(text)
-        _validate(candidate, step_ids, execution_duration_s)
+        warnings = _validate(candidate, step_ids, execution_duration_s)
         prediction = candidate
     except (ValueError, ValidationError) as error:
         validation_error = error.message if isinstance(error, ValidationError) else str(error)
@@ -285,6 +303,7 @@ def predict_offline_alignment(
     return {
         "prediction": prediction,
         "validation_error": validation_error,
+        "warnings": warnings,
         "request": request,
         "response": raw_response,
         "request_duration_s": duration,

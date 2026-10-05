@@ -73,14 +73,6 @@ class PredictTests(unittest.TestCase):
         cases["missing step"] = p
         p = good_prediction(); p["steps"][2]["reference_step_id"] = "s001"
         cases["duplicate step"] = p
-        p = good_prediction(); p["steps"][1] = step("s002", "skipped", 1, 2)
-        cases["skipped with times"] = p
-        p = good_prediction(); p["steps"][0] = step("s001", "done")
-        cases["done without times"] = p
-        p = good_prediction(); p["steps"][0] = step("s001", "done", 5, 3)
-        cases["start after end"] = p
-        p = good_prediction(); p["steps"][2] = step("s003", "done", 5, 99)
-        cases["far past execution end"] = p
         p = good_prediction(); p["deviations"][0]["reference_step_id"] = "s999"
         cases["unknown deviation step"] = p
         p = good_prediction(); p["deviations"][0]["message"] = " "
@@ -99,6 +91,20 @@ class PredictTests(unittest.TestCase):
                 client, _ = fake_client(text, finish_reason=reason)
                 result = predict_offline_alignment(client, "u1", "u2", ROWS)
                 self.assertIsNone(result["prediction"])
+
+    def test_timing_problems_are_repaired_with_warnings_not_rejected(self):
+        p = good_prediction()
+        p["steps"][0] = step("s001", "done", 5, 3)          # start after end
+        p["steps"][1] = step("s002", "skipped", 1, 2)       # skipped with times
+        p["steps"][2] = step("s003", "done", 5, 99)         # far past the end
+        client, _ = fake_client(p)
+        result = predict_offline_alignment(client, "u1", "u2", ROWS, execution_duration_s=10.0)
+        self.assertIsNone(result["validation_error"])
+        steps = result["prediction"]["steps"]
+        self.assertEqual([s["status"] for s in steps], ["done", "skipped", "done"])
+        self.assertEqual([s["execution_start_s"] for s in steps], [None, None, None])
+        self.assertIsNone(steps[2]["execution_end_s"])
+        self.assertEqual(len(result["warnings"]), 6)
 
     def test_small_overshoot_past_the_end_is_clamped(self):
         p = good_prediction()

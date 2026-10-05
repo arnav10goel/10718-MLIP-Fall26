@@ -1,4 +1,7 @@
-"""Build the execution test clips and their private answer keys from one COIN video."""
+"""Build the execution test clips and their private answer keys from one COIN video.
+
+Usage: python experiments/offline_vlm/scripts/make_cases.py [COIN execution id]
+"""
 
 import json
 import sys
@@ -10,8 +13,13 @@ sys.path.insert(0, str(REPO))
 from scripts.coin_tasks import load_database, resolve_data_root  # noqa: E402
 from src.guideme.offline_vlm import cut_segments  # noqa: E402
 
-TASK, EXECUTION_ID = "MakePaperWindMill", "e7p9QHRmd4k"
+TASK = "MakePaperWindMill"
+EXECUTION_ID = sys.argv[1] if len(sys.argv) > 1 else "e7p9QHRmd4k"
+# The first run's cases (e7p9QHRmd4k) live directly in cases/; others in cases/<id>/.
 CASES = Path(__file__).resolve().parents[1] / "cases"
+if EXECUTION_ID != "e7p9QHRmd4k":
+    CASES = CASES / EXECUTION_ID
+    CASES.mkdir(parents=True, exist_ok=True)
 
 
 def build(name, info, order, drop):

@@ -1,6 +1,6 @@
 """Compare run_offline_vlm reports with the private answer keys; write results.md.
 
-Usage (worktree root): python experiments/offline_vlm/scripts/score.py <tag>
+Usage (repo root): python experiments/offline_vlm/scripts/score.py <tag> [cases subfolder]
 """
 
 import json
@@ -20,14 +20,17 @@ def overlap(a, b):
     return inter / union if union > 0 else 0.0
 
 
-def main(tag: str) -> None:
-    lines = ["# Results", "", f"Run tag `{tag}`.", ""]
+def main(tag: str, subfolder: str = "") -> None:
+    cases_dir = E / "cases" / subfolder
+    lines = [f"# Results: {tag}", "", f"Run tag `{tag}`; cases in `cases/{subfolder}`.", ""]
     totals = {"steps": 0, "status_right": 0, "deviation_cases": 0, "deviation_caught": 0,
               "false_deviation_cases": 0}
     for case in CASES:
-        truth = json.loads((E / "cases" / f"{case}_truth.json").read_text())
+        truth = json.loads((cases_dir / f"{case}_truth.json").read_text())
         report = json.loads((E / "runs" / f"{case}_{tag}.json").read_text())
         lines += [f"## {case}", "", f"Status: `{report['status']}`; model `{report['requested_model']}`."]
+        if (report.get("result") or {}).get("warnings"):
+            lines.append("Timing warnings: " + "; ".join(report["result"]["warnings"]))
         result = report.get("result") or {}
         prediction = result.get("prediction")
         if prediction is None:
@@ -71,9 +74,9 @@ def main(tag: str) -> None:
         f"Deviation cases caught: {totals['deviation_caught']} of {totals['deviation_cases']}. "
         f"Correct cases with a false alarm: {totals['false_deviation_cases']} of 1.", "",
     ]
-    (E / "results.md").write_text("\n".join(lines))
+    (E / f"results_{tag}.md").write_text("\n".join(lines))
     print("\n".join(lines))
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else "")
