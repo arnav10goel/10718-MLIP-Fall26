@@ -8,7 +8,7 @@ The histogram feature in `scripts/classical_pairwise_dtw.py::frame_feature` join
 
 - **Fix** (branch `fix-histogram-normalization`): L2-normalize hue, saturation and gradient blocks separately, then join and normalize. Each block now holds a third of the vector's energy.
 - **Tasks**: ReplaceSIMCard (the repo example), MakeStrawberrySmoothie, UseRiceCookerToCookRice, MakePaperWindMill, PutOnQuiltCover. Every COIN video with the task's most common exact step sequence.
-- **ReplaceSIMCard** reruns the repo's own all-pairs script, `scripts/classical_pairwise_dtw.py` (48 videos, 1128 pairs), before and after the fix, so the "before" run also checks that we reproduce the README table.
+- **ReplaceSIMCard** reruns the repo's own all-pairs script, `scripts/classical_pairwise_dtw.py` (48 videos, 1128 pairs), before and after the fix, so the "before" run also checks that we reproduce the README table. That entry point was removed later (commit 400d370), so the SIM part of `scripts/run_sim_and_smoothie.sh` no longer reruns; the saved results stand.
 - **The other four** use the team's runner `scripts.run_coin_reference` (one reference against every other matching video), as in `experiments/candidate_task_check/`. Smoothie uses the README's example reference `-3C-VGhs2mo`.
 - CLIP does not use this feature, so CLIP numbers do not change; smoothie gets a CLIP run because it had none.
 
