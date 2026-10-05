@@ -15,6 +15,11 @@ clip = [
   "torch>=2.6",
   "open-clip-torch>=2.32",
 ]
+vlm = [
+  "google-genai",
+  "jsonschema",
+  "python-dotenv",
+]
 
 [tool.uv]
 package = false
