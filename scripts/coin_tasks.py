@@ -1,4 +1,4 @@
-"""Shared paths and the four COIN tasks we keep."""
+"""Shared paths and the COIN tasks we keep."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ TASKS = (
     "BoilNoodles",
     "WashDish",
     "CleanToilet",
+    "MakeStrawberrySmoothie",
 )
 
 COIN_JSON_URL = (

@@ -662,6 +662,34 @@ def score_with_annotations(spec: TaskSpec) -> None:
     print(f"\nwrote {output_path.relative_to(REPO_ROOT)}")
 
 
+def _segment_indexes(
+    times: np.ndarray, labels: np.ndarray, step_index: int, end_time: float | None
+) -> np.ndarray:
+    chosen = labels == step_index
+    if end_time is not None:
+        chosen = chosen & (times < end_time)
+    return np.flatnonzero(chosen)
+
+
+def _dtw_segment_distance(query: np.ndarray, reference: np.ndarray) -> float:
+    cost = 1.0 - query @ reference.T
+    np.clip(cost, 0.0, 2.0, out=cost)
+    path_mean, _, _, _, _ = dtw_pair(
+        cost.astype(np.float64),
+        np.zeros(len(query), dtype=np.int8),
+        np.zeros(len(reference), dtype=np.int8),
+        1,
+    )
+    return float(path_mean)
+
+
+def _mean_present(values: list[float | None]) -> float | None:
+    present = [value for value in values if value is not None]
+    if not present:
+        return None
+    return float(np.mean(present))
+
+
 def score_recorded_prefixes(spec: TaskSpec) -> None:
     """Cut each recording at mid-insert and score it against the first two videos.
 

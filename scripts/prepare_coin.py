@@ -1,4 +1,4 @@
-"""Build a local manifest for the four downloaded COIN tasks.
+"""Build a local manifest for the downloaded COIN tasks.
 
 Reads data/raw/COIN.json and the mp4s under data/videos/. Writes:
 
@@ -55,6 +55,20 @@ def manifest_row(youtube_id: str, info: dict, video_path: Path) -> dict:
     }
 
 
+def find_video(youtube_id: str, info: dict) -> Path | None:
+    """The task folder itself, then its sorting subfolders such as used/ and unused/."""
+    path = video_local_path(info, youtube_id)
+    candidates = [path] + sorted(
+        candidate
+        for candidate in path.parent.glob(f"*/{youtube_id}.mp4")
+        if candidate.parent.name != "recorded"
+    )
+    for candidate in candidates:
+        if candidate.is_file() and candidate.stat().st_size > 0:
+            return candidate
+    return None
+
+
 def write_jsonl(path: Path, rows: list[dict]) -> None:
     with path.open("w") as f:
         for row in rows:
@@ -70,8 +84,8 @@ def main() -> None:
     missing: dict[str, list[str]] = {task: [] for task in TASKS}
 
     for youtube_id, info in sorted(selected.items(), key=lambda item: (item[1]["class"], item[0])):
-        path = video_local_path(info, youtube_id)
-        if path.is_file() and path.stat().st_size > 0:
+        path = find_video(youtube_id, info)
+        if path is not None:
             rows.append(manifest_row(youtube_id, info, path))
         else:
             missing[info["class"]].append(youtube_id)
