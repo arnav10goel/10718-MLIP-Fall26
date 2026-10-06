@@ -58,10 +58,12 @@ Segment DTW uses the annotated step boundaries. The recording frames of the step
 Neither baseline catches any mistake on either task, with open-end or segment DTW. Recall and precision are 0% for both tasks. The only bar above a cutoff is CLIP on Smoothie correct1 step 9, a false positive.
 
 
-| Task             | Precision | Recall |
-| ---------------- | --------- | ------ |
-| Replace SIM card | 0%        | 0%     |
-| Smoothie         | 0%        | 0%     |
+<table>
+<tr><th rowspan="2">Task</th><th colspan="2">Precision</th><th colspan="2">Recall</th></tr>
+<tr><th>Histogram (no-ML)</th><th>CLIP (ML)</th><th>Histogram (no-ML)</th><th>CLIP (ML)</th></tr>
+<tr><td>Replace SIM card</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr><td>Smoothie</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+</table>
 
 
 
