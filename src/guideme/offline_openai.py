@@ -1,8 +1,11 @@
 """Offline alignment through an OpenAI-compatible chat API (vLLM, SGLang, Modal Endpoints).
 
-Same prompt, checklist, JSON schema and answer checks as offline_vlm (Gemini). These
-servers take images, not video, so each video is sent as JPEG frames sampled at a
-fixed rate, each preceded by its time in seconds from the start of that video.
+Same prompt, checklist, JSON schema and answer checks as offline_vlm (Gemini). By
+default each video is sent as JPEG frames sampled at a fixed rate, each preceded by
+its time in seconds from the start of that video. For a model and server that take
+video (video_url), the execution can instead be sent whole, shrunk first to keep the
+request small; the server then picks its frames. The reference stays as frames,
+since servers such as Modal's GLM-5.3-Flash accept one video per request.
 """
 
 import base64
@@ -11,9 +14,11 @@ import json
 import math
 from pathlib import Path
 import re
+import subprocess
 from time import perf_counter
 
 import cv2
+import imageio_ffmpeg
 from jsonschema import ValidationError
 
 from src.guideme.offline_vlm import OFFLINE_SCHEMA, _validate, video_duration_s
@@ -82,6 +87,34 @@ def sample_frames(
     return frames
 
 
+def shrink_video(source: str | Path, output: str | Path, max_side: int = 640) -> Path:
+    """Write a smaller video-only copy of source: longer side at most max_side, H.264 CRF 28."""
+    output = Path(output)
+    if output.exists():
+        raise FileExistsError(f"Output already exists: {output}")
+    scale = (f"scale=w={max_side}:h={max_side}:force_original_aspect_ratio=decrease,"
+             "scale=trunc(iw/2)*2:trunc(ih/2)*2")
+    command = [
+        imageio_ffmpeg.get_ffmpeg_exe(), "-nostdin", "-v", "error", "-n", "-i", str(source),
+        "-vf", scale, "-an", "-sn", "-dn", "-map_metadata", "-1", "-c:v", "libx264",
+        "-preset", "veryfast", "-crf", "28", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+        str(output),
+    ]
+    completed = subprocess.run(command, capture_output=True, text=True, check=False)
+    if completed.returncode != 0:
+        raise RuntimeError(f"Shrink failed: {completed.stderr.strip()[-1000:]}")
+    return output
+
+
+def _video_url_parts(label: str, clip: str | Path, max_side: int) -> list[dict]:
+    small = shrink_video(clip, Path(clip).with_name(Path(clip).stem + "_small.mp4"), max_side)
+    data = base64.b64encode(small.read_bytes()).decode("ascii")
+    return [
+        {"type": "text", "text": label},
+        {"type": "video_url", "video_url": {"url": "data:video/mp4;base64," + data}},
+    ]
+
+
 def _video_parts(label: str, frames: list[tuple[float, bytes]]) -> list[dict]:
     spacing = frames[1][0] - frames[0][0] if len(frames) > 1 else 0.0
     parts = [{"type": "text", "text": (
@@ -109,21 +142,26 @@ def build_request(
     max_tokens: int = 16384,
     disable_thinking: bool = False,
     json_schema: bool = True,
+    video: bool = False,
 ) -> tuple[dict, dict]:
     """Chat Completions request in the same order Gemini gets its inputs.
 
-    Order: REFERENCE frames, EXECUTION frames, the prompt, CHECKLIST, and
-    EXECUTION_DURATION_S. Returns (request, frame times per video).
+    Order: REFERENCE frames, EXECUTION (frames, or the whole clip when video is
+    True), the prompt, CHECKLIST, and EXECUTION_DURATION_S. Returns (request, frame
+    times per video); the execution's are empty with video, as the server picks them.
     """
     if not checklist_rows:
         raise ValueError("checklist_rows must contain at least one reference step")
     if not isinstance(model, str) or not model.strip():
         raise ValueError("model must be a nonempty string")
-    frames = {
-        name: sample_frames(clip, fps, max_frames=max_frames, max_side=frame_max_side)
-        for name, clip in (("reference", reference_clip), ("execution", execution_clip))
-    }
-    content = _video_parts("REFERENCE", frames["reference"]) + _video_parts("EXECUTION", frames["execution"])
+    frames = {"reference": sample_frames(reference_clip, fps, max_frames=max_frames, max_side=frame_max_side)}
+    content = _video_parts("REFERENCE", frames["reference"])
+    if video:
+        frames["execution"] = []
+        content += _video_url_parts("EXECUTION", execution_clip, frame_max_side)
+    else:
+        frames["execution"] = sample_frames(execution_clip, fps, max_frames=max_frames, max_side=frame_max_side)
+        content += _video_parts("EXECUTION", frames["execution"])
     checklist = json.dumps(
         [{k: row[k] for k in ("step_id", "action", "start_s", "end_s", "requirements")}
          for row in checklist_rows],
@@ -151,13 +189,13 @@ def build_request(
 
 
 def redact_images(request: dict) -> dict:
-    """Copy of the request with each image replaced by its JPEG size, for the report."""
+    """Copy of the request with each image or video replaced by its size, for the report."""
     kept = copy.deepcopy(request)
     for message in kept["messages"]:
         for part in message["content"]:
-            if part["type"] == "image_url":
-                url = part["image_url"]["url"]
-                part["image_url"]["url"] = f"<jpeg, {len(url)} base64 chars>"
+            if part["type"] in ("image_url", "video_url"):
+                url = part[part["type"]]["url"]
+                part[part["type"]]["url"] = f"<{part['type'][:5]}, {len(url)} base64 chars>"
     return kept
 
 

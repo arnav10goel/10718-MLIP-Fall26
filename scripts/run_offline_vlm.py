@@ -63,7 +63,7 @@ def _run_openai(args, report, reference_clip, execution_clip, rows, exe_duration
     request, times = build_request(
         reference_clip, execution_clip, rows, model=args.model, execution_duration_s=exe_duration,
         fps=args.fps, max_frames=args.max_frames, frame_max_side=args.frame_max_side,
-        max_tokens=args.max_tokens, disable_thinking=args.disable_thinking,
+        max_tokens=args.max_tokens, disable_thinking=args.disable_thinking, video=args.video,
     )
     report["frames"].update({name: {"count": len(t), "times_s": t} for name, t in times.items()})
     if args.dry_run:
@@ -128,6 +128,9 @@ def main(argv: list[str] | None = None) -> int:
                         help="openai: output token limit, thinking included (default: 16384)")
     parser.add_argument("--disable-thinking", action="store_true",
                         help="openai: ask a Qwen-style chat template to skip thinking")
+    parser.add_argument("--video", action="store_true",
+                        help="openai: send the execution as one video (video_url), shrunk to --frame-max-side, "
+                        "instead of frames; the server picks its frames")
     parser.add_argument("--timeout-s", type=float, default=900, help="Network timeout per request")
     parser.add_argument("--env-file", default=str(REPO_ROOT / ".env"), help="Local credentials file")
     parser.add_argument("--dry-run", action="store_true", help="Prepare clips and request only")
@@ -220,7 +223,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.backend == "gemini":
         report["media_resolution"] = args.media_resolution
     else:
-        report["frames"] = {"max_frames": args.max_frames, "max_side": args.frame_max_side}
+        report["frames"] = {"input": "video" if args.video else "frames",
+                            "max_frames": args.max_frames, "max_side": args.frame_max_side}
         report["max_tokens"] = args.max_tokens
         report["thinking"] = "disabled" if args.disable_thinking else "model default"
 
