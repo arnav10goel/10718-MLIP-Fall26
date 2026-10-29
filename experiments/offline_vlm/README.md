@@ -31,6 +31,36 @@ Single runs, three cases each, on execution `I33S4c7zrcg` (full tables: `results
 - Earlier runs on `e7p9QHRmd4k` (`results.md`, tag `live2`) mostly failed the answer checks because of timestamps past the end of the video. Timing problems are now repaired and listed as warnings instead of discarding the answer.
 - Response time varied from about 9 s to over 5 minutes per call; one upload failed with a Google server error (500) and was rerun (`runs/correct_lite_I33_server500.json`).
 
+## Other models (OpenAI-compatible servers, such as Qwen on Modal)
+
+`scripts/run_offline_vlm.py --backend openai` sends the same prompt, checklist and JSON schema to any OpenAI-compatible chat server and checks the answer the same way. These servers take images, not video, so each video is sent as JPEG frames (1 fps by default, at most 256 per video, longer side 640 px), each preceded by its time in seconds. The model must accept images; Modal's library page for a model lists its inputs.
+
+Setup, once per person. Each person uses their own Modal login, and keys stay in `.env`, which git ignores:
+
+```bash
+.venv/bin/pip install -r requirements.txt modal
+.venv/bin/modal token new                        # your own Modal account
+.venv/bin/modal workspace proxy-tokens create    # prints wk-... and ws-...
+echo "VLM_API_KEY=wk-<id>.ws-<secret>" >> .env
+```
+
+Run. A Dedicated Endpoint bills per GPU-second until it is stopped:
+
+```bash
+.venv/bin/modal endpoint create --name guideme-qwen9b --model Qwen/Qwen3.5-9B   # prints ep-...
+.venv/bin/modal endpoint info <ep-id>            # URL; ready once <URL>/v1/models stops returning 503
+.venv/bin/python -m scripts.run_offline_vlm --backend openai --model guideme-qwen9b \
+    --base-url <URL>/v1 --reference ref.mp4 --checklist ref.csv \
+    --execution my_attempt.mp4 --output runs/attempt_qwen9b.json
+.venv/bin/modal endpoint stop <ep-id> -y         # stop billing
+```
+
+- `--model` is the endpoint name, not the Hugging Face ID.
+- Qwen thinks by default. `--max-tokens` (default 16384) covers thinking and the answer; `--disable-thinking` turns thinking off.
+- On a login node, ffmpeg and NumPy fail with `pthread_create failed: Resource temporarily unavailable` when your processes already use most of the per-user thread limit (256 on Babel; VS Code servers use many). Close unused VS Code windows or run on a compute node.
+
+Smoke test, Qwen3.5-9B on COIN `ReplaceSIMCard` (reference `0b6joFdBwUw`, execution `V_BwPfCh1Z0`), two runs. A cut in the middle of the insert step was right both times: s001 done, s002 current, s003 not started, no deviation. The whole correct execution was right once. The other time Qwen left out s003 and flagged a deviation that is not there, so the answer was rejected. Thinking used about 14,000 of the 16,384 output tokens on the whole execution.
+
 ## Files
 
 - `scripts/make_cases.py`, `scripts/run_cases.sh`, `scripts/score.py` (writes `results_<tag>.md`)

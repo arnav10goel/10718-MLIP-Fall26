@@ -14,8 +14,16 @@ Examples (repository root):
     python -m scripts.run_offline_vlm --reference ref.mp4 --checklist ref.csv \
         --execution my_attempt.mp4 --output runs/attempt.json
 
-Add --dry-run to prepare the clips and the request without calling Gemini.
-Credentials come from GEMINI_API_KEY in the environment, then --env-file.
+    # Any OpenAI-compatible server (a Modal Endpoint, vLLM, SGLang). It gets the
+    # same prompt, checklist and schema, with each video as timestamped frames.
+    python -m scripts.run_offline_vlm --backend openai \
+        --model Qwen/Qwen3.8-Flash-Next-FP8 --base-url https://<endpoint>/v1 \
+        --reference ref.mp4 --checklist ref.csv --execution my_attempt.mp4 \
+        --output runs/attempt_qwen.json
+
+Add --dry-run to prepare the clips and the request without calling the model.
+Credentials come from GEMINI_API_KEY (gemini) or VLM_API_KEY (openai) in the
+environment, then --env-file; --base-url falls back to VLM_BASE_URL the same way.
 Uploaded files are not deleted. The execution's own labels are never sent.
 """
 
@@ -37,11 +45,57 @@ from src.guideme.offline_vlm import (
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+GEMINI_DEFAULT_MODEL = "gemini-3.5-flash-lite"
+OPENAI_DEFAULT_MODEL = "Qwen/Qwen3.8-Flash-Next-FP8"
 
 
 def _sha256(path: Path) -> str:
     with path.open("rb") as stream:
         return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def _run_openai(args, report, reference_clip, execution_clip, rows, exe_duration) -> None:
+    """Sample frames, then (unless --dry-run) ask the OpenAI-compatible server."""
+    from src.guideme.offline_openai import (
+        build_request, predict_offline_alignment_openai, redact_images,
+    )
+
+    request, times = build_request(
+        reference_clip, execution_clip, rows, model=args.model, execution_duration_s=exe_duration,
+        fps=args.fps, max_frames=args.max_frames, frame_max_side=args.frame_max_side,
+        max_tokens=args.max_tokens, disable_thinking=args.disable_thinking,
+    )
+    report["frames"].update({name: {"count": len(t), "times_s": t} for name, t in times.items()})
+    if args.dry_run:
+        report["status"] = "dry_run"
+        report["request"] = redact_images(request)
+        return
+
+    from dotenv import dotenv_values
+    from openai import OpenAI
+
+    env_values = dotenv_values(Path(args.env_file).expanduser(), interpolate=False)
+    api_key = os.environ.get("VLM_API_KEY") or env_values.get("VLM_API_KEY")
+    base_url = args.base_url or os.environ.get("VLM_BASE_URL") or env_values.get("VLM_BASE_URL")
+    if not api_key or not api_key.strip():
+        raise ValueError("Set VLM_API_KEY locally before running this command")
+    if not base_url or not base_url.strip():
+        raise ValueError("Pass --base-url or set VLM_BASE_URL")
+    report["base_url"] = base_url
+    client = OpenAI(base_url=base_url, api_key=api_key, timeout=args.timeout_s, max_retries=0)
+    try:
+        report["result"] = predict_offline_alignment_openai(
+            client, request, [row["step_id"] for row in rows], exe_duration
+        )
+        report["status"] = "ok" if report["result"]["prediction"] is not None else "invalid_output"
+    except Exception as error:
+        # Keep the server's message, which says why a request was refused, with the key masked.
+        report["status"] = "error"
+        report["error"] = {"stage": "predict", "type": type(error).__name__,
+                           "code": getattr(error, "status_code", None),
+                           "message": str(error).replace(api_key, "<redacted>")[:1000]}
+    finally:
+        client.close()
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -58,10 +112,22 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", required=True, help="New JSON report path")
     parser.add_argument("--clips-dir", help="Where prepared clips go (default: <output stem>_clips/)")
     parser.add_argument("--data-root", help="Absolute media root; overrides GUIDEME_DATA_ROOT")
-    parser.add_argument("--fps", type=float, default=1, help="Gemini sampling FPS (default: 1)")
-    parser.add_argument("--model", default="gemini-3.5-flash-lite", help="Gemini model ID")
+    parser.add_argument("--backend", default="gemini", choices=("gemini", "openai"),
+                        help="gemini, or any OpenAI-compatible chat server (default: gemini)")
+    parser.add_argument("--fps", type=float, default=1, help="Frame sampling FPS (default: 1)")
+    parser.add_argument("--model", help="Model ID (default: gemini-3.5-flash-lite, or "
+                        f"{OPENAI_DEFAULT_MODEL} for --backend openai)")
     parser.add_argument("--media-resolution", default="high", choices=("low", "medium", "high"),
                         help="Gemini media resolution per frame (default: high)")
+    parser.add_argument("--base-url", help="openai: the server's /v1 URL (default: VLM_BASE_URL)")
+    parser.add_argument("--max-frames", type=int, default=256,
+                        help="openai: most frames per video; longer videos are thinned evenly (default: 256)")
+    parser.add_argument("--frame-max-side", type=int, default=640,
+                        help="openai: longer side of each frame in pixels (default: 640)")
+    parser.add_argument("--max-tokens", type=int, default=16384,
+                        help="openai: output token limit, thinking included (default: 16384)")
+    parser.add_argument("--disable-thinking", action="store_true",
+                        help="openai: ask a Qwen-style chat template to skip thinking")
     parser.add_argument("--timeout-s", type=float, default=900, help="Network timeout per request")
     parser.add_argument("--env-file", default=str(REPO_ROOT / ".env"), help="Local credentials file")
     parser.add_argument("--dry-run", action="store_true", help="Prepare clips and request only")
@@ -77,6 +143,10 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("fps must be a finite positive number")
     if args.coin_execution_id and (args.execution_start_s is not None or args.execution_end_s is not None):
         raise ValueError("Use either --coin-execution-id or explicit execution times, not both")
+    if args.model is None:
+        args.model = GEMINI_DEFAULT_MODEL if args.backend == "gemini" else OPENAI_DEFAULT_MODEL
+    if args.max_frames < 1 or args.frame_max_side < 32 or args.max_tokens < 1:
+        raise ValueError("--max-frames, --frame-max-side and --max-tokens must be positive")
 
     root = resolve_data_root(args.data_root)
     paths = {}
@@ -129,9 +199,9 @@ def main(argv: list[str] | None = None) -> int:
         "schema_version": 1,
         "status": "running",
         "started_at": datetime.now(timezone.utc).isoformat(),
+        "backend": args.backend,
         "requested_model": args.model,
         "fps": args.fps,
-        "media_resolution": args.media_resolution,
         "timeout_s": args.timeout_s,
         "inputs": {
             "reference": {"path": str(paths["reference"]), "sha256": _sha256(paths["reference"]),
@@ -147,7 +217,16 @@ def main(argv: list[str] | None = None) -> int:
         "result": None,
     }
 
-    if args.dry_run:
+    if args.backend == "gemini":
+        report["media_resolution"] = args.media_resolution
+    else:
+        report["frames"] = {"max_frames": args.max_frames, "max_side": args.frame_max_side}
+        report["max_tokens"] = args.max_tokens
+        report["thinking"] = "disabled" if args.disable_thinking else "model default"
+
+    if args.backend == "openai":
+        _run_openai(args, report, reference_clip, execution_clip, rows, exe_duration)
+    elif args.dry_run:
         report["status"] = "dry_run"
     else:
         from dotenv import dotenv_values

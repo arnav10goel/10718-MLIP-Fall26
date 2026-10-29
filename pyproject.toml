@@ -17,6 +17,7 @@ clip = [
 ]
 vlm = [
   "google-genai",
+  "openai",
   "jsonschema",
   "python-dotenv",
 ]
