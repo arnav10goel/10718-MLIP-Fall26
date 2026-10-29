@@ -31,9 +31,9 @@ Single runs, three cases each, on execution `I33S4c7zrcg` (full tables: `results
 - Earlier runs on `e7p9QHRmd4k` (`results.md`, tag `live2`) mostly failed the answer checks because of timestamps past the end of the video. Timing problems are now repaired and listed as warnings instead of discarding the answer.
 - Response time varied from about 9 s to over 5 minutes per call; one upload failed with a Google server error (500) and was rerun (`runs/correct_lite_I33_server500.json`).
 
-## Other models (OpenAI-compatible servers, such as Qwen on Modal)
+## Other models (OpenAI-compatible servers, such as GLM or Qwen on Modal)
 
-`scripts/run_offline_vlm.py --backend openai` sends the same prompt, checklist and JSON schema to any OpenAI-compatible chat server and checks the answer the same way. These servers take images, not video, so each video is sent as JPEG frames (1 fps by default, at most 256 per video, longer side 640 px), each preceded by its time in seconds. The model must accept images; Modal's library page for a model lists its inputs.
+`scripts/run_offline_vlm.py --backend openai` sends the same prompt, checklist and JSON schema to any OpenAI-compatible chat server and checks the answer the same way. By default each video is sent as JPEG frames (1 fps, at most 256 per video, longer side 640 px), each preceded by its time in seconds. With `--video` the execution is sent as one video instead, for models that take video; the reference stays as frames because Modal's GLM endpoint accepts one video per request.
 
 Setup, once per person. Each person uses their own Modal login, and keys stay in `.env`, which git ignores:
 
@@ -44,22 +44,35 @@ Setup, once per person. Each person uses their own Modal login, and keys stay in
 echo "VLM_API_KEY=wk-<id>.ws-<secret>" >> .env
 ```
 
-Run. A Dedicated Endpoint bills per GPU-second until it is stopped:
+GLM-5.3-Flash on a Shared Endpoint (billed per token, no GPU start-up, takes video):
 
 ```bash
-.venv/bin/modal endpoint create --name guideme-qwen9b --model Qwen/Qwen3.5-9B   # prints ep-...
-.venv/bin/modal endpoint info <ep-id>            # URL; ready once <URL>/v1/models stops returning 503
+.venv/bin/modal endpoint create --shared --model zai-org/GLM-5.3-Flash   # prints ep-...
+.venv/bin/modal endpoint info <ep-id>                                    # prints its URL
+.venv/bin/python -m scripts.run_offline_vlm --backend openai --video \
+    --model zai-org/GLM-5.3-Flash --max-tokens 32768 --base-url <URL>/v1 \
+    --reference ref.mp4 --checklist ref.csv --execution my_attempt.mp4 \
+    --output runs/attempt_glm.json
+```
+
+Qwen3.5-9B on a Dedicated Endpoint (images only; bills per GPU-second until stopped):
+
+```bash
+.venv/bin/modal endpoint create --name guideme-qwen9b --model Qwen/Qwen3.5-9B
+.venv/bin/modal endpoint info <ep-id>            # ready once <URL>/v1/models stops returning 503
 .venv/bin/python -m scripts.run_offline_vlm --backend openai --model guideme-qwen9b \
     --base-url <URL>/v1 --reference ref.mp4 --checklist ref.csv \
     --execution my_attempt.mp4 --output runs/attempt_qwen9b.json
 .venv/bin/modal endpoint stop <ep-id> -y         # stop billing
 ```
 
-- `--model` is the endpoint name, not the Hugging Face ID.
-- Qwen thinks by default. `--max-tokens` (default 16384) covers thinking and the answer; `--disable-thinking` turns thinking off.
+- On a Dedicated Endpoint, `--model` is the endpoint name; `<URL>/v1/models` lists the name to use.
+- `--max-tokens` (default 16384) covers thinking and the answer. GLM thought for about 14,000 tokens on a 25 s execution, so give it 32768. `--disable-thinking` turns Qwen's thinking off.
 - On a login node, ffmpeg and NumPy fail with `pthread_create failed: Resource temporarily unavailable` when your processes already use most of the per-user thread limit (256 on Babel; VS Code servers use many). Close unused VS Code windows or run on a compute node.
 
-Smoke test, Qwen3.5-9B on COIN `ReplaceSIMCard` (reference `0b6joFdBwUw`, execution `V_BwPfCh1Z0`), two runs. A cut in the middle of the insert step was right both times: s001 done, s002 current, s003 not started, no deviation. The whole correct execution was right once. The other time Qwen left out s003 and flagged a deviation that is not there, so the answer was rejected. Thinking used about 14,000 of the 16,384 output tokens on the whole execution.
+Smoke test on COIN `ReplaceSIMCard` (reference `0b6joFdBwUw`, execution `V_BwPfCh1Z0`), two cuts: the whole correct execution, and a cut in the middle of the insert step.
+- GLM-5.3-Flash with `--video`, one run: both right, with step times within about 2 s of the COIN annotation.
+- Qwen3.5-9B with frames, two runs: the mid-insert cut was right both times. The whole execution was right once; the other time Qwen left out s003 and flagged a deviation that is not there, so the answer was rejected.
 
 ## Files
 

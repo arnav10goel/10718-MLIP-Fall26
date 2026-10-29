@@ -66,6 +66,17 @@ The cutoff is every pair among the 48 canonical videos. Score the recordings aga
 
 The detailed pair scores and per-recording averages are written to `data/prepared/recorded_similarity.json`. Correct/incorrect labels are copied into that output for evaluation but are not used to compute the alignments. The cutoff table, both labeling conditions, and the timestamp comparison are in `REPORT.md`.
 
+### Ask a VLM (Gemini, or an open model on Modal)
+
+`scripts/run_offline_vlm.py` gives a model the reference video, its checklist and an execution, and writes the model's per-step verdict to a JSON report. With `GEMINI_API_KEY` in `.env`:
+
+```bash
+.venv/bin/python -m scripts.run_offline_vlm --reference ref.mp4 --checklist ref.csv \
+    --execution my_attempt.mp4 --output runs/attempt_gemini.json
+```
+
+For an open model on Modal, such as GLM-5.3-Flash, see the Modal setup in `experiments/offline_vlm/README.md`, then add `--backend openai --video --model zai-org/GLM-5.3-Flash --max-tokens 32768 --base-url <endpoint URL>/v1`.
+
 ## Example: ReplaceSIMCard
 
 The original 48-video run is ReplaceSIMCard, task id 141. The scripts keep the 48 downloaded videos whose annotation is exactly these three steps, once each, in this order:
