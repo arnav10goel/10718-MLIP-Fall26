@@ -229,12 +229,17 @@
       letter-spacing: .02em;
     }
 
-    label.field select {
+    label.field select,
+    label.field input {
       width: 100%;
       padding: 8px 10px;
       color: var(--text);
       font-weight: 400;
       letter-spacing: normal;
+    }
+
+    #mistakeField {
+      grid-column: 1 / -1;
     }
 
     .instructions {
@@ -448,17 +453,18 @@
           DEVIATION STEP
           <select id="deviationStep">
             <option value="">None</option>
-            <option value="1">Step 1 — open slot</option>
-            <option value="2">Step 2 — insert SIM</option>
-            <option value="3">Step 3 — close tray</option>
           </select>
+        </label>
+        <label class="field" id="mistakeField">
+          MISTAKE
+          <input id="mistake" type="text" maxlength="200" placeholder="What is wrong">
         </label>
       </div>
 
       <p class="instructions">
         Pause at the first frame of an action and mark its start, then mark its
         last frame as the end. Gaps between steps are allowed.
-        Select steps with <kbd>1</kbd>–<kbd>3</kbd>, mark with
+        Select steps with the number keys, mark with
         <kbd>[</kbd>/<kbd>]</kbd>, and fine-seek with the arrow keys.
       </p>
 
@@ -485,6 +491,8 @@
     const nextButton = document.querySelector("#nextButton");
     const outcome = document.querySelector("#outcome");
     const deviationStep = document.querySelector("#deviationStep");
+    const mistakeField = document.querySelector("#mistakeField");
+    const mistakeInput = document.querySelector("#mistake");
     const stepsContainer = document.querySelector("#steps");
     const validation = document.querySelector("#validation");
     const timeline = document.querySelector("#timeline");
@@ -684,6 +692,8 @@
         ? ""
         : String(entry.deviation_step);
       deviationStep.disabled = entry.outcome === "correct";
+      mistakeField.hidden = entry.outcome !== "incorrect";
+      mistakeInput.value = entry.mistake || "";
       previousButton.disabled = currentIndex === 0;
       nextButton.disabled = currentIndex === state.videos.length - 1;
       activeStep = 0;
@@ -751,6 +761,12 @@
         const payload = await response.json();
         if (!response.ok) throw new Error(payload.error || "Could not load state");
         state = payload;
+        (state.step_labels || []).forEach((label, index) => {
+          const option = document.createElement("option");
+          option.value = String(index + 1);
+          option.textContent = `Step ${index + 1} — ${label}`;
+          deviationStep.appendChild(option);
+        });
         state.videos.forEach((entry, index) => {
           const option = document.createElement("option");
           option.value = String(index);
@@ -759,6 +775,11 @@
         });
         outputPath.textContent = `Saving to ${state.output_path}`;
         outputPath.title = state.output_path;
+        const requested = new URLSearchParams(window.location.search).get("video");
+        if (requested) {
+          const found = state.videos.findIndex(entry => entry.file === requested);
+          if (found >= 0) currentIndex = found;
+        }
         app.hidden = false;
         renderCurrent();
       } catch (error) {
@@ -803,11 +824,19 @@
       entry.outcome = outcome.value;
       if (entry.outcome === "correct") {
         entry.deviation_step = null;
+        entry.mistake = null;
       } else if (entry.deviation_step == null) {
         entry.deviation_step = 2;
       }
       deviationStep.value = entry.deviation_step == null ? "" : String(entry.deviation_step);
       deviationStep.disabled = entry.outcome === "correct";
+      mistakeField.hidden = entry.outcome !== "incorrect";
+      mistakeInput.value = entry.mistake || "";
+      changed();
+    });
+
+    mistakeInput.addEventListener("input", () => {
+      currentAnnotation().mistake = mistakeInput.value.trim() || null;
       changed();
     });
 
@@ -820,7 +849,8 @@
 
     document.addEventListener("keydown", event => {
       if (["INPUT", "SELECT", "TEXTAREA"].includes(event.target.tagName)) return;
-      if (event.key >= "1" && event.key <= "3") {
+      const stepCount = (state && state.step_labels || []).length;
+      if (event.key >= "1" && event.key <= "9" && Number(event.key) <= stepCount) {
         setActiveStep(Number(event.key) - 1);
         event.preventDefault();
       } else if (event.key === "[") {

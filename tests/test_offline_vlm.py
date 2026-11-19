@@ -73,6 +73,18 @@ class PredictTests(unittest.TestCase):
         checklist = json.loads(next(t for t in texts if t.startswith("CHECKLIST")).split("\n", 1)[1])
         self.assertEqual([r["step_id"] for r in checklist], ["s001", "s002", "s003"])
         self.assertTrue(any(t.startswith("EXECUTION_DURATION_S") for t in texts))
+        self.assertFalse(any(t.startswith("EXAMPLES") for t in texts))
+
+    def test_examples_are_included_when_given(self):
+        client, generate = fake_client(good_prediction())
+        predict_offline_alignment(
+            client, "uri://ref", "uri://exe", ROWS, examples="EXAMPLES\nOther task.\n",
+        )
+        texts = [p["text"] for p in generate.call_args.kwargs["contents"][0]["parts"] if "text" in p]
+        examples_at = next(i for i, text in enumerate(texts) if text.startswith("EXAMPLES"))
+        checklist_at = next(i for i, text in enumerate(texts) if text.startswith("CHECKLIST"))
+        self.assertLess(examples_at, checklist_at)
+        self.assertIn("Other task.", texts[examples_at])
 
     def test_invalid_predictions_are_rejected_with_reason(self):
         cases = {}

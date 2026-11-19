@@ -20,6 +20,7 @@ TASKS = (
     "WashDish",
     "CleanToilet",
     "MakeStrawberrySmoothie",
+    "ReplaceBatteryOnTVControl",
 )
 
 COIN_JSON_URL = (

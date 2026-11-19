@@ -143,6 +143,8 @@ def build_request(
     disable_thinking: bool = False,
     json_schema: bool = True,
     video: bool = False,
+    temperature: float | None = None,
+    examples: str | None = None,
 ) -> tuple[dict, dict]:
     """Chat Completions request in the same order Gemini gets its inputs.
 
@@ -152,8 +154,17 @@ def build_request(
     """
     if not checklist_rows:
         raise ValueError("checklist_rows must contain at least one reference step")
+    if examples is not None and (not isinstance(examples, str) or not examples.strip()):
+        raise ValueError("examples must be a nonempty string")
     if not isinstance(model, str) or not model.strip():
         raise ValueError("model must be a nonempty string")
+    if temperature is not None and (
+        isinstance(temperature, bool)
+        or not isinstance(temperature, (int, float))
+        or not math.isfinite(temperature)
+        or not 0 <= temperature <= 2
+    ):
+        raise ValueError("temperature must be between 0 and 2")
     frames = {"reference": sample_frames(reference_clip, fps, max_frames=max_frames, max_side=frame_max_side)}
     content = _video_parts("REFERENCE", frames["reference"])
     if video:
@@ -168,6 +179,11 @@ def build_request(
         ensure_ascii=False, allow_nan=False, indent=2,
     )
     content.append({"type": "text", "text": PROMPT_PATH.read_text(encoding="utf-8")})
+    if examples is not None:
+        content.append({
+            "type": "text",
+            "text": examples if examples.startswith("EXAMPLES") else f"EXAMPLES\n{examples}",
+        })
     content.append({"type": "text", "text": f"CHECKLIST\n{checklist}"})
     if execution_duration_s is not None:
         content.append({"type": "text", "text": f"EXECUTION_DURATION_S\n{execution_duration_s:.2f}"})
@@ -176,6 +192,7 @@ def build_request(
         "model": model,
         "messages": [{"role": "user", "content": content}],
         "max_tokens": max_tokens,
+        **({} if temperature is None else {"temperature": temperature}),
     }
     if json_schema:
         request["response_format"] = {

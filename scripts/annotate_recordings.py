@@ -27,21 +27,22 @@ from urllib.parse import unquote, urlsplit
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from coin_tasks import REPO_ROOT  # noqa: E402
-from replace_simcard import SPEC  # noqa: E402
 
-STEP_LABELS = SPEC.step_labels
-DEFAULT_VIDEO_DIR = SPEC.recording_dir()
-DEFAULT_OUTPUT = SPEC.annotations_path()
+SPECS = {}
+STEP_LABELS: tuple[str, ...] = ()
+SPEC = None
+VIDEO_SUFFIXES = {".mp4", ".mov", ".m4v"}
 VIEWER_HTML = Path(__file__).with_name("recording_annotation_viewer.html")
 RANGE_RE = re.compile(r"bytes=(\d*)-(\d*)$")
 
 
 def default_video(filename: str) -> dict:
-    incorrect = filename.lower().startswith("incorrect")
+    incorrect = "incorrect" in filename.lower()
     return {
         "file": filename,
         "outcome": "incorrect" if incorrect else "correct",
         "deviation_step": 2 if incorrect else None,
+        "mistake": None,
         "duration": None,
         "steps": [
             {
@@ -76,6 +77,7 @@ def load_state(video_names: list[str], output_path: Path) -> dict:
                 "deviation_step", entry["deviation_step"]
             )
             entry["duration"] = existing.get("duration")
+            entry["mistake"] = existing.get("mistake") or None
             old_steps = {
                 step.get("index"): step
                 for step in existing.get("steps", [])
@@ -112,7 +114,36 @@ def optional_time(value: object, field: str) -> float | None:
     return result
 
 
-def normalize_payload(payload: object, video_names: list[str]) -> dict:
+def optional_note(value: object, field: str) -> str | None:
+    if value is None or value == "":
+        return None
+    if not isinstance(value, str):
+        raise ValueError(f"{field} must be text or null")
+    text = " ".join(value.split())
+    if len(text) > 200:
+        raise ValueError(f"{field} must be 200 characters or fewer")
+    return text or None
+
+
+def saved_mistakes(output_path: Path) -> dict[str, str | None]:
+    """Keep a note already on disk when an open page does not send one."""
+    if not output_path.exists():
+        return {}
+    with output_path.open() as file:
+        payload = json.load(file)
+    notes = {}
+    for entry in payload.get("videos", []):
+        if isinstance(entry, dict) and isinstance(entry.get("file"), str):
+            note = entry.get("mistake")
+            notes[entry["file"]] = note if isinstance(note, str) and note.strip() else None
+    return notes
+
+
+def normalize_payload(
+    payload: object,
+    video_names: list[str],
+    mistakes: dict[str, str | None] | None = None,
+) -> dict:
     if not isinstance(payload, dict) or not isinstance(payload.get("videos"), list):
         raise ValueError("payload must contain a videos list")
 
@@ -138,11 +169,19 @@ def normalize_payload(payload: object, video_names: list[str]) -> dict:
         elif (
             isinstance(deviation_step, bool)
             or not isinstance(deviation_step, int)
-            or deviation_step not in range(1, 4)
+            or deviation_step not in range(1, len(STEP_LABELS) + 1)
         ):
-            raise ValueError(f"{filename}: deviation_step must be 1, 2, 3, or null")
+            last = len(STEP_LABELS)
+            raise ValueError(
+                f"{filename}: deviation_step must be 1 to {last}, or null"
+            )
         if outcome == "correct":
             deviation_step = None
+            mistake = None
+        elif "mistake" in source:
+            mistake = optional_note(source.get("mistake"), f"{filename}.mistake")
+        else:
+            mistake = (mistakes or {}).get(filename)
 
         duration = optional_time(source.get("duration"), f"{filename}.duration")
         source_steps = source.get("steps")
@@ -186,6 +225,7 @@ def normalize_payload(payload: object, video_names: list[str]) -> dict:
                 "file": filename,
                 "outcome": outcome,
                 "deviation_step": deviation_step,
+                "mistake": mistake,
                 "duration": duration,
                 "steps": steps,
             }
@@ -289,7 +329,11 @@ class AnnotationHandler(BaseHTTPRequestHandler):
             if length <= 0 or length > 1_000_000:
                 raise ValueError("invalid request size")
             payload = json.loads(self.rfile.read(length))
-            normalized = normalize_payload(payload, self.server.video_names)
+            normalized = normalize_payload(
+                payload,
+                self.server.video_names,
+                saved_mistakes(self.server.output_path),
+            )
             self.server.output_path.parent.mkdir(parents=True, exist_ok=True)
             temporary = self.server.output_path.with_suffix(
                 self.server.output_path.suffix + ".tmp"
@@ -341,7 +385,8 @@ class AnnotationHandler(BaseHTTPRequestHandler):
 
         length = end - start + 1
         self.send_response(status)
-        self.send_header("Content-Type", "video/mp4")
+        kind = "video/quicktime" if video_path.suffix.lower() == ".mov" else "video/mp4"
+        self.send_header("Content-Type", kind)
         self.send_header("Accept-Ranges", "bytes")
         self.send_header("Content-Length", str(length))
         if status == HTTPStatus.PARTIAL_CONTENT:
@@ -364,14 +409,26 @@ class AnnotationHandler(BaseHTTPRequestHandler):
             pass
 
 
+def load_specs() -> dict:
+    from clean_toilet import SPEC as toilet
+    from perform_cpr import SPEC as cpr
+    from replace_battery import SPEC as battery
+    from replace_simcard import SPEC as sim
+
+    return {"sim": sim, "toilet": toilet, "battery": battery, "cpr": cpr}
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Open a local viewer to annotate the three SIM-card steps."
+        description="Open a local viewer to annotate recorded task videos."
+    )
+    parser.add_argument(
+        "--task", choices=("sim", "toilet", "battery", "cpr"), default="sim"
     )
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8765)
-    parser.add_argument("--video-dir", type=Path, default=DEFAULT_VIDEO_DIR)
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--video-dir", type=Path)
+    parser.add_argument("--output", type=Path)
     parser.add_argument(
         "--no-browser", action="store_true", help="do not open a browser automatically"
     )
@@ -379,10 +436,16 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    global SPEC, STEP_LABELS
     args = parse_args()
-    video_dir = args.video_dir.resolve()
-    output_path = args.output.resolve()
-    video_names = sorted(path.name for path in video_dir.glob("*.mp4"))
+    SPEC = load_specs()[args.task]
+    STEP_LABELS = SPEC.step_labels
+    video_dir = (args.video_dir or SPEC.recording_dir()).resolve()
+    output_path = (args.output or SPEC.annotations_path()).resolve()
+    video_names = sorted(
+        path.name for path in video_dir.iterdir()
+        if path.suffix.lower() in VIDEO_SUFFIXES and path.is_file()
+    )
     if not video_names:
         raise SystemExit(f"no .mp4 files found in {video_dir}")
     if not VIEWER_HTML.is_file():

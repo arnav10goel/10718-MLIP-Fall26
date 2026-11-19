@@ -239,6 +239,8 @@ def predict_offline_alignment(
     fps: float = 1,
     model: str = "gemini-3.5-flash-lite",
     media_resolution: str = "MEDIA_RESOLUTION_HIGH",
+    temperature: float | None = None,
+    examples: str | None = None,
 ) -> dict:
     """Ask Gemini for a step-by-step alignment of a whole execution to the reference.
 
@@ -255,8 +257,17 @@ def predict_offline_alignment(
             raise ValueError(f"{name} must be a nonempty video URI")
     if isinstance(fps, bool) or not isinstance(fps, (int, float)) or not math.isfinite(fps) or fps <= 0:
         raise ValueError("fps must be a finite positive number")
+    if temperature is not None and (
+        isinstance(temperature, bool)
+        or not isinstance(temperature, (int, float))
+        or not math.isfinite(temperature)
+        or not 0 <= temperature <= 2
+    ):
+        raise ValueError("temperature must be between 0 and 2")
     if not checklist_rows:
         raise ValueError("checklist_rows must contain at least one reference step")
+    if examples is not None and (not isinstance(examples, str) or not examples.strip()):
+        raise ValueError("examples must be a nonempty string")
     if not isinstance(model, str) or not model.strip():
         raise ValueError("model must be a nonempty string")
     step_ids = [row["step_id"] for row in checklist_rows]
@@ -281,6 +292,8 @@ def predict_offline_alignment(
         ensure_ascii=False, allow_nan=False, indent=2,
     )
     parts.append({"text": prompt})
+    if examples is not None:
+        parts.append({"text": examples if examples.startswith("EXAMPLES") else f"EXAMPLES\n{examples}"})
     parts.append({"text": f"CHECKLIST\n{checklist}"})
     if execution_duration_s is not None:
         parts.append({"text": f"EXECUTION_DURATION_S\n{execution_duration_s:.2f}"})
@@ -291,6 +304,7 @@ def predict_offline_alignment(
         "config": {
             "response_mime_type": "application/json",
             "response_json_schema": OFFLINE_SCHEMA,
+            **({} if temperature is None else {"temperature": temperature}),
         },
     }
     started = perf_counter()

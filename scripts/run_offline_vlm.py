@@ -64,6 +64,7 @@ def _run_openai(args, report, reference_clip, execution_clip, rows, exe_duration
         reference_clip, execution_clip, rows, model=args.model, execution_duration_s=exe_duration,
         fps=args.fps, max_frames=args.max_frames, frame_max_side=args.frame_max_side,
         max_tokens=args.max_tokens, disable_thinking=args.disable_thinking, video=args.video,
+        temperature=args.temperature, examples=args.examples_text,
     )
     report["frames"].update({name: {"count": len(t), "times_s": t} for name, t in times.items()})
     if args.dry_run:
@@ -115,6 +116,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--backend", default="gemini", choices=("gemini", "openai"),
                         help="gemini, or any OpenAI-compatible chat server (default: gemini)")
     parser.add_argument("--fps", type=float, default=1, help="Frame sampling FPS (default: 1)")
+    parser.add_argument("--temperature", type=float, help="Sampling temperature, 0 to 2. Omit for the model default")
+    parser.add_argument("--examples", help="Text file of other tasks' steps and annotated mistakes")
     parser.add_argument("--model", help="Model ID (default: gemini-3.5-flash-lite, or "
                         f"{OPENAI_DEFAULT_MODEL} for --backend openai)")
     parser.add_argument("--media-resolution", default="high", choices=("low", "medium", "high"),
@@ -144,12 +147,22 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("Report must be a new .json path under an existing directory")
     if not math.isfinite(args.fps) or args.fps <= 0:
         raise ValueError("fps must be a finite positive number")
+    if args.temperature is not None and (
+        not math.isfinite(args.temperature) or not 0 <= args.temperature <= 2
+    ):
+        raise ValueError("--temperature must be between 0 and 2")
     if args.coin_execution_id and (args.execution_start_s is not None or args.execution_end_s is not None):
         raise ValueError("Use either --coin-execution-id or explicit execution times, not both")
     if args.model is None:
         args.model = GEMINI_DEFAULT_MODEL if args.backend == "gemini" else OPENAI_DEFAULT_MODEL
     if args.max_frames < 1 or args.frame_max_side < 32 or args.max_tokens < 1:
         raise ValueError("--max-frames, --frame-max-side and --max-tokens must be positive")
+    examples = None
+    if args.examples:
+        examples = Path(args.examples).expanduser().read_text(encoding="utf-8")
+        if not examples.strip():
+            raise ValueError("--examples file is empty")
+    args.examples_text = examples
 
     root = resolve_data_root(args.data_root)
     paths = {}
@@ -205,6 +218,7 @@ def main(argv: list[str] | None = None) -> int:
         "backend": args.backend,
         "requested_model": args.model,
         "fps": args.fps,
+        "temperature": args.temperature,
         "timeout_s": args.timeout_s,
         "inputs": {
             "reference": {"path": str(paths["reference"]), "sha256": _sha256(paths["reference"]),
@@ -215,6 +229,7 @@ def main(argv: list[str] | None = None) -> int:
             "execution_clip": {"path": str(execution_clip), "duration_s": exe_duration, "audio": False},
         },
         "checklist": {"source": checklist_source, "path": str(checklist_path), "rows": rows},
+        "examples": examples,
         "runtime": {"python": platform.python_version()},
         "uploads": {},
         "result": None,
@@ -253,6 +268,7 @@ def main(argv: list[str] | None = None) -> int:
                 client, report["uploads"]["reference"]["uri"], report["uploads"]["execution"]["uri"],
                 rows, execution_duration_s=exe_duration, fps=args.fps, model=args.model,
                 media_resolution=f"MEDIA_RESOLUTION_{args.media_resolution.upper()}",
+                temperature=args.temperature, examples=examples,
             )
             report["status"] = "ok" if report["result"]["prediction"] is not None else "invalid_output"
         except Exception as error:

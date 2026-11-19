@@ -82,8 +82,8 @@ Gemini 3.5 Flash-Lite sees the full reference, the phone crop, and the nine-step
 | Recording | Test step | Truth | Current step | Deviation flagged |
 | --- | --- | --- | --- | --- |
 | vid 1 correct | 1 | Correct | 1 | No |
-| vid 1 correct | 7 | Correct | 7 | No (brown sugar instead of white at step 3, ignored) |
-| vid 1 correct | 9 | Correct | 9 | No (brown sugar instead of white at step 3, ignored) |
+| vid 1 correct | 7 | Brown sugar instead of white | 7 | Yes, step 3: brown sugar instead of white |
+| vid 1 correct | 9 | Brown sugar instead of white | 9 | Yes, step 3: brown sugar instead of white |
 | vid 2 correct | 4 | Correct | 4 | No |
 | vid 2 correct | 5 | Correct | 5 | No |
 | vid 2 correct | 8 | Correct | 8 | Yes, step 8: measuring pitcher instead of glass |
@@ -96,9 +96,9 @@ Gemini 3.5 Flash-Lite sees the full reference, the phone crop, and the nine-step
 
 | Precision | Recall |
 | --- | --- |
-| 3/4 | 3/3 |
+| 5/6 | 5/5 |
 
-Gemini catches all three mistakes and names the right step and the right reason for each. The one false positive is a measuring pitcher instead of a serving glass in vid 2. It also flags brown sugar instead of white in vid 1 at both later cuts; we ignore these, since the type of sugar is not a mistake. The current step is right for 9 of the 12 cuts. It misses vid 5 at step 5, where it calls the task finished, and vid 5 at step 8, where it says blending instead of pouring. For vid 6 it names step 1, the skipped step, rather than step 2, the step that was cut.
+Gemini catches all three planted mistakes and names the right step and the right reason for each. Brown sugar instead of white sugar in vid 1 is also a mistake, and Gemini flags it at both later cuts, on steps 7 and 9. The one false positive is a measuring pitcher instead of a serving glass in vid 2. The current step is right for 9 of the 12 cuts. It misses vid 5 at step 5, where it calls the task finished, and vid 5 at step 8, where it says blending instead of pouring. For vid 6 it names step 1, the skipped step, rather than step 2, the step that was cut.
 
 ## Task time
 
