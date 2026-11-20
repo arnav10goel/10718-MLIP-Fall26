@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GuideMe</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #20332f; background: #f2f4f1; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 1400px; margin: auto; padding: 24px 32px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    h1 { font-size: 23px; letter-spacing: -.8px; margin: 0; }
+    #mode { color: #6c7974; font-size: 12px; margin-left: 12px; }
+    #status { font-size: 13px; color: #526a60; }
+    .stage { position: relative; overflow: hidden; border-radius: 14px; background: #14201c; box-shadow: 0 8px 35px #20332f12; }
+    #execution { display: block; width: 100%; height: min(72vh, 760px); min-height: 320px; object-fit: contain; }
+    .reference { position: absolute; right: 18px; top: 18px; width: 23%; max-width: 290px; min-width: 165px; overflow: hidden; border: 1px solid #ffffff55; border-radius: 9px; box-shadow: 0 4px 16px #0005; background: #182620; }
+    .reference p { color: #fff; font-size: 11px; padding: 7px 10px; margin: 0; background: #20352d; }
+    #reference { width: 100%; display: block; aspect-ratio: 16 / 9; background: #14201c; }
+    .controls { display: flex; align-items: center; gap: 16px; padding: 15px 18px; border-top: 1px solid #ffffff14; background: #fff; }
+    button { font: inherit; cursor: pointer; border-radius: 7px; min-height: 40px; padding: 9px 18px; border: 1px solid #c9d7cf; color: #254f3f; background: #fff; font-size: 14px; font-weight: 600; }
+    #toggle { min-width: 92px; background: #285e4b; color: #fff; border-color: #285e4b; }
+    button:disabled { opacity: .45; cursor: default; }
+    button:focus-visible, video:focus-visible { outline: 3px solid #7ab69b; outline-offset: 3px; }
+    progress { appearance: none; flex: 1; width: 100%; height: 5px; overflow: hidden; border: none; border-radius: 8px; background: #e2e9e3; }
+    progress::-webkit-progress-bar { background: #e2e9e3; }
+    progress::-webkit-progress-value { background: #4b8066; border-radius: 8px; }
+    progress::-moz-progress-bar { background: #4b8066; }
+    #position { font-size: 12px; color: #62736b; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    #notification { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); width: min(76%, 720px); background: #fffaf1; color: #413318; border: 1px solid #e9c88a; border-left: 4px solid #c58d35; border-radius: 10px; padding: 17px 19px; box-shadow: 0 5px 30px #0003; }
+    .notification-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .notification-top strong { font-size: 12px; color: #896126; }
+    #dismiss { border: 0; background: transparent; min-height: 26px; padding: 2px 5px; font-size: 12px; color: #7d6b4c; }
+    #mistake { margin: 8px 0 0; line-height: 1.45; font-size: clamp(16px, 1.6vw, 21px); font-weight: 600; }
+    #problem { margin: 12px 0 0; color: #8d4337; font-size: 13px; }
+    #tracked-issues { margin: 14px 2px 0; color: #526a60; font-size: 13px; }
+    #tracked-issues summary { cursor: pointer; font-weight: 600; }
+    #tracked-issue-list { white-space: pre-line; line-height: 1.5; }
+    [hidden] { display: none !important; }
+    @media (max-width: 650px) { main { padding: 18px 12px; } #execution { min-height: 300px; height: 66vh; } .reference { min-width: 125px; right: 10px; top: 10px; } .controls { padding: 12px; gap: 10px; } #notification { width: 92%; bottom: 14px; padding: 13px; } #mode { display: block; margin: 3px 0 0; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><h1>GuideMe</h1><span id="mode"></span></div>
+      <span id="status" role="status" aria-live="polite">Preparing…</span>
+    </header>
+    <section class="stage" aria-label="Execution">
+      <video id="execution" playsinline muted preload="metadata" aria-label="Execution video"></video>
+      <aside class="reference" aria-label="Reference">
+        <p>Reference</p>
+        <video id="reference" controls playsinline muted preload="metadata" aria-label="Reference video"></video>
+      </aside>
+      <section id="notification" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+        <div class="notification-top"><strong>Mistake detected</strong><button id="dismiss" type="button">Dismiss</button></div>
+        <p id="mistake"></p>
+      </section>
+    </section>
+    <div class="controls">
+      <button id="toggle" type="button" disabled>Play</button>
+      <button id="stop" type="button" disabled>Stop</button>
+      <progress id="progress" max="1" value="0" aria-label="Execution progress"></progress>
+      <span id="position">0:00</span>
+    </div>
+    <details id="tracked-issues" hidden>
+      <summary>Model-tracked issues</summary>
+      <p id="tracked-issue-list">No issues currently tracked.</p>
+    </details>
+    <p id="problem" role="status" hidden></p>
+  </main>
+  <script>
+    "use strict";
+    const $ = (id) => document.getElementById(id);
+    const execution = $("execution");
+    const reference = $("reference");
+    let session = null;
+    let sequence = 0;
+    let playbackState = "paused";
+    let lastReportedSource = 0;
+    let visibleAttempt = null;
+    let stopRequested = false;
+    let polling = false;
+    let pollTimer = null;
+    let urgentPoll = false;
+    let pendingDismiss = null;
+    const acknowledged = new Set();
+    const dismissed = new Set();
+    let clientEpoch = null, clientSegment = null, pendingSample = null;
+    let receiptFlushing = false, receiptFlushAgain = false;
+    let hostControlPending = false, hostControlQueue = Promise.resolve();
+    let hostPauseUnconfirmed = false, hostVideoError = false;
+    const clientMarkers = new Map(), sourceSamples = new Map(), clientAttempts = new Map();
+    const seconds = () => performance.now() / 1000;
+    const intervalMode = () => [2, 3].includes(session?.assessment_contract_version);
+    const hostReplay = () => session?.replay_clock_mode === "host";
+    const terminal = (value) => ["ended", "stopped", "failed"].includes(value);
+
+    function problem(message) {
+      $("problem").textContent = message;
+      $("problem").hidden = !message;
+    }
+
+    function monitoringError(error) {
+      execution.pause();
+      playbackState = stopRequested ? "stopped" : "paused";
+      if (hostReplay() && session?.active) {
+        // Playback continues independently of the view. Request a pause, but
+        // never imply success if the server itself cannot be reached.
+        hostPauseUnconfirmed = true;
+        request("/api/playback", {assessment_contract_version: 3, session_id: session.session_id,
+          action: "control", command: "pause"}).then(applySnapshot).catch(() => {});
+        problem("Connection interrupted. Monitoring may still be running; reconnect or stop the server.");
+      } else problem(error instanceof Error ? error.message : "Monitoring connection interrupted.");
+    }
+
+    function sourceTime() {
+      const current = Number.isFinite(execution.currentTime) ? execution.currentTime : 0;
+      return session?.stop_at_s === null || session?.stop_at_s === undefined
+        ? current : Math.min(current, session.stop_at_s);
+    }
+
+    function timeLabel(value) {
+      return `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, "0")}`;
+    }
+
+    function updateControls() {
+      const limit = session?.stop_at_s ?? execution.duration;
+      const position = hostReplay() ? session.source_time_s : sourceTime();
+      $("progress").value = Number.isFinite(limit) && limit > 0 ? Math.min(1, position / limit) : 0;
+      $("position").textContent = timeLabel(position) + (Number.isFinite(limit) ? ` / ${timeLabel(limit)}` : "");
+      $("toggle").textContent = (hostReplay() ? !session.playing : execution.paused) ? "Play" : "Pause";
+      if (intervalMode() && !session.baseline_received) $("toggle").disabled = true;
+    }
+
+    async function request(path, body) {
+      const response = await fetch(path, { method: body === undefined ? "GET" : "POST",
+        credentials: "same-origin", cache: "no-store", headers: { "Content-Type": "application/json" },
+        body: body === undefined ? undefined : JSON.stringify(body) });
+      if (!response.ok) {
+        const error = new Error("Monitoring connection interrupted. Pause and check the local server.");
+        error.status = response.status;
+        throw error;
+      }
+      return response.json();
+    }
+
+    function applySnapshot(data) {
+      if (!data || typeof data.session_id !== "string" || typeof data.status !== "string"
+          || !Number.isFinite(data.source_time_s) || !Number.isInteger(data.sequence)
+          || data.reference_url !== "/media/reference" || data.execution_url !== "/media/execution") {
+        throw new Error("Monitoring session is unavailable.");
+      }
+      if (session && data.session_id !== session.session_id) {
+        execution.pause();
+        throw new Error("Monitoring session changed. Reload to start again.");
+      }
+      if (!session) {
+        reference.src = data.reference_url;
+        execution.src = data.execution_url;
+        $("mode").textContent = data.backend === "mock" ? "Offline check · model calls off" : "";
+      }
+      session = data;
+      // This is model state, not a record of notifications the user saw.
+      const tracked = data.tracked_issues;
+      $("tracked-issues").hidden = !Array.isArray(tracked);
+      $("tracked-issue-list").textContent = Array.isArray(tracked) && tracked.length
+        ? tracked.map(issue => `${issue.state === "uncertain" ? "Uncertain" : "Open"}: ${issue.latest_description}`).join("\n")
+        : "No issues currently tracked.";
+      if (hostReplay() && hostPauseUnconfirmed && (!data.active || !data.playing)) {
+        hostPauseUnconfirmed = false;
+      }
+      if (intervalMode()) {
+        if (!clientEpoch) { clientEpoch = crypto.randomUUID(); clientSegment = crypto.randomUUID(); }
+        if (data.playback_claimed && (data.client_epoch_id !== clientEpoch || data.segment_id !== clientSegment)) {
+          execution.pause();
+          stopRequested = true;
+          playbackState = "stopped";
+          problem("Playback changed. Start a new monitoring session.");
+        }
+        rememberMarker(data.sample_marker);
+        rememberMarker(data.notification?.render_marker);
+      }
+      sequence = Math.max(sequence, data.sequence);
+      if (hostReplay() && document.visibilityState === "visible") {
+        // The host owns recorded-video time. Resync after a suspended view;
+        // this seek must not be interpreted as a user seeking the source.
+        if (Math.abs(execution.currentTime - data.source_time_s) > 0.75) {
+          execution.currentTime = data.source_time_s;
+        }
+        if (!hostPauseUnconfirmed && !hostVideoError && data.active && data.playing && execution.paused) {
+          execution.play().catch(() => {
+            hostVideoError = true;
+            monitoringError(new Error("The execution video could not resume."));
+          });
+        }
+        if ((!data.active || !data.playing) && !execution.paused) execution.pause();
+      }
+      const playbackDisconnected = data.error_code === "playback_disconnected";
+      const admissionMessages = {
+        budget_reservation_unavailable: "Remaining budget cannot cover another request. Monitoring stopped before the video was fully assessed.",
+        generation_call_limit_reached: "Request limit reached. Monitoring stopped before the video was fully assessed.",
+        provider_admission_refused: "Another assessment could not be started. Monitoring stopped before the video was fully assessed."
+      };
+      const labels = { preparing: "Preparing…", ready: "Ready", monitoring: "Watching",
+        processing: "Analyzing…", paused: "Paused", ended: "Finished", stopped: "Stopped",
+        failed: playbackDisconnected ? "Connection lost"
+          : data.error_code === "budget_reservation_unavailable" ? "Budget limit"
+          : data.error_code === "generation_call_limit_reached" ? "Request limit"
+          : "Processing unavailable" };
+      $("status").textContent = stopRequested && data.active ? "Stopping…"
+        : data.status === "ended" && data.active ? "Finishing…" : labels[data.status] ?? "Monitoring";
+      $("toggle").disabled = hostControlPending || stopRequested || data.status === "preparing" || terminal(data.status) || !data.active;
+      $("stop").disabled = stopRequested || !data.active;
+      if (terminal(data.status) || !data.active && data.status !== "preparing") {
+        execution.pause();
+        playbackState = data.status === "ended" ? "ended" : "stopped";
+      }
+      if (data.error_code) problem(admissionMessages[data.error_code] ?? (playbackDisconnected
+        ? "Browser connection lost. Monitoring stopped. Start a new monitoring session."
+        : "Processing is unavailable. No new mistake assessment is available."));
+      if (!data.notification || dismissed.has(data.notification.notification_id)) {
+        $("notification").hidden = true;
+        visibleAttempt = null;
+      }
+      updateControls();
+    }
+
+    async function reportPlayback() {
+      if (intervalMode()) return reportIntervalPlayback();
+      if (!session || !session.active || session.status === "preparing" && !stopRequested
+          || ["stopped", "failed"].includes(session.status)) return;
+      const source = Math.max(lastReportedSource, sourceTime());
+      try {
+        const response = await request("/api/playback", { session_id: session.session_id,
+          sequence: ++sequence, source_time_s: source, state: stopRequested ? "stopped" : playbackState });
+        lastReportedSource = source;
+        applySnapshot(response);
+      } catch (error) {
+        if (![400, 409].includes(error.status)) throw error;
+        applySnapshot(await request("/api/session"));
+        if (session.active !== false) throw error;
+      }
+    }
+
+    function fresh(item) {
+      const evidence = item.execution_evidence_s;
+      if (!Array.isArray(evidence) || !evidence.length
+          || evidence.some((value) => !Number.isFinite(value) || value < 0)
+          || !Number.isFinite(item.max_evidence_age_s) || item.max_evidence_age_s <= 0) return false;
+      const age = sourceTime() - Math.max(...evidence);
+      return age >= 0 && age <= item.max_evidence_age_s;
+    }
+
+    async function displayNotification() {
+      if (intervalMode()) {
+        const item = session?.notification;
+        if (!item || typeof item.text !== "string" || dismissed.has(item.notification_id)
+            || document.visibilityState !== "visible") return;
+        const record = newClientAttempt(item);
+        if (!record.renderTask) record.renderTask = displayIntervalNotification(item, record).catch(monitoringError);
+        return;
+      }
+      const item = session?.notification;
+      if (!item || typeof item.text !== "string" || dismissed.has(item.notification_id)) return;
+      if (stopRequested || !fresh(item)) {
+        $("notification").hidden = true;
+        visibleAttempt = null;
+        return;
+      }
+      $("mistake").textContent = item.text;
+      $("notification").hidden = false;
+      visibleAttempt = item.attempt_id;
+      $("dismiss").disabled = !acknowledged.has(item.attempt_id);
+      if (acknowledged.has(item.attempt_id) || document.visibilityState !== "visible") return;
+      // Two animation frames allow a paint between DOM insertion and the ACK.
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      if (stopRequested || !fresh(item)) {
+        $("notification").hidden = true;
+        visibleAttempt = null;
+        return;
+      }
+      if (document.visibilityState !== "visible" || $("notification").hidden || visibleAttempt !== item.attempt_id) return;
+      const renderedAt = performance.now();
+      const renderedSource = sourceTime();
+      $("dismiss").disabled = false;
+      await reportPlayback();
+      // Once painted, dismissal must not erase the outstanding render ACK.
+      if (stopRequested || !session.active || session.session_id !== item.session_id
+          || session.notification?.attempt_id !== item.attempt_id) return;
+      let response;
+      try {
+        response = await request("/api/ack", { session_id: session.session_id,
+          notification_id: item.notification_id, attempt_id: item.attempt_id,
+          source_time_s: renderedSource, rendered_at_ms: renderedAt });
+      } catch (error) {
+        if (![400, 409].includes(error.status)) throw error;
+        applySnapshot(await request("/api/session"));
+        if (session.notification?.attempt_id === item.attempt_id && session.active) throw error;
+        // Expiry or replacement can win while an ACK is in transit. It is not
+        // a connection failure, and its unacknowledged card cannot be dismissed.
+        if (pendingDismiss?.attempt_id === item.attempt_id) pendingDismiss = null;
+        return;
+      }
+      acknowledged.add(item.attempt_id);
+      applySnapshot(response);
+    }
+
+    async function reportDismissal() {
+      const item = pendingDismiss;
+      if (!item || !acknowledged.has(item.attempt_id)) return;
+      if ((!intervalMode() && (stopRequested || !session?.active)) || session.session_id !== item.session_id) {
+        if (pendingDismiss === item) pendingDismiss = null;
+        return;
+      }
+      try {
+        applySnapshot(await request("/api/dismiss", item));
+      } catch (error) {
+        if (![400, 409].includes(error.status)) throw error;
+        // An old card may have advanced while its dismissal was in transit.
+        // Refresh its replacement without hiding it or reporting a disconnect.
+        applySnapshot(await request("/api/session"));
+        if (session.notification?.attempt_id === item.attempt_id && session.active) throw error;
+      } finally {
+        if (pendingDismiss === item) pendingDismiss = null;
+      }
+    }
+
+    async function poll() {
+      if (polling) return;
+      polling = true;
+      try {
+        applySnapshot(await request("/api/session"));
+        if (intervalMode()) flushIntervalReceipts();
+        await reportPlayback();
+        if (!session.error_code && !hostPauseUnconfirmed && !hostVideoError) problem("");
+        await displayNotification();
+        if (intervalMode()) flushIntervalReceipts();
+        await reportDismissal();
+      } catch (error) {
+        monitoringError(error);
+      } finally {
+        // Schedule after completion, so a slow connection cannot queue ticks.
+        polling = false;
+        pollTimer = setTimeout(poll, urgentPoll ? 0 : 100);
+        urgentPoll = false;
+      }
+    }
+
+    $("toggle").addEventListener("click", () => {
+      if (hostReplay()) {
+        if (hostControlPending) return;
+        hostPauseUnconfirmed = false;
+        hostVideoError = false;
+        problem("");
+        const command = session.playing ? "pause" : "play";
+        const playback = command === "play" ? execution.play() : (execution.pause(), Promise.resolve());
+        hostControlPending = true;
+        $("toggle").disabled = true;
+        // Do not start server-side replay if the visible video cannot start.
+        hostControlQueue = playback.then(() => request("/api/playback", {assessment_contract_version: 3,
+          session_id: session.session_id, action: "control", command}).then(applySnapshot).catch(monitoringError), () => {
+          hostVideoError = true;
+          execution.pause();
+          problem("The execution video could not start. Monitoring has not started.");
+        }).finally(() => {
+            hostControlPending = false;
+            if (session) applySnapshot(session);
+          });
+        return;
+      }
+      if (intervalMode() && !session?.baseline_received) return;
+      if (execution.paused) {
+        execution.play().catch(() => problem("The execution video could not start."));
+      } else execution.pause();
+    });
+    $("stop").addEventListener("click", () => {
+      stopRequested = true;
+      execution.pause();
+      playbackState = "stopped";
+      visibleAttempt = null;
+      $("notification").hidden = true;
+      $("toggle").disabled = $("stop").disabled = true;
+      $("status").textContent = "Stopping…";
+      if (hostReplay()) {
+        // Serialize Stop after an in-flight Play/Pause so a delayed response
+        // cannot restart the host clock after the user stopped it.
+        hostControlQueue.finally(() => request("/api/playback", {assessment_contract_version: 3,
+          session_id: session.session_id, action: "control", command: "stop"})
+          .then(applySnapshot).catch(monitoringError));
+        return;
+      }
+      if (polling) urgentPoll = true;
+      else {
+        clearTimeout(pollTimer);
+        pollTimer = setTimeout(poll, 0);
+      }
+    });
+    $("dismiss").addEventListener("click", () => {
+      const item = session?.notification;
+      if (item) {
+        dismissed.add(item.notification_id);
+        pendingDismiss = { session_id: item.session_id,
+          notification_id: item.notification_id, attempt_id: item.attempt_id };
+      }
+      $("notification").hidden = true;
+      if (polling) urgentPoll = true;
+      else {
+        clearTimeout(pollTimer);
+        pollTimer = setTimeout(poll, 0);
+      }
+    });
+    execution.addEventListener("play", () => { playbackState = "playing"; updateControls(); });
+    execution.addEventListener("pause", () => { if (playbackState === "playing") playbackState = "paused"; updateControls(); });
+    execution.addEventListener("ended", () => { playbackState = "ended"; updateControls(); });
+    execution.addEventListener("timeupdate", () => {
+      if (session?.stop_at_s !== null && session?.stop_at_s !== undefined && execution.currentTime >= session.stop_at_s) {
+        execution.pause();
+        playbackState = "ended";
+      }
+      updateControls();
+    });
+    execution.addEventListener("loadedmetadata", updateControls);
+    execution.addEventListener("seeking", () => {
+      if (hostReplay()) return;
+      if (!intervalMode()) return;
+      // A new segment cannot silently reuse earlier issue or timing history.
+      clientSegment = crypto.randomUUID();
+      stopRequested = true;
+      execution.pause();
+      playbackState = "stopped";
+      problem("Playback changed. Start a new monitoring session.");
+      urgentPoll = true;
+    });
+    execution.addEventListener("error", () => { execution.pause(); playbackState = "stopped"; problem("The execution video could not be loaded or decoded."); });
+    reference.addEventListener("error", () => problem("The reference video could not be loaded or decoded."));
+    function rememberMarker(marker) {
+      if (!marker || typeof marker.marker_id !== "string" || clientMarkers.has(marker.marker_id)) return;
+      if (clientMarkers.size >= session.timing_limits.max_markers) throw new Error("Monitoring is unavailable. Start a new session.");
+      clientMarkers.set(marker.marker_id, {marker, received: seconds()});
+    }
+
+    async function reportIntervalPlayback() {
+      if (!session?.active || session.receipts_closed || !session.timing_limits || !session.reference_id) return;
+      if (!session.playback_claimed || session.segment_id !== clientSegment) {
+        if (hostReplay() && (!Number.isFinite(execution.duration) || execution.duration <= 0)) return;
+        applySnapshot(await request("/api/playback", {assessment_contract_version: session.assessment_contract_version, session_id: session.session_id,
+          action: "claim", client_epoch_id: clientEpoch, segment_id: clientSegment,
+          ...(hostReplay() ? {duration_s: execution.duration} : {})}));
+      }
+      if (hostReplay()) return;
+      if (!pendingSample) {
+        const token = session.sample_marker && clientMarkers.get(session.sample_marker.marker_id);
+        if (!token) return;
+        if (sourceSamples.size >= session.timing_limits.max_samples) throw new Error("Monitoring is unavailable. Start a new session.");
+        const started = seconds();
+        const source = sourceTime();
+        const finished = seconds();
+        if (source < lastReportedSource) throw new Error("Playback changed. Start a new monitoring session.");
+        const event = {client_epoch_id: clientEpoch, segment_id: clientSegment,
+          marker_received_at_s: token.received, event_started_at_s: started, event_finished_at_s: finished,
+          report_sent_at_s: seconds(), sample_id: crypto.randomUUID(), sequence: ++sequence,
+          source_elapsed_s: source, state: stopRequested ? "stopped" : playbackState};
+        sourceSamples.set(event.sample_id, Object.freeze(event));
+        pendingSample = {assessment_contract_version: session.assessment_contract_version, session_id: session.session_id,
+          action: "sample", marker_id: token.marker.marker_id, event};
+      }
+      const response = await request("/api/playback", pendingSample);
+      lastReportedSource = pendingSample.event.source_elapsed_s;
+      pendingSample = null;
+      applySnapshot(response);
+    }
+
+    function intervalWitness(item) {
+      const binding = item.binding, mapping = binding?.playback_mapping;
+      if (hostReplay() && mapping?.kind === "host_replay_passage" && mapping.status === "mapped"
+          && mapping.session_id === session.session_id && mapping.execution_source_sha256 === session.execution_source_sha256
+          && mapping.clock_id === session.clock_id && mapping.client_epoch_id === clientEpoch && mapping.segment_id === clientSegment
+          && mapping.support?.source_elapsed_s === binding.latest_execution_frame?.elapsed_s
+          && Array.isArray(mapping.host_interval_s) && Number.isFinite(mapping.host_interval_s[0])) {
+        const marker = item.render_marker && clientMarkers.get(item.render_marker.marker_id);
+        if (!marker || !Number.isFinite(marker.marker.issued_at_s)) return null;
+        return {hostAgeAtMarker: marker.marker.issued_at_s - mapping.host_interval_s[0], received: marker.received};
+      }
+      if (!mapping || mapping.kind !== "replay_passage" || mapping.status !== "mapped"
+          || mapping.session_id !== session.session_id || mapping.execution_source_sha256 !== session.execution_source_sha256
+          || mapping.clock_id !== session.clock_id || mapping.client_epoch_id !== clientEpoch || mapping.segment_id !== clientSegment
+          || !Array.isArray(mapping.support?.sample_ids) || mapping.support.sample_ids.length !== 2
+          || mapping.support.source_elapsed_s !== binding.latest_execution_frame?.elapsed_s) return null;
+      const lower = sourceSamples.get(mapping.support.sample_ids[0]);
+      const upper = sourceSamples.get(mapping.support.sample_ids[1]);
+      const target = mapping.support.source_elapsed_s;
+      if (!lower || !upper || lower.client_epoch_id !== clientEpoch || upper.client_epoch_id !== clientEpoch
+          || lower.segment_id !== clientSegment || upper.segment_id !== clientSegment
+          || !(lower.source_elapsed_s < target && target <= upper.source_elapsed_s)
+          || lower.sequence >= upper.sequence || lower.event_finished_at_s > upper.event_started_at_s) return null;
+      return {lower, upper};
+    }
+
+    function intervalFresh(item, witness) {
+      const age = witness && (hostReplay() ? witness.hostAgeAtMarker + seconds() - witness.received
+        : seconds() - witness.lower.event_started_at_s);
+      return witness && Number.isFinite(item.max_input_age_s) && item.max_input_age_s >= 0
+        && age >= 0 && age <= item.max_input_age_s;
+    }
+
+    function newClientAttempt(item) {
+      if (!clientAttempts.has(item.attempt_id)) {
+        if (clientAttempts.size >= session.receipt_limits.max_attempts) throw new Error("Monitoring is unavailable. Start a new session.");
+        clientAttempts.set(item.attempt_id, {item, inserted: false, receipt: null, sent: false, renderTask: null});
+      }
+      return clientAttempts.get(item.attempt_id);
+    }
+
+    function declineInterval(item, record, reason) {
+      if (record.inserted || record.receipt) return;
+      record.receipt = {assessment_contract_version: item.assessment_contract_version, session_id: item.session_id,
+        notification_id: item.notification_id, attempt_id: item.attempt_id,
+        receipt: {status: "not_sent", client_epoch_id: clientEpoch, segment_id: clientSegment, reason}};
+    }
+
+    async function displayIntervalNotification(item, record) {
+      if (record.receipt) return;
+      const witness = intervalWitness(item);
+      if (stopRequested || !session.active || !witness || !intervalFresh(item, witness)) {
+        if (!record.inserted) declineInterval(item, record,
+          stopRequested || !session.active ? "stopped_before_insertion" : !witness ? "timing_unavailable" : "stale_input");
+        $("notification").hidden = true;
+        return;
+      }
+      if (record.inserted) return;
+      const token = item.render_marker && clientMarkers.get(item.render_marker.marker_id);
+      if (!token) { declineInterval(item, record, "timing_unavailable"); return; }
+      const renderEpoch = clientEpoch, renderSegment = clientSegment;
+      const started = seconds();
+      record.inserted = true;
+      $("mistake").textContent = item.text;
+      $("notification").hidden = false;
+      $("dismiss").disabled = true;
+      visibleAttempt = item.attempt_id;
+      let observedAt = null;
+      await new Promise((resolve, reject) => requestAnimationFrame(() => {
+        try {
+          const current = session?.notification;
+          if (!stopRequested && session?.active && session.session_id === item.session_id
+              && clientEpoch === renderEpoch && clientSegment === renderSegment
+              && session.client_epoch_id === renderEpoch && session.segment_id === renderSegment
+              && current?.attempt_id === item.attempt_id && current.notification_id === item.notification_id
+              && !dismissed.has(item.notification_id) && document.visibilityState === "visible"
+              && !$("notification").hidden && visibleAttempt === item.attempt_id
+              && intervalFresh(item, intervalWitness(item))) {
+            observedAt = seconds();
+          } else if (visibleAttempt === item.attempt_id) {
+            $("notification").hidden = true;
+            visibleAttempt = null;
+          }
+          requestAnimationFrame(resolve);
+        } catch (error) {
+          reject(error);
+        }
+      }));
+      // A later hide/Stop cannot erase an already observed render opportunity.
+      // If it was never observed, keep the inserted attempt uncertain.
+      if (observedAt === null) {
+        // A hidden page can suspend the paint callback before an actual
+        // display. Let the same still-current attempt try again when visible.
+        record.inserted = false;
+        record.renderTask = null;
+        return;
+      }
+      record.receipt = {assessment_contract_version: item.assessment_contract_version, session_id: item.session_id,
+        notification_id: item.notification_id, attempt_id: item.attempt_id,
+        receipt: {status: "acknowledged", marker_id: token.marker.marker_id,
+          event: {client_epoch_id: renderEpoch, segment_id: renderSegment,
+            marker_received_at_s: token.received, event_started_at_s: started,
+            event_finished_at_s: observedAt, report_sent_at_s: seconds(),
+            notification_id: item.notification_id, attempt_id: item.attempt_id}}};
+      flushIntervalReceipts();
+    }
+
+    function flushIntervalReceipts() {
+      receiptFlushAgain = true;
+      if (receiptFlushing) return;
+      receiptFlushing = true;
+      drainIntervalReceipts().catch(monitoringError);
+    }
+
+    async function drainIntervalReceipts() {
+      try {
+        do {
+          receiptFlushAgain = false;
+          for (const record of clientAttempts.values()) {
+            if (!record.receipt || record.sent) continue;
+            try {
+              await request("/api/ack", record.receipt);
+              record.sent = true;
+              if (record.receipt.receipt.status === "acknowledged") acknowledged.add(record.item.attempt_id);
+              // Only the poll owns the current view: an old ACK response must
+              // not overwrite a newer replacement card or playback state.
+              if (visibleAttempt === record.item.attempt_id) $("dismiss").disabled = !acknowledged.has(record.item.attempt_id);
+            } catch (error) {
+              if (![400, 409].includes(error.status)) throw error;
+              const current = await request("/api/session");
+              if (current.session_id !== record.item.session_id || !current.receipts_closed) throw error;
+              record.sent = true; // Coverage closed: do not silently claim acceptance.
+            }
+          }
+        } while (receiptFlushAgain);
+      } finally {
+        receiptFlushing = false;
+        // A receipt or poll may have requested another pass before this one
+        // failed. Consume that queued wake once; failure alone adds no retry.
+        if (receiptFlushAgain) flushIntervalReceipts();
+      }
+    }
+
+    poll();
+  </script>
+</body>
+</html>

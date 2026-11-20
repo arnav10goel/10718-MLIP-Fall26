@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "reference": "reference.mp4",
+  "execution": "execution.mp4",
+  "scheduling": {
+    "max_in_flight": 3,
+    "notification_min_visible_s": 3,
+    "drain_timeout_s": 30,
+    "poll_interval_s": 0.02
+  },
+  "reference_config": {
+    "fps": 1,
+    "max_frames": 256,
+    "max_side": 512,
+    "jpeg_quality": 85,
+    "timeout_s": 120
+  },
+  "replay": {
+    "decision_interval_s": 1,
+    "execution_fps": 1,
+    "execution_max_frames": 1024,
+    "max_side": 512,
+    "jpeg_quality": 85,
+    "max_observations": 1024,
+    "max_images": 1281,
+    "max_jpeg_bytes": 64000000,
+    "max_evidence_age_s": 30,
+    "state": {"max_records": 1024, "max_metadata_bytes": 1000000},
+    "issues": {"max_issues": 32, "max_observations": 1024, "max_metadata_bytes": 1000000},
+    "sink": {"max_attempts": 64, "max_metadata_bytes": 1000000}
+  },
+  "artifact_limits": {"max_trace_bytes": 512000000},
+  "native_video": {
+    "input_representation": "jpeg_frames",
+    "base_url": "https://ai-gateway.andrew.cmu.edu/v1/",
+    "model": "gemini/gemini-4-argon",
+    "timeout_s": 300,
+    "max_request_bytes": 40000000,
+    "max_response_bytes": 100000,
+    "image_limits": {"max_images": 512, "max_jpeg_bytes": 16000000},
+    "compact_selection": {"coarse_interval_s": 5, "recent_window_s": 12},
+    "limits": {
+      "max_generation_calls": null,
+      "max_input_tokens": 1048576,
+      "max_output_tokens": 8192,
+      "budget_usd": "0.00",
+      "input_usd_per_million": "2",
+      "output_usd_per_million": "10"
+    }
+  }
+}
