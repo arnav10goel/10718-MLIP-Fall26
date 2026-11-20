@@ -8,6 +8,8 @@ dependencies = [
   "opencv-python-headless>=4.10",
   "numba>=0.60",
   "imageio-ffmpeg>=0.5",
+  "httpx",
+  "python-dotenv",
 ]
 
 [project.optional-dependencies]
@@ -19,7 +21,6 @@ vlm = [
   "google-genai",
   "openai",
   "jsonschema",
-  "python-dotenv",
 ]
 
 [tool.uv]

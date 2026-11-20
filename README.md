@@ -2,6 +2,39 @@
 
 Repository for the 10718 course project.
 
+## GuideMe video monitor
+
+The monitor compares a reference demonstration with an execution video and shows warnings for detected mistakes. It tracks open issues and model-reported corrections across checks. This is a prototype: model errors and delayed notifications are possible.
+
+### Set up on a new laptop
+
+From the repository checkout, use [uv](https://docs.astral.sh/uv/) to install the locked dependencies for Python 3.12.
+
+```bash
+uv sync --locked --python 3.12
+```
+
+Set `VLM_API_KEY` to your own CMU AI Gateway key in a local `.env` file or your shell environment. The default demo configuration requires gateway access to `gemini/gemini-4-argon` and available credits. `.env` is ignored by Git. The legacy SDK-backed VLM paths use the optional dependencies from `uv sync --locked --python 3.12 --extra vlm`.
+
+### Try your own videos
+
+Use a correct reference and an execution of the same task. Start with a short clip containing a clearly visible mistake and, if possible, a visible correction. Use absolute paths to MP4 files and quote paths that contain spaces. No dataset download or annotations are required.
+
+```bash
+uv run --locked python scripts/demo_videos.py custom \
+  --reference "$HOME/Videos/reference.mp4" \
+  --execution "$HOME/Videos/execution.mp4" \
+  --stop-at 30 --budget 5
+```
+
+Replace both paths with your own. Set `--stop-at` to an execution timestamp shorter than the clip, or omit it to run through the end. To focus on an action late in a longer recording, make a short execution clip that includes the lead-in and aftermath. The model receives sampled frames from the supplied reference and the execution footage available at each check. Use only videos you can share with the configured gateway.
+
+Open the printed localhost URL. The execution starts paused. Press **Play** to begin paid monitoring, and **Pause** or **Stop** to halt playback. The prerecorded demo continues when the browser is hidden. `--budget 5` configures a $5 per-run guard based on assumed model limits and rates. The gateway bills actual usage separately. The launcher prints the local run directory, where you can inspect the trace and summary.
+
+The `blocks`, `circuit`, and `ion` presets use the corresponding files under `data/raw/egooops/videos-processed-720p/` (or `$GUIDEME_DATA_ROOT/raw/egooops/videos-processed-720p/`). See the paths in `scripts/demo_videos.py`; pass `--reference` and `--execution` to override them. Videos and run artifacts are local and ignored by Git. The monitor settings are in `configs/demo_monitor.example.json`.
+
+## Existing baseline
+
 ## Goal
 
 A test pair is one full video of a task done correctly and one video of someone doing it. If that match is much worse than matches between correct videos, that step was done wrong.
